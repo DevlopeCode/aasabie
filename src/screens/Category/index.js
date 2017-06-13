@@ -317,7 +317,7 @@ const CategoryScreen = () => {
               <Text
                 style={{
                   paddingLeft: 22,
-                  fontWeight: 'bold',
+                  fontFamily: 'Poppins-Bold',
                   color: '#EC4850',
                   fontSize: vs(15),
                   marginVertical: vs(8),
