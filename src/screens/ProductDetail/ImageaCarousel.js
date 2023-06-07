@@ -1,14 +1,14 @@
-import { SafeAreaView, StyleSheet, Text, View, FlatList } from 'react-native'
-import React from 'react'
+import {SafeAreaView, StyleSheet, Text, View, FlatList} from 'react-native';
+import React from 'react';
 // import { SliderBox } from "react-native-image-slider-box";
 const ImageaCarousel = ({data}) => {
-    // const [currentImage, setCurrentImage] = useState(0);
+  // const [currentImage, setCurrentImage] = useState(0);
 
-    // useEffect(() => {
-    //   // Set the initial value of the current image to the first image in the array.
-    //   setCurrentImage(0);
-    // }, [images]);
-  
+  // useEffect(() => {
+  //   // Set the initial value of the current image to the first image in the array.
+  //   setCurrentImage(0);
+  // }, [images]);
+
   return (
     <SafeAreaView style={styles.container}>
       {/* <SliderBox
@@ -21,23 +21,23 @@ const ImageaCarousel = ({data}) => {
         autoplay
         circleLoop
     /> */}
-    <Text>Image Carousel</Text>
+      <Text>Image Carousel</Text>
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default ImageaCarousel
+export default ImageaCarousel;
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-      },
-      image: {
-        width: "100%",
-        height: "100%",
-      },
-      button: {
-        width: 50,
-        height: 50,
-      },
-})
+  container: {
+    flex: 1,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  button: {
+    width: 50,
+    height: 50,
+  },
+});

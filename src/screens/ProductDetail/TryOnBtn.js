@@ -1,15 +1,23 @@
-import Svg, { Path,Stop, Circle, ClipPath, G, Defs, Rect, LinearGradient } from "react-native-svg";
-import React from "react";
+import Svg, {
+  Path,
+  Stop,
+  Circle,
+  ClipPath,
+  G,
+  Defs,
+  Rect,
+  LinearGradient,
+} from 'react-native-svg';
+import React from 'react';
 
-const TryOnBtn = ({ size}) => {
+const TryOnBtn = ({size}) => {
   return (
     <Svg
-      width= {size?size:"20"}
-      height={size?size:"20"}
+      width={size ? size : '20'}
+      height={size ? size : '20'}
       viewBox="0 0 20 19"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <G clip-path="url(#clip0_1203_33030)">
         <Path
           d="M10.0379 18.7455C15.1436 18.7455 19.2827 14.6065 19.2827 9.50071C19.2827 4.39495 15.1436 0.25592 10.0379 0.25592C4.93213 0.25592 0.793091 4.39495 0.793091 9.50071C0.793091 14.6065 4.93213 18.7455 10.0379 18.7455Z"
@@ -27,8 +35,7 @@ const TryOnBtn = ({ size}) => {
           y1="14.3759"
           x2="17.8382"
           y2="4.69775"
-          gradientUnits="userSpaceOnUse"
-        >
+          gradientUnits="userSpaceOnUse">
           <Stop stopColor="#F5EAF9" />
           <Stop offset="1" stopColor="#FFBBBF" />
         </LinearGradient>
@@ -38,8 +45,7 @@ const TryOnBtn = ({ size}) => {
           y1="14.9539"
           x2="10.0387"
           y2="4.04791"
-          gradientUnits="userSpaceOnUse"
-        >
+          gradientUnits="userSpaceOnUse">
           <Stop stopColor="#C88BDE" />
           <Stop offset="1" stopColor="#9326BC" />
         </LinearGradient>

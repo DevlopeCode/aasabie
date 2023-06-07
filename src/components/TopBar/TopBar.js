@@ -6,7 +6,6 @@ import MenuIcon from './MenuIcon';
 import NotificationIcon from './NotificationIcon';
 import {SvgXml} from 'react-native-svg';
 import {MessageSVG} from '../../assets/SVG';
-
 const TopBar = () => {
   return (
     <View style={styles.TopBarConatiner}>

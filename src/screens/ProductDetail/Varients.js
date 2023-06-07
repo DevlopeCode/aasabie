@@ -5,25 +5,30 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableWithoutFeedback
-} from "react-native";
-import React from "react";
-import { color } from "../../config/color";
+  TouchableWithoutFeedback,
+} from 'react-native';
+import React from 'react';
+import {color} from '../../config/color';
 
-const Varients = ({ data,changeVarient,currentSelected }) => {
+const Varients = ({data, changeVarient, currentSelected}) => {
+  const [currentVarient, setCurrentVarient] = React.useState(currentSelected);
 
-    const [currentVarient,setCurrentVarient] = React.useState(currentSelected);
-
-    const handelChangeVarient = (index) => {
-        setCurrentVarient(index);
-        changeVarient(index);
-    }
+  const handelChangeVarient = index => {
+    setCurrentVarient(index);
+    changeVarient(index);
+  };
 
   return (
     <SafeAreaView>
       <View style={styles.varient}>
-        <View style={{flexDirection:'row', alineItem:'center', justifyContent:'space-between', marginBottom:10}}>
-          <View style={{flexDirection:'row'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alineItem: 'center',
+            justifyContent: 'space-between',
+            marginBottom: 10,
+          }}>
+          <View style={{flexDirection: 'row'}}>
             <Text style={styles.varientData}>Color: </Text>
             <Text style={styles.varientDataBold}>Red Wine</Text>
           </View>
@@ -37,14 +42,18 @@ const Varients = ({ data,changeVarient,currentSelected }) => {
           horizontal={true}
           keyExtractor={(item, index) => index.toString()}
           showsHorizontalScrollIndicator={false}
-          renderItem={({ item,index }) => {
+          renderItem={({item, index}) => {
             return (
-                <TouchableWithoutFeedback onPress={ ()=>handelChangeVarient(index) } >
-                    <ImageBackground
-                        source={{ uri: item.varientImage }}
-                        style={[styles.varientCard, currentVarient == index ? styles.activeVarientcard : null]}
-                    />
-                </TouchableWithoutFeedback>
+              <TouchableWithoutFeedback
+                onPress={() => handelChangeVarient(index)}>
+                <ImageBackground
+                  source={{uri: item.varientImage}}
+                  style={[
+                    styles.varientCard,
+                    currentVarient == index ? styles.activeVarientcard : null,
+                  ]}
+                />
+              </TouchableWithoutFeedback>
             );
           }}
         />
@@ -60,25 +69,25 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   varientDataBold: {
-    fontFamily: "PoppinsSemiBold",
+    fontFamily: 'PoppinsSemiBold',
     fontSize: 14,
     color: '#000',
-  },  
+  },
   varientData: {
-    fontFamily: "Poppins",
+    fontFamily: 'Poppins',
     fontSize: 14,
     color: color.misc,
-},
-    varientCard: {
+  },
+  varientCard: {
     width: 80,
     height: 100,
     marginRight: 10,
     borderRadius: 5,
-    overflow: "hidden",
+    overflow: 'hidden',
     elevation: 5,
-    shadowColor: "black",
+    shadowColor: 'black',
     shadowOpacity: 0.5,
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: {width: 0, height: 2},
     shadowRadius: 5,
   },
   activeVarientcard: {

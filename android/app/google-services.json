@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "869133353117",
+    "project_id": "aasabie",
+    "storage_bucket": "aasabie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869133353117:android:ce62a86c46925fc1595474",
+        "android_client_info": {
+          "package_name": "com.company.aasabie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869133353117-n5v2bf6khq8fltro3lmra7siemulh9c1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiEZii570GJ70-us8KABCyYQWzcluXbPs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869133353117-n5v2bf6khq8fltro3lmra7siemulh9c1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "869133353117-mvncrhpd21egr2qernc0kporjgud8vji.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.aasabie.app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

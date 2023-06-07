@@ -31,7 +31,7 @@ async function onGoogleButtonPress() {
 //   useProxy: true,
 //   projectNameForProxy: '@username/myapp',
 // };
-// const NATIVE_REDIRECT_PARAMS = {native: 'com.aasabie.app://'};
+// const NATIVE_REDIRECT_PARAMS = {native: 'com.company.aasabie.app://'};
 // const REDIRECT_PARAMS =
 //   Constants.appOwnership === 'expo'
 //     ? EXPO_REDIRECT_PARAMS

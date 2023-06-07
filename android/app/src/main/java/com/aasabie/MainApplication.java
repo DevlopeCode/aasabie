@@ -1,4 +1,4 @@
-package com.aasabie;
+package com.company.aasabie;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 // /**
 //  * Sample React Native App
 //  * https://github.com/facebook/react-native
@@ -118,11 +119,13 @@
 // export default App;
 /* eslint-disable react/react-in-jsx-scope */
 import 'react-native-gesture-handler';
+
 import {useEffect, useState} from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
 
 import Auth from './src';
 import {UserContext} from './src/contexts/UserContext';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 export default function App() {
   const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
@@ -143,18 +146,20 @@ export default function App() {
 
   if (!isFontLoaded) {
     return (
-      <UserContext.Provider
-        value={{
-          isUserLoggedIn,
-          setIsUserLoggedIn,
-          isUserLoggedInAsGuest,
-          setIsUserLoggedInAsGuest,
-        }}>
-        <View style={styles.container}>
-          <StatusBar />
-          <Auth />
-        </View>
-      </UserContext.Provider>
+      <GestureHandlerRootView style={{flex: 1}}>
+        <UserContext.Provider
+          value={{
+            isUserLoggedIn,
+            setIsUserLoggedIn,
+            isUserLoggedInAsGuest,
+            setIsUserLoggedInAsGuest,
+          }}>
+          <View style={styles.container}>
+            <StatusBar />
+            <Auth />
+          </View>
+        </UserContext.Provider>
+      </GestureHandlerRootView>
     );
   }
 }

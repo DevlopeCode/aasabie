@@ -1,15 +1,14 @@
-import Svg, { Path, Circle, ClipPath, G, Defs, Rect } from "react-native-svg";
-import React from "react";
+import Svg, {Path, Circle, ClipPath, G, Defs, Rect} from 'react-native-svg';
+import React from 'react';
 
 const ShareBtn = ({size}) => {
   return (
     <Svg
-      width={size?size:"28"}
-      height={size?size:"28"}
+      width={size ? size : '28'}
+      height={size ? size : '28'}
       viewBox="0 0 28 28"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <Circle cx="14" cy="14" r="14" fill="white" />
       <G clip-path="url(#clip0_967_36300)">
         <Path
