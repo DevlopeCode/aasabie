@@ -9,6 +9,8 @@ import {PostSlider} from './Component/List/PostSlider';
 import {TopStory} from './Component/List/TopStory';
 import {TopList} from './Component/List/TopList';
 import {ChoiceList} from './Component/List/ChoiceList';
+import WardRobe from './Component/List/WardRobe';
+import PickMart from './Component/List/PickMart';
 
 const ShopScreen = () => {
   return (
@@ -22,6 +24,8 @@ const ShopScreen = () => {
         <TopStory />
         <ChoiceList />
         <TopList />
+        <WardRobe />
+        <PickMart />
         <CategoryList />
       </ScrollView>
     </SafeAreaView>

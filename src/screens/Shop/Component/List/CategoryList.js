@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, View} from 'react-native';
+import {FlatList, Image, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import TextC from '../../../../components/Text';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
@@ -30,7 +30,7 @@ export const CategoryList = () => (
         />
       }
       renderItem={({index, item}) => (
-        <View
+        <TouchableOpacity
           style={{
             alignItems: 'center',
           }}>
@@ -52,7 +52,7 @@ export const CategoryList = () => (
             }}>
             {item.title}
           </TextC>
-        </View>
+        </TouchableOpacity>
       )}
     />
   </View>

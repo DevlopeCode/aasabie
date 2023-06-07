@@ -4,6 +4,7 @@ import React from 'react';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import {LocalSory} from '../res/rawData';
+import R from '../../../../res/R';
 
 export const TopStory = () => (
   <>
@@ -11,10 +12,18 @@ export const TopStory = () => (
       style={{
         height: verticalScale(40),
         paddingHorizontal: scale(20),
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        width: '100%',
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TextC style={{fontWeight: 'bold', color: '#EC303A'}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-start',
+        }}>
+        <TextC
+          style={{fontWeight: 'bold', color: '#EC303A', fontSize: scale(15)}}>
           TOP STORIES BY VENDOR
         </TextC>
         <Image
@@ -22,9 +31,24 @@ export const TopStory = () => (
           style={{
             height: scale(30),
             width: scale(30),
-            marginLeft: scale(10),
           }}
         />
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+        }}>
+        <TextC
+          style={{
+            fontWeight: 'bold',
+            color: R.color.dark.black,
+            textTransform: 'uppercase',
+            fontSize: scale(15),
+          }}>
+          view all
+        </TextC>
       </View>
     </View>
     <FlatList

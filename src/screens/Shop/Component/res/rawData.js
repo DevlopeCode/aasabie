@@ -141,3 +141,35 @@ export const TopData = [
     offpercentage: '30%',
   },
 ];
+
+export const RobData = [
+  {
+    image: require('../../../../assets/images/robslide1.png'),
+    title: 'Tops',
+  },
+  {
+    image: require('../../../../assets/images/robslide2.png'),
+    title: 'Flats',
+  },
+  {
+    image: require('../../../../assets/images/robslide1.png'),
+    title: 'Jeans',
+  },
+];
+export const OfferData = [
+  {
+    image: require('../../../../assets/images/offersItem.png'),
+    title: '35% Discount',
+    subtitle: 'Pick and order your style',
+  },
+  {
+    image: require('../../../../assets/images/offersItem.png'),
+    title: '35% Discount',
+    subtitle: 'Pick and order your style',
+  },
+  {
+    image: require('../../../../assets/images/offersItem.png'),
+    title: '35% Discount',
+    subtitle: 'Pick and order your style',
+  },
+];
