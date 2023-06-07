@@ -1,0 +1,63 @@
+{
+  "Showman": "Showman",
+  "Email": "Email",
+  "Password": "Password",
+  "LogIn": "Log In",
+  "SignUp": "Sign Up",
+  "CreateAccount": "Create an account",
+  "loginContent": "In order to use our app you will need to create a free account.",
+  "Register": "Register",
+  "BackLogin": "Back to log in",
+  "First_name": "First name",
+  "Search": "Search",
+  "Last_name": "Last name",
+  "ConfirmPassword": "Confirm Password",
+  "Postcode": "Postcode",
+  "event": {
+    "Events": "Events",
+    "Eventsdetail": "Events detail",
+    "content1": "lorem ipsum dolor sit amet conse adipiscing elit",
+    "Directions": "Directions",
+    "Calendar": "Calendar",
+    "ContactDetails": "Contact details",
+    "EventDetail": "Event details",
+    "Favourites": "Favourites",
+    "Filter": "Filter",
+    "AllEvent": "All events"
+  },
+  "filter": {
+    "FilterEvent": "Filter events",
+    "ResetFilters": "Reset filters",
+    "DateRange": "Date Range",
+    "EventType": "Event Type",
+    "Selecteventtype": "Select event type",
+    "Location": "Location",
+    "LocationContent0": "Show events near me",
+    "SortBy": "Sort by",
+    "ApplyFilters": "Apply filters",
+    "Cancel": "Cancel",
+    "Choose": "Choose",
+    "SelectedBy0": "Select search radius:",
+    "Filterpostcode": "Filter by postcode/town",
+    "Done": "Done",
+    "SelectEventType": "Select event type",
+    "Selectradius": "Select radius"
+  },
+  "errors": {
+    "type": {
+      "danger": "danger",
+      "success": "success"
+    },
+    "common": {
+      "Alert": "Alert",
+      "Success": "Success",
+      "VerifyEmail": "Please verify your email address.",
+      "TryLater": "Something went wrong! Please try later.",
+      "UpdatePassword": "Password updated successfully"
+    },
+    "Required": "Required!",
+    "email_invalid": "Email is invalid",
+    "password_invalid": "Password is not formatted",
+    "password_match": "Passwords do not match"
+  }
+}
