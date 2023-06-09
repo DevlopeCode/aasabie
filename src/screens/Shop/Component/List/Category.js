@@ -1,15 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {CategoryData} from '../res/rawData';
-import {FlatList, TouchableOpacity, View} from 'react-native';
+import {Dimensions, FlatList, TouchableOpacity, View} from 'react-native';
 import {verticalScale, moderateScale, scale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import {SvgXml} from 'react-native-svg';
 import R from '../../../../res/R';
+
 export const Category = () => (
-  <View style={{height: verticalScale(50)}}>
+  <View
+    style={{
+      height: verticalScale(50),
+      width: Dimensions.get('screen').width,
+      alignItems: 'center',
+    }}>
     <FlatList
       data={CategoryData}
+      showsHorizontalScrollIndicator={false}
       horizontal
       ItemSeparatorComponent={
         <View
@@ -19,7 +26,6 @@ export const Category = () => (
         />
       }
       style={{
-        width: moderateScale(340),
         backgroundColor: '#FFACB1',
       }}
       renderItem={CartegoryItem}

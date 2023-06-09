@@ -1,14 +1,25 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React from 'react';
 import ReelsHoriZontal from '../../../../components/Card/RealsHoriZontal';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import R from '../../../../res/R';
-
 const PickMart = () => {
   return (
-    <View style={{marginVertical: scale(20)}}>
+    <View
+      style={{
+        marginVertical: scale(20),
+        width: Dimensions.get('screen').width,
+        alignItems: 'center',
+      }}>
       <View
         style={{
           height: verticalScale(40),
@@ -53,12 +64,14 @@ const PickMart = () => {
         </View>
       </View>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         horizontal
         data={[1, 2, 3, 4]}
         renderItem={ReelsHoriZontal}
         style={{
           height: verticalScale(380),
-          paddingHorizontal: scale(20),
+          // paddingHorizontal: scale(20),
+          width: moderateScale(330),
         }}
         contentContainerStyle={{
           alignItems: 'center',

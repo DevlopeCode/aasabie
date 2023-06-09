@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Text, TouchableWithoutFeedback, View} from 'react-native';
 import ProfileScreen from '../screens/Profile/Profile';
-import {Path, Svg} from 'react-native-svg';
+import {Path, Svg, SvgXml} from 'react-native-svg';
 import CartIcon from '../assets/TabMenuIcons/CartIcon';
 import Explore from '../assets/TabMenuIcons/Explore';
 import HomeIcon from '../assets/TabMenuIcons/HomeIcon';
@@ -16,8 +17,11 @@ import {NavigationContainer} from '@react-navigation/native';
 import {StyleSheet} from 'react-native';
 import {color} from '../config/color';
 import {height} from '../config/dimension';
-import { login } from '../utils/apis/api';
+import {login} from '../utils/apis/api';
 import ShopScreen from '../screens/Shop';
+import {moderateScale, scale} from 'react-native-size-matters';
+import {verticalScale} from 'react-native-size-matters';
+import {BottomBar} from '../assets/SVG';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
@@ -35,28 +39,16 @@ const TabNavigation = () => {
             elevation: 0,
             borderTopWidth: 0,
             // paddingHorizontal: 20,
-            bottom: 20,
+            bottom: scale(30),
           },
-          tabBarBackground: () => (
-            <Svg
-              xmlns="http://www.w3.org/2000/svg"
-              width={394}
-              height={77}
-              fill="none">
-              <Path
-                fill="#EC303A"
-                fillOpacity={0.95}
-                d="M0 10.694c0-5.523 4.479-10 10.002-10h137.55c16.725 0 0 50.017 49.488 50.017S229.803.694 246.528.694h137.47c5.523 0 10.002 4.477 10.002 10V67c0 5.523-4.477 10-10 10H10C4.477 77 0 72.523 0 67V10.694Z"
-              />
-            </Svg>
-          ),
+          tabBarBackground: () => <SvgXml xml={BottomBar} />,
         }}>
         <Tab.Screen
           name="HomeStack"
-          component={ShopScreen}
+          component={HomeStack}
           options={{
             tabBarIcon: ({focused}) => (
-              <View>
+              <View style={{height: verticalScale(20)}}>
                 <TouchableWithoutFeedback
                   onPress={e => {
                     setShopActive(false);
@@ -77,7 +69,7 @@ const TabNavigation = () => {
           component={ProfileScreen}
           options={{
             tabBarIcon: ({focused}) => (
-              <View>
+              <View style={{height: verticalScale(20)}}>
                 <TouchableWithoutFeedback
                   onPress={e => {
                     setShopActive(false);
@@ -132,7 +124,7 @@ const TabNavigation = () => {
             component={ProfileScreen}
             options={{
               tabBarIcon: ({focused}) => (
-                <View>
+                <View style={{height: verticalScale(20)}}>
                   <TouchableWithoutFeedback onPress={e => e.preventDefault()}>
                     <View style={styles.icon}>
                       <WishList inFocus={focused} />
@@ -149,7 +141,7 @@ const TabNavigation = () => {
             component={ShopScreen}
             options={{
               tabBarIcon: ({focused}) => (
-                <View>
+                <View style={{height: verticalScale(20)}}>
                   <TouchableWithoutFeedback
                     onPress={e => {
                       setShopActive(true);
@@ -171,7 +163,7 @@ const TabNavigation = () => {
           component={HomeStack}
           options={{
             tabBarIcon: ({focused}) => (
-              <View>
+              <View style={{height: verticalScale(20)}}>
                 <TouchableWithoutFeedback
                   onPress={e => {
                     setShopActive(false);

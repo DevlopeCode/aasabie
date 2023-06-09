@@ -63,7 +63,7 @@ const Input = ({
 
 const style = StyleSheet.create({
   label: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 18,
     lineHeight: 24,
     marginBottom: 10,

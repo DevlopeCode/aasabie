@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   topBarTitle: {
     fontSize: 20,
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     color: color.primary,
 
     position: 'absolute',

@@ -136,7 +136,7 @@ export default function App() {
   //   Font.loadAsync({
   //     Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
   //     PoppinsSemiBold: require('./assets/fonts/Poppins-SemiBold.ttf'),
-  //     PoppinsBold: require('./assets/fonts/Poppins-Bold.ttf'),
+  //     Poppins-Bold: require('./assets/fonts/Poppins-Bold.ttf'),
   //   }).then(() => {
   //     setIsFontLoaded(true);
   //   });

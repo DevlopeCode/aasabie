@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {TopData} from '../res/rawData';
 import TextC from '../../../../components/Text';
@@ -108,7 +114,12 @@ const TopListItem = ({item}) => (
 );
 
 export const TopList = () => (
-  <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
+  <View
+    style={{
+      marginVertical: verticalScale(10),
+      alignItems: 'center',
+      width: Dimensions.get('screen').width,
+    }}>
     <View
       style={{
         height: verticalScale(40),
@@ -131,6 +142,12 @@ export const TopList = () => (
       data={TopData}
       renderItem={TopListItem}
       keyExtractor={item => item.id}
+      showsHorizontalScrollIndicator={false}
+
+      style={{
+        // height: verticalScale(100),
+        width: moderateScale(330),
+      }}
       ItemSeparatorComponent={
         <View
           style={{
@@ -141,7 +158,7 @@ export const TopList = () => (
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
-        paddingHorizontal: 10,
+        // paddingHorizontal: 10,
         paddingVertical: 5,
         shadowColor: '#000',
         shadowOffset: {

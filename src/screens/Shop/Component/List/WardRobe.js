@@ -53,6 +53,7 @@ const ItemSlider = () => (
   <FlatList
     data={RobData}
     horizontal
+    showsHorizontalScrollIndicator={false}
     ItemSeparatorComponent={
       <View
         style={{
@@ -117,6 +118,7 @@ const OfferSlider = () => (
     </View>
     <FlatList
       data={OfferData}
+      showsHorizontalScrollIndicator={false}
       ItemSeparatorComponent={
         <View
           style={{

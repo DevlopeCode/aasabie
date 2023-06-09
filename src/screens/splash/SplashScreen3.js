@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   btnTxt: {
     color: 'white',
     fontSize: 24,
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
   },
   btnContainer: {
     // borderColor:"orange",
@@ -116,12 +116,12 @@ const styles = StyleSheet.create({
   },
   Aasabie: {
     color: '#EC4850',
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 24,
   },
   txt1: {
     fontSize: 24,
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
   },
   txt2: {
     fontSize: 16,

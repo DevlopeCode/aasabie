@@ -1,13 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, View} from 'react-native';
+import {Dimensions, FlatList, Image, View} from 'react-native';
 import React from 'react';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import {LocalSory} from '../res/rawData';
 import R from '../../../../res/R';
-
 export const TopStory = () => (
-  <>
+  <View style={{width: Dimensions.get('window').width, alignItems: 'center'}}>
     <View
       style={{
         height: verticalScale(40),
@@ -53,7 +52,11 @@ export const TopStory = () => (
     </View>
     <FlatList
       data={LocalSory}
+      showsHorizontalScrollIndicator={false}
       horizontal
+      style={{
+        width: moderateScale(330),
+      }}
       ItemSeparatorComponent={
         <View
           style={{
@@ -80,5 +83,5 @@ export const TopStory = () => (
         </View>
       )}
     />
-  </>
+  </View>
 );

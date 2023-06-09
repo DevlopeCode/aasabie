@@ -16,7 +16,6 @@ export const PostSlider = () => (
     renderItem={({index}) => (
       <TouchableOpacity
         style={{
-          width: moderateScale(320),
           paddingHorizontal: scale(8),
           height: verticalScale(225),
         }}>

@@ -72,9 +72,7 @@ export const PostCard = () => (
           borderRadius: scale(10),
           backgroundColor: 'white',
         }}
-        source={{
-          uri: 'https://media.istockphoto.com/id/1410391090/photo/crystal-globe-putting-on-moss.jpg?s=2048x2048&w=is&k=20&c=x6u5kEmJsZuQtdrSzyV7X-raq6-3194fXU9VqSAwnsc=',
-        }}
+        source={require('../../assets/images/FunnyPost.png')}
       />
     </View>
     <View

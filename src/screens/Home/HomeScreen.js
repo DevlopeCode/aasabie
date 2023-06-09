@@ -20,7 +20,7 @@ import {PostCard} from '../../components/Card/PostCard';
 import ReelsHoriZontal from '../../components/Card/RealsHoriZontal';
 import TextC from '../../components/Text';
 import R from '../../res/R';
-const LocalPcked = [
+export const LocalPcked = [
   {
     image: require('../../assets/images/Handpick1.png'),
   },

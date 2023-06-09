@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize:14,
-        fontFamily:'PoppinsBold',
+        fontFamily:'Poppins-Bold',
         color:color.primary
     },
     mainImage:{

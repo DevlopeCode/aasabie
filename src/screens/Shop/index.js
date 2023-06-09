@@ -11,11 +11,17 @@ import {TopList} from './Component/List/TopList';
 import {ChoiceList} from './Component/List/ChoiceList';
 import WardRobe from './Component/List/WardRobe';
 import PickMart from './Component/List/PickMart';
+import {PostCard} from '../../components/Card/PostCard';
+import FeedList from './Component/List/FeedList';
+import {DealofTheday} from './Component/List/DealofTheday';
+import Explore from './Component/List/Explore';
+import {RecentList} from './Component/List/RecentList';
+import HandyPicked from './Component/List/HandyPicked';
 
 const ShopScreen = () => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <ScrollView>
+      <ScrollView nestedScrollEnabled>
         <TopBar />
         <SearchBar />
         <Category />
@@ -25,7 +31,12 @@ const ShopScreen = () => {
         <ChoiceList />
         <TopList />
         <WardRobe />
+        <FeedList />
         <PickMart />
+        <DealofTheday />
+        <Explore />
+        <RecentList />
+        <HandyPicked />
         <CategoryList />
       </ScrollView>
     </SafeAreaView>

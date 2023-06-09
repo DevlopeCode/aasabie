@@ -123,7 +123,7 @@ const Apparel = () => {
 
       {/* SPECIAL OFFERS */}
         <Text style={{ fontFamily:'Yesteryear', fontSize:30, paddingHorizontal:20, textAlign:'center' ,color:color.primary ,marginVertical:10 }}>Explore the varieties, be pleasant </Text>
-        <Text style={{ fontFamily:'PoppinsBold', fontSize:14, paddingHorizontal:20, textAlign:'center' ,color:color.primary ,marginVertical:10 }}>SPECIAL OFFERS</Text>
+        <Text style={{ fontFamily:'Poppins-Bold', fontSize:14, paddingHorizontal:20, textAlign:'center' ,color:color.primary ,marginVertical:10 }}>SPECIAL OFFERS</Text>
         <FlatList
             data={TestData}
             renderItem={({ item,index }) => {
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
   },
 
   categoryHeading: {
-    fontFamily: "PoppinsBold",
+    fontFamily: "Poppins-Bold",
     fontSize: 14,
     color: color.primary,
     paddingHorizontal: 20,
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   offerHeading: {
-    fontFamily: "PoppinsBold",
+    fontFamily: "Poppins-Bold",
     fontSize: 14,
     color: color.background,
     // marginBottom: 5,
@@ -336,7 +336,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
     },
     bottomOptionText: {
-        fontFamily: "PoppinsBold",
+        fontFamily: "Poppins-Bold",
         fontSize: 16,
         color: color.background,
         padding: 20,

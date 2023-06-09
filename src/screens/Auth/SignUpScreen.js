@@ -266,7 +266,7 @@ const styles = StyleSheet.create({
   },
 
   TopText: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 24,
     // lineHeight: 54,
     // letterSpacing: -0.3,
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   },
 
   InputContainerText: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 18,
     lineHeight: 24,
     marginBottom: 10,
@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
   },
 
   BottomTxt2: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 14,
   },
 });

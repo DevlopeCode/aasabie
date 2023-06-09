@@ -57,6 +57,7 @@ export const ChoiceList = () => (
     <FlatList
       data={ChoiceData}
       renderItem={ChoiceItem}
+      showsHorizontalScrollIndicator={false}
       numColumns={2}
       ItemSeparatorComponent={
         <View

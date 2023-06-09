@@ -117,24 +117,6 @@ const styles = StyleSheet.create({
   black: {
     fontFamily: R.font.Black,
   },
-  charlieStdLight: {
-    fontFamily: R.font.CharlieStdLight,
-  },
-  charlieStdRegular: {
-    fontFamily: R.font.CharlieStdRegular,
-  },
-  charlieStdBold: {
-    fontFamily: R.font.CharlieStdBold,
-  },
-  charlieStdSemibold: {
-    fontFamily: R.font.CharlieStdSemibold,
-  },
-  charlieStdMedium: {
-    fontFamily: R.font.CharlieStdMedium,
-  },
-  charlieStdBlack: {
-    fontFamily: R.font.CharlieStdBlack,
-  },
 });
 
 /*
@@ -177,19 +159,7 @@ export interface ITextProps extends TextProps {
 
   // util
   color?: string;
-  font?:
-    | 'light'
-    | 'regular'
-    | 'italic'
-    | 'bold'
-    | 'medium'
-    | 'black'
-    | 'charlieStdLight'
-    | 'charlieStdRegular'
-    | 'charlieStdBlack'
-    | 'charlieStdMedium'
-    | 'charlieStdSemibold'
-    | 'charlieStdBold';
+  font?: 'light' | 'regular' | 'italic' | 'bold' | 'medium' | 'black';
   gutterBottom?: number;
   gutterTop?: number;
   gutterLeft?: number;

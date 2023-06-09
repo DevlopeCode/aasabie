@@ -47,7 +47,7 @@ const SignInWithGoogleButton = ({mode}) => {
   //   iosClientId: Constants.manifest.extra.googleSignIn.iosClientId,
   // });
   // const [fontsLoaded] = useFonts({
-  //   PoppinsBold: require('../../assets/fonts/Poppins-Bold.ttf'),
+  //   Poppins-Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
   // });
 
   // const signIn = async () => {
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
     fontWeight: '600',
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
   },
 });
 
@@ -128,7 +128,7 @@ export default SignInWithGoogleButton;
 // const SignInWithGoogleButton = ({mode}) => {
 //   const ThisMode=mode;
 //   const [fontsLoaded] = useFonts({
-//     'PoppinsBold': require('../../assets/fonts/PoppinsBold.ttf'),
+//     'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
 //   });
 //   const signInWithGoogle = async () => {
 //     try {
@@ -181,7 +181,7 @@ export default SignInWithGoogleButton;
 //     color: '#000',
 //     fontSize: 16,
 //     fontWeight: '600',
-//     fontFamily:"PoppinsBold"
+//     fontFamily:"Poppins-Bold"
 
 //   },
 // });

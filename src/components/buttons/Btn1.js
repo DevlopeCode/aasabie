@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     padding:10
   },
   footerText: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 18,
     color: "white",
   },

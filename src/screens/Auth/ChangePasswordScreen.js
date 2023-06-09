@@ -89,7 +89,7 @@ const SignInScreen = () => {
   };
   // Fonts
   const [fontsLoaded] = useFonts({
-    PoppinsBold: require('../../assets/fonts/PoppinsBold.ttf'),
+    Poppins-Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
     'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
     'Poppins-Regular-Light': require('../../assets/fonts/Poppins-Regular-Light.ttf'),
     'Poppins-Regular-Medium': require('../../assets/fonts/Poppins-Regular-Medium.ttf'),
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
   },
 
   TopText: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 24,
     // lineHeight: 54,
     // letterSpacing: -0.3,
@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   },
 
   InputContainerText: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 18,
     lineHeight: 24,
     marginBottom: 10,
@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
   },
 
   BottomTxt2: {
-    fontFamily: 'PoppinsBold',
+    fontFamily: 'Poppins-Bold',
     fontSize: 16,
     marginRight: 15,
   },
@@ -343,7 +343,7 @@ export default SignInScreen;
 
 //     // Fonts
 //     const [fontsLoaded] = useFonts({
-//         'PoppinsBold': require('../../assets/fonts/PoppinsBold.ttf'),
+//         'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
 //         'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
 //         'Poppins-Regular-Light': require('../../assets/fonts/Poppins-Regular-Light.ttf'),
 //         'Poppins-Regular-Medium': require('../../assets/fonts/Poppins-Regular-Medium.ttf'),
@@ -443,7 +443,7 @@ export default SignInScreen;
 //         },
 
 //     TopText: {
-//         fontFamily: 'PoppinsBold',
+//         fontFamily: 'Poppins-Bold',
 //         fontSize: 26,
 //         lineHeight: 54,
 //         letterSpacing: -0.3,
@@ -462,7 +462,7 @@ export default SignInScreen;
 //         marginTop: 20
 //     },
 //     InputContainerText: {
-//         fontFamily: 'PoppinsBold',
+//         fontFamily: 'Poppins-Bold',
 //         fontSize: 18,
 //         lineHeight: 24,
 //         marginBottom: 5,
@@ -508,7 +508,7 @@ export default SignInScreen;
 //     },
 
 //     BottomTxt2: {
-//         fontFamily: "PoppinsBold",
+//         fontFamily: "Poppins-Bold",
 //         fontSize: 16,
 //         marginRight: 15
 //     }

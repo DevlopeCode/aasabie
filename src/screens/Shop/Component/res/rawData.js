@@ -97,6 +97,37 @@ export const ChoiceData = [
     title: 'MEN',
   },
 ];
+
+export const DealData = [
+  {
+    image: require('../../../../assets/images/Deal1.png'),
+    title: 'Leather Super Soft Fashion Bag For Women',
+    price: 'Rs.596',
+    offprice: 'Rs.1799',
+    offpercentage: '60%',
+  },
+  {
+    image: require('../../../../assets/images/Deal2.png'),
+    title: 'Leather Super Soft Fashion Bag For Women',
+    price: 'Rs.596',
+    offprice: 'Rs.1799',
+    offpercentage: '60%',
+  },
+  {
+    image: require('../../../../assets/images/Deal3.png'),
+    title: 'Leather Super Soft Fashion Bag For Women',
+    price: 'Rs.596',
+    offprice: 'Rs.1799',
+    offpercentage: '60%',
+  },
+  {
+    image: require('../../../../assets/images/Deal4.png'),
+    title: 'Leather Super Soft Fashion Bag For Women',
+    offprice: 'Rs.1799',
+    offpercentage: '60%',
+  },
+];
+
 export const TopData = [
   {
     image: require('../../../../assets/images/Top1.png'),
@@ -141,7 +172,22 @@ export const TopData = [
     offpercentage: '30%',
   },
 ];
-
+export const FeedData = [
+  {
+    image: require('../../../../assets/images/Top1.png'),
+    title: 'Women Jumpsuit Pattern Design Cover Up',
+    price: 'Rs.499',
+    offprice: 'Rs.799',
+    offpercentage: '30%',
+  },
+  {
+    image: require('../../../../assets/images/Top2.png'),
+    title: 'Women Jumpsuit Pattern Design Cover Up',
+    price: 'Rs.499',
+    offprice: 'Rs.799',
+    offpercentage: '30%',
+  },
+];
 export const RobData = [
   {
     image: require('../../../../assets/images/robslide1.png'),
@@ -171,5 +217,24 @@ export const OfferData = [
     image: require('../../../../assets/images/offersItem.png'),
     title: '35% Discount',
     subtitle: 'Pick and order your style',
+  },
+];
+
+export const ExploreData = [
+  {
+    image: require('../../../../assets/images/Exp1.png'),
+    title: 'best SELLERS',
+  },
+  {
+    image: require('../../../../assets/images/Exp2.png'),
+    title: 'nEW ARRIVALS',
+  },
+  {
+    image: require('../../../../assets/images/Exp3.png'),
+    title: 'budget friendly',
+  },
+  {
+    image: require('../../../../assets/images/Exp4.png'),
+    title: 'ongoing sale',
   },
 ];
