@@ -96,7 +96,7 @@ export const PostCard = () => (
             flexDirection: 'row',
           }}>
           <SvgXml xml={PinkHeartSVG} />
-          <TextC color={R.color.dark.black} style={{fontWeight: 'bold'}}>
+          <TextC color={R.color.dark.black} font="bold">
             7.4 K
           </TextC>
         </View>
@@ -205,7 +205,6 @@ export const PostCard = () => (
         style={{
           flexDirection: 'row',
           width: '20%',
-          // backgroundColor: 'green',
           alignItems: 'center',
           justifyContent: 'flex-end',
         }}>
@@ -239,7 +238,6 @@ export const PostCard = () => (
     <View
       style={{
         flexDirection: 'row',
-        // backgroundColor: 'red',
         height: verticalScale(15),
       }}>
       <View

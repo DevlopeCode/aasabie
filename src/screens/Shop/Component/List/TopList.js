@@ -51,10 +51,10 @@ const TopListItem = ({item}) => (
       />
       <View style={{width: moderateScale(130), alignItems: 'center'}}>
         <TextC
+          font="semibold"
           numberOfLines={2}
           style={{
             fontSize: scale(10),
-            fontWeight: '700',
             color: R.color.dark.black1,
           }}>
           {item.title}
@@ -66,25 +66,26 @@ const TopListItem = ({item}) => (
             justifyContent: 'space-around',
           }}>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(13),
-              fontWeight: '700',
               color: R.color.dark.black,
             }}>
             {item.price}
           </TextC>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(10),
-              fontWeight: '700',
               color: R.color.dark.gray2,
             }}>
             {item.offprice}
           </TextC>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(10),
-              fontWeight: '700',
+
               color: R.color.dark.black1,
             }}>
             ({item.offpercentage} Off)
@@ -100,9 +101,9 @@ const TopListItem = ({item}) => (
             borderRadius: scale(5),
           }}>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(10),
-              fontWeight: '700',
               textTransform: 'uppercase',
             }}>
             Add Item
@@ -129,8 +130,8 @@ export const TopList = () => (
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: '#EC303A',
             textTransform: 'uppercase',
           }}>
@@ -143,7 +144,6 @@ export const TopList = () => (
       renderItem={TopListItem}
       keyExtractor={item => item.id}
       showsHorizontalScrollIndicator={false}
-
       style={{
         // height: verticalScale(100),
         width: moderateScale(330),
@@ -156,7 +156,6 @@ export const TopList = () => (
         />
       }
       horizontal
-      showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
         // paddingHorizontal: 10,
         paddingVertical: 5,

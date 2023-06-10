@@ -25,7 +25,7 @@ export const CategoryList = () => (
         width: '100%',
         paddingHorizontal: scale(18),
       }}>
-      <TextC style={{fontWeight: 'bold', color: R.color.dark.red}}>
+      <TextC font="bold" style={{color: R.color.dark.red}}>
         PRODUCT CATEGORIES
       </TextC>
     </View>
@@ -63,9 +63,8 @@ export const CategoryList = () => (
             }}
           />
           <TextC
+            font="bold"
             style={{
-              fontWeight: 'bold',
-              color: R.color.dark.black,
               fontSize: scale(13),
             }}>
             {item.title}

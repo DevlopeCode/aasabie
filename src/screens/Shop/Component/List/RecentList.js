@@ -10,8 +10,9 @@ const RecentListItem = ({item}) => (
   <View
     style={{
       alignItems: 'center',
+      paddingVertical: scale(10),
       width: moderateScale(150),
-      height: verticalScale(220),
+      // height: verticalScale(220),
       justifyContent: 'center',
       shadowColor: '#000',
       shadowOffset: {
@@ -28,7 +29,7 @@ const RecentListItem = ({item}) => (
       style={{
         width: moderateScale(135),
         // marginRight: 10,
-        height: verticalScale(200),
+        // height: verticalScale(200),
         borderRadius: scale(8),
         overflow: 'hidden',
         backgroundColor: '#FFF',
@@ -46,9 +47,9 @@ const RecentListItem = ({item}) => (
       <View style={{width: moderateScale(130), alignItems: 'center'}}>
         <TextC
           numberOfLines={2}
+          font="semibold"
           style={{
             fontSize: scale(10),
-            fontWeight: '700',
             color: R.color.dark.black1,
           }}>
           {item.title}
@@ -60,25 +61,27 @@ const RecentListItem = ({item}) => (
             justifyContent: 'space-around',
           }}>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(13),
-              fontWeight: '700',
+
               color: R.color.dark.black,
             }}>
             {item.price}
           </TextC>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(10),
-              fontWeight: '700',
+
               color: R.color.dark.gray2,
             }}>
             {item.offprice}
           </TextC>
           <TextC
+            font="semibold"
             style={{
               fontSize: scale(10),
-              fontWeight: '700',
               color: R.color.dark.red,
             }}>
             ({item.offpercentage} Off)
@@ -105,8 +108,8 @@ export const RecentList = () => (
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: '#EC303A',
             textTransform: 'uppercase',
           }}>

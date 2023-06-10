@@ -30,17 +30,18 @@ const HeadContain = () => (
         alignItems: 'center',
       }}>
       <TextC
+        font="semibold"
         style={{
           color: '#EC303A',
-          fontWeight: '600',
+
           fontSize: scale(15),
         }}>
         EVERYDAY WARDROBE
       </TextC>
       <TextC
+        font="semibold"
         style={{
           color: R.color.dark.black,
-          fontWeight: '700',
           fontSize: scale(18),
         }}>
         Staples that elevate your wardrobe
@@ -82,9 +83,9 @@ const ItemSlider = () => (
               alignItems: 'center',
             }}>
             <TextC
+              font="semibold"
               style={{
                 fontSize: scale(12),
-                fontWeight: 'bold',
                 color: R.color.dark.white,
               }}>
               {item.title}
@@ -107,8 +108,8 @@ const OfferSlider = () => (
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: '#EC303A',
             textTransform: 'uppercase',
           }}>
@@ -169,13 +170,14 @@ const OfferSlider = () => (
                 justifyContent: 'center',
                 paddingLeft: scale(20),
               }}>
-              <TextC style={{color: R.color.dark.white, fontWeight: 'bold'}}>
+              <TextC font="bold" style={{color: R.color.dark.white}}>
                 {item.title}
               </TextC>
               <TextC
+                font="medium"
                 style={{
                   color: R.color.dark.white,
-                  fontWeight: '200',
+
                   fontSize: scale(10),
                 }}>
                 {item.subtitle}
@@ -191,9 +193,9 @@ const OfferSlider = () => (
                   marginTop: scale(10),
                 }}>
                 <TextC
+                  font="semibold"
                   style={{
                     color: '#EC303A',
-                    fontWeight: 'bold',
                     fontSize: scale(10),
                   }}>
                   SHOP NOW

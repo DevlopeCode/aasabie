@@ -6,9 +6,9 @@ import MenuIcon from './MenuIcon';
 import NotificationIcon from './NotificationIcon';
 import {SvgXml} from 'react-native-svg';
 import {MessageSVG} from '../../assets/SVG';
-const TopBar = () => {
+const TopBar = ({style}) => {
   return (
-    <View style={styles.TopBarConatiner}>
+    <View style={[styles.TopBarConatiner, style]}>
       <MenuIcon />
 
       <Text style={styles.topBarTitle}>Aasabie</Text>

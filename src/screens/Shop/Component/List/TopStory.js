@@ -21,8 +21,7 @@ export const TopStory = () => (
           alignItems: 'center',
           justifyContent: 'flex-start',
         }}>
-        <TextC
-          style={{fontWeight: 'bold', color: '#EC303A', fontSize: scale(15)}}>
+        <TextC font="bold" style={{color: '#EC303A', fontSize: scale(15)}}>
           TOP STORIES BY VENDOR
         </TextC>
         <Image
@@ -40,8 +39,8 @@ export const TopStory = () => (
           justifyContent: 'flex-end',
         }}>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: R.color.dark.black,
             textTransform: 'uppercase',
             fontSize: scale(15),

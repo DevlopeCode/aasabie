@@ -1,15 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import {FlatList, Image, StyleSheet, View, Dimensions} from 'react-native';
 import React from 'react';
 import {SvgXml} from 'react-native-svg';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import {
   CardImgGirl,
@@ -19,7 +17,6 @@ import {
 } from '../../../../assets/SVG';
 import R from '../../../../res/R';
 import {color} from '../../../../config/color';
-
 const FeedList = () => {
   return (
     <View
@@ -42,8 +39,7 @@ const FeedList = () => {
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}>
-          <TextC
-            style={{fontWeight: 'bold', color: '#EC303A', fontSize: scale(15)}}>
+          <TextC font="bold" style={{color: '#EC303A', fontSize: scale(15)}}>
             CHECK OUR FEED
           </TextC>
           <Image
@@ -61,8 +57,8 @@ const FeedList = () => {
             justifyContent: 'flex-end',
           }}>
           <TextC
+            font="bold"
             style={{
-              fontWeight: 'bold',
               color: R.color.dark.black,
               textTransform: 'uppercase',
               fontSize: scale(15),
@@ -74,9 +70,9 @@ const FeedList = () => {
       <FlatList
         showsHorizontalScrollIndicator={false}
         style={{
-          width: moderateScale(320), 
-          height: verticalScale(595)
-          }}
+          width: moderateScale(320),
+          height: verticalScale(595),
+        }}
         // contentContainerStyle={{
         //   alignItems: 'center',
         // }}
@@ -136,17 +132,17 @@ export const PostCard = () => (
             </View>
             <View style={{paddingLeft: scale(10)}}>
               <TextC
-                font="black"
+                font="bold"
                 variant="title2"
                 color={R.color.dark.black}
-                style={{fontWeight: 'bold', fontSize: scale(13)}}>
+                style={{fontSize: scale(13)}}>
                 Andrew Daniel
               </TextC>
               <TextC
-                font="black"
+                font="bold"
                 variant="title3"
                 color={R.color.dark.black1}
-                style={{fontWeight: 'bold', fontSize: scale(10)}}>
+                style={{fontSize: scale(10)}}>
                 Singer
               </TextC>
             </View>
@@ -239,10 +235,11 @@ const ProductDemo = ({
         paddingLeft: scale(2),
       }}>
       <TextC
+        font="semibold"
         numberOfLines={2}
         style={{
-          fontSize: scale(10),
-          fontWeight: '700',
+          fontSize: vs(10),
+
           color: R.color.dark.black1,
         }}>
         {title}
@@ -251,31 +248,30 @@ const ProductDemo = ({
         style={{
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'space-around',
+          justifyContent: 'space-between',
           height: verticalScale(30),
-          width: '100%',
         }}>
         <TextC
+          font="semibold"
           style={{
-            fontSize: scale(10),
-            fontWeight: '700',
+            fontSize: vs(10),
             color: R.color.dark.black,
           }}>
           {price}
         </TextC>
         <TextC
+          font="semibold"
           style={{
-            fontSize: scale(8),
-            fontWeight: '700',
+            fontSize: vs(8),
             color: R.color.dark.gray2,
           }}>
           {offprice}
         </TextC>
       </View>
       <TextC
+        font="semibold"
         style={{
           fontSize: scale(10),
-          fontWeight: '700',
           color: '#3F345A',
         }}>
         ({offpercentage} Off)

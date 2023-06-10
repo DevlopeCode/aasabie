@@ -30,8 +30,8 @@ const DealItem = ({item, index}) => (
           //   position: 'absolute',
         }}>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: R.color.dark.white,
             fontSize: scale(10),
           }}>
@@ -60,10 +60,10 @@ const DealItem = ({item, index}) => (
       </View>
       <View style={{width: '30%'}}>
         <TextC
+          font="bold"
           style={{
             fontSize: scale(10),
             color: R.color.dark.black,
-            fontWeight: 'bold',
           }}>
           {item.price}
         </TextC>
@@ -89,8 +89,9 @@ const DealItem = ({item, index}) => (
         borderRadius: scale(10),
       }}>
       <TextC
+        font="bold"
         color={R.color.dark.white}
-        style={{fontWeight: 'bold', fontSize: scale(13)}}>
+        style={{fontSize: scale(13)}}>
         22:00:30 hr left
       </TextC>
     </TouchableOpacity>
@@ -112,12 +113,12 @@ export const DealofTheday = () => (
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-        <TextC style={{fontWeight: 'bold', color: '#EC303A'}}>
+        <TextC font="bold" style={{color: '#EC303A'}}>
           Deal of the day
         </TextC>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: R.color.dark.black,
             fontSize: scale(9),
           }}>

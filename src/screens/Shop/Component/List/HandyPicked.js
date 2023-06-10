@@ -12,7 +12,7 @@ const HandyPicked = () => {
     <FlatList
       data={LocalPcked}
       numColumns={3}
-      style={{marginVertical: verticalScale(10)}}
+      // style={{marginVertical: verticalScale(10)}}
       ListHeaderComponent={() => (
         <View
           style={{
@@ -20,7 +20,7 @@ const HandyPicked = () => {
             paddingHorizontal: scale(20),
             justifyContent: 'center',
           }}>
-          <TextC style={{fontWeight: 'bold', color: '#EC303A'}}>
+          <TextC font="bold" style={{color: '#EC303A'}}>
             Handpicked by top influencers
           </TextC>
         </View>
@@ -28,14 +28,15 @@ const HandyPicked = () => {
       ItemSeparatorComponent={
         <View
           style={{
-            height: moderateScale(15),
+            height: moderateScale(5),
           }}
         />
       }
       renderItem={({item}) => (
         <View
           style={{
-            height: verticalScale(130),
+            marginVertical: scale(10),
+            height: verticalScale(135),
             width: moderateScale(92),
             marginLeft: 20,
             backgroundColor: 'white',
@@ -55,11 +56,13 @@ const HandyPicked = () => {
             style={{height: verticalScale(90), width: '100%'}}
           />
           <View style={{padding: scale(5)}}>
-            <TextC style={{fontSize: 12}}>Sling bag</TextC>
+            <TextC font="regular" style={{fontSize: 12}}>
+              Sling bag
+            </TextC>
             <TextC
+              font="bold"
               style={{
                 fontSize: 12,
-                fontWeight: 'bold',
                 color: R.color.dark.black,
               }}>
               Explore Now

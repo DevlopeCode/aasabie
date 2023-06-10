@@ -10,7 +10,12 @@ import {
 import React from 'react';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
-import {CardImgGirl, PlayButtonSVG, SendOutline, VerfiedGreen} from '../../assets/SVG';
+import {
+  CardImgGirl,
+  PlayButtonSVG,
+  SendOutline,
+  VerfiedGreen,
+} from '../../assets/SVG';
 import R from '../../res/R';
 import TextC from '../Text';
 
@@ -39,7 +44,7 @@ const ReelsHoriZontal = () => {
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <TextC style={{fontWeight: 'bold', color: R.color.dark.black}}>
+            <TextC font="bold" style={{color: R.color.dark.black}}>
               Reels
             </TextC>
           </TouchableOpacity>
@@ -62,13 +67,15 @@ const ReelsHoriZontal = () => {
             style={{
               flexDirection: 'row',
               height: verticalScale(50),
-            //   backgroundColor: 'red',
+              //   backgroundColor: 'red',
               width: '100%',
-              paddingHorizontal:scale(10)
+              paddingHorizontal: scale(10),
             }}>
-            <View style={{width: '80%',
-            //  backgroundColor: 'white'
-             }}>
+            <View
+              style={{
+                width: '80%',
+                //  backgroundColor: 'white'
+              }}>
               <View
                 style={{
                   height: verticalScale(50),
@@ -77,17 +84,24 @@ const ReelsHoriZontal = () => {
                 }}>
                 <View>
                   <SvgXml xml={CardImgGirl} />
-                  <SvgXml xml={VerfiedGreen} style={{position:'absolute',marginLeft:scale(30),marginTop:-scale(3)}}/>
+                  <SvgXml
+                    xml={VerfiedGreen}
+                    style={{
+                      position: 'absolute',
+                      marginLeft: scale(30),
+                      marginTop: -scale(3),
+                    }}
+                  />
                 </View>
                 <View style={{paddingLeft: scale(10)}}>
                   <TextC
-                    font="black"
+                    font="medium"
                     variant="title2"
                     color={R.color.dark.white}>
                     Andrew Daniel
                   </TextC>
                   <TextC
-                    font="black"
+                    font="medium"
                     variant="title3"
                     color={R.color.dark.white}>
                     VFX Artist

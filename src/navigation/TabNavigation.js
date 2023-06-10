@@ -45,7 +45,7 @@ const TabNavigation = () => {
         }}>
         <Tab.Screen
           name="HomeStack"
-          component={HomeStack}
+          component={ShopScreen}
           options={{
             tabBarIcon: ({focused}) => (
               <View style={{height: verticalScale(20)}}>

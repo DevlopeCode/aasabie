@@ -1,12 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {Dimensions, FlatList, Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import ReelsHoriZontal from '../../../../components/Card/RealsHoriZontal';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
@@ -34,8 +27,7 @@ const PickMart = () => {
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}>
-          <TextC
-            style={{fontWeight: 'bold', color: '#EC303A', fontSize: scale(15)}}>
+          <TextC font="bold" style={{color: '#EC303A', fontSize: scale(15)}}>
             HOT ON PICKMART
           </TextC>
           <Image
@@ -53,8 +45,8 @@ const PickMart = () => {
             justifyContent: 'flex-end',
           }}>
           <TextC
+            font="bold"
             style={{
-              fontWeight: 'bold',
               color: R.color.dark.black,
               textTransform: 'uppercase',
               fontSize: scale(15),

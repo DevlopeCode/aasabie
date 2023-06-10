@@ -20,8 +20,8 @@ const Explore = () => {
             width: moderateScale(355),
           }}>
           <TextC
+            font="bold"
             style={{
-              fontWeight: 'bold',
               color: '#EC303A',
               textTransform: 'uppercase',
               textAlign: 'left',
@@ -46,10 +46,7 @@ const Explore = () => {
               width: moderateScale(200),
               alignItems: index % 2 == 0 ? 'flex-start' : 'flex-end',
             }}>
-            <TextC
-              transform="uppercase"
-              color={R.color.dark.white}
-              style={{fontWeight: 'bold'}}>
+            <TextC transform="uppercase" color={R.color.dark.white} font="bold">
               {item.title}
             </TextC>
           </View>

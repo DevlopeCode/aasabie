@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
   medium: {
     fontFamily: R.font.Medium,
   },
-  black: {
-    fontFamily: R.font.Black,
+  semibold: {
+    fontFamily: R.font.SemiBold,
   },
 });
 
@@ -159,7 +159,7 @@ export interface ITextProps extends TextProps {
 
   // util
   color?: string;
-  font?: 'light' | 'regular' | 'italic' | 'bold' | 'medium' | 'black';
+  font?: 'light' | 'regular' | 'italic' | 'bold' | 'medium' | 'semibold';
   gutterBottom?: number;
   gutterTop?: number;
   gutterLeft?: number;

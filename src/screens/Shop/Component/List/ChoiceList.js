@@ -27,8 +27,8 @@ const ChoiceItem = ({item, index}) => (
           alignItems: 'center',
         }}>
         <TextC
+          font="bold"
           style={{
-            fontWeight: 'bold',
             color: R.color.dark.white,
             fontSize: scale(12),
           }}>
@@ -49,7 +49,7 @@ export const ChoiceList = () => (
         width: '100%',
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TextC style={{fontWeight: 'bold', color: '#EC303A'}}>
+        <TextC font="bold" style={{color: '#EC303A'}}>
           CHOOSE YOUR CHOICE
         </TextC>
       </View>

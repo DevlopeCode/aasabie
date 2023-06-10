@@ -48,9 +48,9 @@ const CartegoryItem = ({item}) => {
       </View>
       <TextC
         numberOfLines={1}
+        font="bold"
         style={{
           fontSize: scale(11),
-          fontWeight: 'bold',
           color: R.color.dark.white,
         }}
         children={item.title}
