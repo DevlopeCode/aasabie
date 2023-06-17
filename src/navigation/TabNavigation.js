@@ -1,8 +1,9 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
-import {Text, TouchableWithoutFeedback, View} from 'react-native';
+import React, {useRef} from 'react';
+import {Pressable, Text, View} from 'react-native';
 import ProfileScreen from '../screens/Profile/Profile';
 import {Path, Svg, SvgXml} from 'react-native-svg';
 import CartIcon from '../assets/TabMenuIcons/CartIcon';
@@ -13,173 +14,216 @@ import Profile from '../assets/TabMenuIcons/Profile';
 import Shop from '../assets/TabMenuIcons/Shop';
 import WishList from '../assets/TabMenuIcons/WishList';
 import {HomeStack} from './HomeStack';
-import {NavigationContainer} from '@react-navigation/native';
+
 import {StyleSheet} from 'react-native';
 import {color} from '../config/color';
 import {height} from '../config/dimension';
 import {login} from '../utils/apis/api';
 import ShopScreen from '../screens/Shop';
-import {moderateScale, scale} from 'react-native-size-matters';
+import {moderateScale, scale, vs} from 'react-native-size-matters';
 import {verticalScale} from 'react-native-size-matters';
-import {BottomBar} from '../assets/SVG';
+import {BottomBar, categortTabIcon} from '../assets/SVG';
+import HomeScreen from '../screens/Home/HomeScreen';
+import {navigationRef} from '../../App';
+import ExploreScreen from '../screens/Explore';
+import CategoryScreen from '../screens/Category';
+import CartScreen from '../screens/Cart';
+import NewPostScreen from '../screens/NewPost';
+import ShopStack from './ShopStack';
 
 const TabNavigation = () => {
   const Tab = createBottomTabNavigator();
-  const [shopActive, setShopActive] = React.useState(false);
-
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={{
-          tabBarShowLabel: false,
-          headerShown: false,
-          lazy: true,
-          tabBarStyle: {
-            position: 'absolute',
-            elevation: 0,
-            borderTopWidth: 0,
-            // paddingHorizontal: 20,
-            bottom: scale(30),
-          },
-          tabBarBackground: () => <SvgXml xml={BottomBar} />,
-        }}>
-        <Tab.Screen
-          name="HomeStack"
-          component={ShopScreen}
-          options={{
-            tabBarIcon: ({focused}) => (
-              <View style={{height: verticalScale(20)}}>
-                <TouchableWithoutFeedback
-                  onPress={e => {
-                    setShopActive(false);
-                    e.preventDefault();
-                  }}>
-                  <View style={styles.icon}>
-                    <HomeIcon inFocus={focused} />
-                  </View>
-                </TouchableWithoutFeedback>
-                <Text style={styles.iconText}>Home</Text>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarShowLabel: false,
+        headerShown: false,
+        lazy: true,
+        tabBarStyle: {
+          position: 'absolute',
+          elevation: 0,
+          borderTopWidth: 0,
+          bottom: scale(27),
+        },
+        tabBarBackground: () => <SvgXml xml={BottomBar} />,
+      }}>
+      <Tab.Screen
+        name="HomeStack"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View style={{height: verticalScale(20)}}>
+              <View style={styles.icon}>
+                <HomeIcon inFocus={focused} />
               </View>
-            ),
-          }}
-        />
-
-        <Tab.Screen
-          name="Explore"
-          component={ProfileScreen}
-          options={{
-            tabBarIcon: ({focused}) => (
-              <View style={{height: verticalScale(20)}}>
-                <TouchableWithoutFeedback
-                  onPress={e => {
-                    setShopActive(false);
-                    e.preventDefault();
-                  }}>
-                  <View style={styles.icon}>
-                    <Explore inFocus={focused} />
-                  </View>
-                </TouchableWithoutFeedback>
-                <Text style={styles.iconText}>Explore</Text>
+              <Text style={styles.iconText}>Home</Text>
+            </View>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Explore"
+        component={ExploreScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Pressable
+              style={{height: verticalScale(20)}}
+              onPress={() => {
+                navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? navigationRef.current.navigate('Explore')
+                  : navigationRef.current.navigate('Category');
+              }}>
+              <View style={styles.icon}>
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                  <Explore inFocus={focused} />
+                ) : (
+                  <SvgXml xml={categortTabIcon} />
+                )}
               </View>
-            ),
-          }}
-        />
+              <Text style={styles.iconText}>
+                {navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? 'Explore'
+                  : 'Category'}
+              </Text>
+            </Pressable>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Category"
+        component={CategoryScreen}
+        options={{
+          tabBarItemStyle: {display: 'none'},
 
-        {shopActive ? (
-          <Tab.Screen
-            name="plus"
-            component={HomeStack}
-            options={{
-              tabBarIcon: ({focused}) => (
-                <View style={styles.centericon}>
-                  <View style={[styles.icon, styles.centerIconContainer]}>
-                    <TouchableWithoutFeedback>
-                      <CartIcon inFocus={focused} />
-                    </TouchableWithoutFeedback>
-                  </View>
-                </View>
-              ),
-            }}
-          />
-        ) : (
-          <Tab.Screen
-            name="cart"
-            component={ProfileScreen}
-            options={{
-              tabBarIcon: ({focused}) => (
-                <View style={styles.centericon}>
-                  <TouchableWithoutFeedback>
-                    <View style={[styles.icon, styles.centerIconContainer]}>
-                      <PlusIcon inFocus={focused} />
-                    </View>
-                  </TouchableWithoutFeedback>
-                </View>
-              ),
-            }}
-          />
-        )}
-        {shopActive ? (
-          <Tab.Screen
-            name="Wishlist"
-            component={ProfileScreen}
-            options={{
-              tabBarIcon: ({focused}) => (
-                <View style={{height: verticalScale(20)}}>
-                  <TouchableWithoutFeedback onPress={e => e.preventDefault()}>
-                    <View style={styles.icon}>
-                      <WishList inFocus={focused} />
-                    </View>
-                  </TouchableWithoutFeedback>
-                  <Text style={styles.iconText}>WishList</Text>
-                </View>
-              ),
-            }}
-          />
-        ) : (
-          <Tab.Screen
-            name="Shop"
-            component={ShopScreen}
-            options={{
-              tabBarIcon: ({focused}) => (
-                <View style={{height: verticalScale(20)}}>
-                  <TouchableWithoutFeedback
-                    onPress={e => {
-                      setShopActive(true);
-                      e.preventDefault();
-                    }}>
-                    <View style={styles.icon}>
-                      <Shop inFocus={focused} />
-                    </View>
-                  </TouchableWithoutFeedback>
-                  <Text style={styles.iconText}>Shop</Text>
-                </View>
-              ),
-            }}
-          />
-        )}
-
-        <Tab.Screen
-          name="Profile"
-          component={HomeStack}
-          options={{
-            tabBarIcon: ({focused}) => (
-              <View style={{height: verticalScale(20)}}>
-                <TouchableWithoutFeedback
-                  onPress={e => {
-                    setShopActive(false);
-                    e.preventDefault();
-                  }}>
-                  <View style={styles.icon}>
-                    <Profile inFocus={focused} />
-                  </View>
-                </TouchableWithoutFeedback>
-                <Text style={styles.iconText}>Profile</Text>
+          tabBarIcon: ({focused}) => (
+            <Pressable style={{height: verticalScale(20)}}>
+              <View style={styles.icon}>
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                  <Explore inFocus={focused} />
+                ) : (
+                  <SvgXml xml={categortTabIcon} />
+                )}
               </View>
-            ),
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+              <Text style={styles.iconText}>
+                {navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? 'Explore'
+                  : 'Category'}
+              </Text>
+            </Pressable>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="plus"
+        component={NewPostScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Pressable
+              style={styles.centericon}
+              onPress={() => {
+                navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? navigationRef.current.navigate('plus')
+                  : navigationRef.current.navigate('cart');
+              }}>
+              <View style={[styles.icon, styles.centerIconContainer]}>
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                  <PlusIcon inFocus={focused} />
+                ) : (
+                  <View style={styles.icon}>
+                    <CartIcon colour={'black'} />
+                  </View>
+                )}
+              </View>
+            </Pressable>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name={'cart'}
+        component={CartScreen}
+        options={{
+          tabBarItemStyle: {display: 'none'},
+          tabBarIcon: ({focused}) => (
+            <Pressable style={styles.centericon}>
+              <View style={[styles.icon, styles.centerIconContainer]}>
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                  <PlusIcon inFocus={focused} />
+                ) : (
+                  <View style={styles.icon}>
+                    <CartIcon colour={'black'} />
+                  </View>
+                )}
+              </View>
+            </Pressable>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Wishlist"
+        component={ProfileScreen}
+        options={{
+          tabBarItemStyle: {display: 'none'},
+          tabBarIcon: ({focused}) => (
+            <Pressable style={{height: verticalScale(20)}}>
+              <Pressable onPress={e => e.preventDefault()}>
+                <View style={styles.icon}>
+                  <WishList inFocus={focused} />
+                </View>
+              </Pressable>
+              <Text style={styles.iconText}>WishList</Text>
+            </Pressable>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Shop"
+        component={ShopStack}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <Pressable
+              style={{height: verticalScale(20)}}
+              onPress={() => {
+                navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? navigationRef.current.navigate('Shop')
+                  : navigationRef.current.navigate('Wishlist');
+              }}>
+              {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                <View style={styles.icon}>
+                  <Shop inFocus={focused} />
+                </View>
+              ) : (
+                <View style={styles.icon}>
+                  <WishList colour={'white'} />
+                </View>
+              )}
+              <Text style={styles.iconText}>
+                {navigationRef.current.getCurrentRoute().name == 'Shop'
+                  ? 'Wishlist'
+                  : 'Shop'}
+              </Text>
+            </Pressable>
+          ),
+        }}
+      />
+      {/* )} */}
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View style={{height: verticalScale(20)}}>
+              <View style={styles.icon}>
+                <Profile inFocus={focused} />
+              </View>
+              <Text style={styles.iconText}>Profile</Text>
+            </View>
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
@@ -190,10 +234,12 @@ const styles = StyleSheet.create({
     color: color.background,
     fontSize: 12,
     textAlign: 'center',
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Bold',
   },
   icon: {
     alignItems: 'center',
+    height: vs(40),
+    justifyContent: 'center',
   },
 
   centericon: {

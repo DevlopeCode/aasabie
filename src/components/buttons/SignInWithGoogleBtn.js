@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useEffect, forwardRef} from 'react';
 import {
   View,
   StyleSheet,
@@ -12,18 +13,28 @@ import {
 // import * as Google from 'expo-auth-session/providers/google';
 // import * as WebBrowser from 'expo-web-browser';
 // import * as AuthSession from 'expo-auth-session';
-// import auth from '@react-native-firebase/auth';
-// import {GoogleSignin} from '@react-native-google-signin/google-signin';
 
+import auth from '@react-native-firebase/auth';
+import {
+  GoogleSignin,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+GoogleSignin.configure({
+  webClientId:
+    '869133353117-8p2vdsvq7g7dss9500qt0qdbiq5replo.apps.googleusercontent.com',
+});
 async function onGoogleButtonPress() {
   // Check if your device supports Google Play
   // await GoogleSignin.hasPlayServices({showPlayServicesUpdateDialog: true});
-  // // Get the users ID token
-  // const {idToken} = await GoogleSignin.signIn();
-  // // Create a Google credential with the token
-  // const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-  // // Sign-in the user with the credential
-  // return auth().signInWithCredential(googleCredential);
+  // Get the users ID token
+
+  const {idToken} = await GoogleSignin.signIn();
+
+  // Create a Google credential with the token
+  const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+  // Sign-in the user with the credential
+
+  return auth().signInWithCredential(googleCredential);
 }
 // WebBrowser.maybeCompleteAuthSession();
 
@@ -38,50 +49,29 @@ async function onGoogleButtonPress() {
 //     : NATIVE_REDIRECT_PARAMS;
 // const redirectUri = AuthSession.makeRedirectUri(REDIRECT_PARAMS);
 
-const SignInWithGoogleButton = ({mode}) => {
-  // const ThisMode = mode;
-  // const [token, setToken] = useState('');
-  // const [socialData, setUserInfo] = useState(null);
-  // const [request, response, promptAsync] = Google.useAuthRequest({
-  //   androidClientId: Constants.manifest.extra.googleSignIn.androidClientId,
-  //   iosClientId: Constants.manifest.extra.googleSignIn.iosClientId,
-  // });
-  // const [fontsLoaded] = useFonts({
-  //   Poppins-Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
-  // });
+const SignInWithGoogleButton = forwardRef(({onPresss}, ref) => {
 
-  // const signIn = async () => {
-  //   promptAsync(REDIRECT_PARAMS);
-  // };
+  const SignIn = async () => {
+    try {
+      const res = await onGoogleButtonPress();
+      onPresss(res)
+      // TODO: Handle successful sign-in
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the sign-in flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign-in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+      } else {
+        // some other error occurred
+      }
+    }
+  };
 
-  // useEffect(() => {
-  //   if (response?.type === 'success') {
-  //     setToken(response.authentication.accessToken);
-  //     getUserInfo();
-  //   }
-  // }, [response, token]);
-
-  // const getUserInfo = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       'https://www.googleapis.com/userinfo/v2/me',
-  //       {
-  //         headers: {Authorization: `Bearer ${token}`},
-  //       },
-  //     );
-
-  //     const user = await response.json();
-  //     setUserInfo(user);
-  //     console.log(user);
-  //   } catch (error) {
-  //     // Add your own error handler here
-  //   }
-  // };
 
   return (
-    <TouchableOpacity
-    // onPress={onGoogleButtonPress}
-    >
+    <TouchableOpacity onPress={SignIn} >
       <View style={styles.button}>
         <Image
           source={require('../../assets/google_logo.png')}
@@ -91,7 +81,7 @@ const SignInWithGoogleButton = ({mode}) => {
       </View>
     </TouchableOpacity>
   );
-};
+});
 
 const styles = StyleSheet.create({
   button: {
@@ -130,24 +120,24 @@ export default SignInWithGoogleButton;
 //   const [fontsLoaded] = useFonts({
 //     'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
 //   });
-//   const signInWithGoogle = async () => {
-//     try {
-//       await GoogleSignin.hasPlayServices();
-//       const { idToken, user } = await GoogleSignin.signIn();
-//       console.log(user);
-//       // TODO: Handle successful sign-in
-//     } catch (error) {
-//       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-//         // user cancelled the sign-in flow
-//       } else if (error.code === statusCodes.IN_PROGRESS) {
-//         // operation (e.g. sign-in) is in progress already
-//       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-//         // play services not available or outdated
-//       } else {
-//         // some other error occurred
-//       }
+// const signInWithGoogle = async () => {
+//   try {
+//     await GoogleSignin.hasPlayServices();
+//     const { idToken, user } = await GoogleSignin.signIn();
+//     console.log(user);
+//     // TODO: Handle successful sign-in
+//   } catch (error) {
+//     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+//       // user cancelled the sign-in flow
+//     } else if (error.code === statusCodes.IN_PROGRESS) {
+//       // operation (e.g. sign-in) is in progress already
+//     } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+//       // play services not available or outdated
+//     } else {
+//       // some other error occurred
 //     }
-//   };
+//   }
+// };
 
 //   return (
 //     <TouchableOpacity onPress={signInWithGoogle}>

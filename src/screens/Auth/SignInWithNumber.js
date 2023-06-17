@@ -12,14 +12,13 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 import BackArrowCircle from '../../components/buttons/BackButtons';
-import Constants from 'expo-constants';
 import SquareButton from '../../components/buttons/Btn1';
 import SignInWithGoogleButton from '../../components/buttons/SignInWithGoogleBtn';
-import {useFonts} from 'expo-font';
 import {useNavigation} from '@react-navigation/native';
 import TopImg from '../../assets/PICKMART ASSETS/splasha nd signup/Png/1(8).png';
 import TopImg2 from '../../assets/images/signinTop.jpg';
 import TabButton from '../../components/buttons/TabGroup';
+import { vs } from 'react-native-size-matters';
 const {width, height} = Dimensions.get('window');
 // import ButtonGroup from '../../components/buttons/ButtonGroup';
 
@@ -110,7 +109,7 @@ const ButtonGroup = ({buttons, activeBtn, selectedButton, onPress}) => {
 //     );
 //   };
 
-const SignInScreen = () => {
+const SignInWithNumber = () => {
   const navigation = useNavigation();
   const buttons = ['Email', 'Mobile Number'];
   const [selectedButton, setSelectedButton] = useState(buttons[0]);
@@ -120,12 +119,7 @@ const SignInScreen = () => {
     // handle logic for when button is pressed
   };
   // Fonts
-  const [fontsLoaded] = useFonts({
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-    'Poppins-Regular-Light': require('../../assets/fonts/Poppins-Regular-Light.ttf'),
-    'Poppins-Regular-Medium': require('../../assets/fonts/Poppins-Regular-Medium.ttf'),
-  });
+
   const handleLogin = () => {};
 
   const [email, setEmail] = useState('');
@@ -223,7 +217,7 @@ const SignInScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {marginTop: Constants.statusBarHeight},
+  container: {marginTop: vs(10)},
 
   buttonGroup: {
     flexDirection: 'row',
@@ -380,4 +374,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignInScreen;
+export default SignInWithNumber;

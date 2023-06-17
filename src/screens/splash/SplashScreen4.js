@@ -14,7 +14,6 @@ const {width, height} = Dimensions.get('window');
 const btnHeight = height * 0.1;
 const txtContainerHeight = height * 0.35;
 const ImageContainerHeight = height * 0.55;
-const totalHeight = btnHeight + txtContainerHeight + ImageContainerHeight;
 const BottomBtn = ({text, onPress}) => {
   return (
     <>
@@ -27,7 +26,7 @@ const BottomBtn = ({text, onPress}) => {
   );
 };
 
-const TxtContainer = ({text}) => {
+const TxtContainer = () => {
   return (
     <View style={{padding: 25}}>
       <View style={styles.topTextContainer}>

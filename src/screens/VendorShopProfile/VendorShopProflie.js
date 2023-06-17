@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import BackArrowIcon from '../../assets/BackArrowIcon'
 import { height, width } from '../../config/dimension';
 import { color } from '../../config/color';
-import { LinearGradient } from "expo-linear-gradient";
+
 import SendIcon from './SendIcon';
+import LinearGradient from 'react-native-linear-gradient';
 
 const VendorShopProflie = () => {
     

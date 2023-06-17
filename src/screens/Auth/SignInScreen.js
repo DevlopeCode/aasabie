@@ -9,7 +9,7 @@ import {
   Keyboard,
   ScrollView,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import BackArrowCircle from '../../components/buttons/BackButtons';
 import SquareButton from '../../components/buttons/Btn1';
 import SignInWithGoogleButton from '../../components/buttons/SignInWithGoogleBtn';
@@ -85,6 +85,9 @@ const SignInScreen = () => {
   const buttons = ['Email', 'Mobile Number'];
   const [selectedButton, setSelectedButton] = useState(buttons[0]);
   const {setIsUserLoggedIn} = useContext(UserContext);
+  const [userInfo, setUserInfo] = useState(null);
+  const [errors, setErrors] = React.useState({});
+
   const handleButtonPress = button => {
     setSelectedButton(button);
     // handle logic for when button is pressed
@@ -93,7 +96,6 @@ const SignInScreen = () => {
     email: '',
     password: '',
   });
-  const [errors, setErrors] = React.useState({});
 
   const validate = () => {
     Keyboard.dismiss();
@@ -144,6 +146,7 @@ const SignInScreen = () => {
   const handleError = (error, input) => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
+  const childComponentRef = useRef(null);
 
   return (
     <ScrollView style={styles.container}>
@@ -216,6 +219,10 @@ const SignInScreen = () => {
             text={'Sign in'}
             Txtclr={'white'}
             bgclr={'black'}
+            ref={childComponentRef}
+            onPresss={(e)=>{
+              setIsUserLoggedIn(true)
+            }}
           />
         </View>
 

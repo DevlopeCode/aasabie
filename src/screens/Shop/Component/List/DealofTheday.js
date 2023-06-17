@@ -5,6 +5,7 @@ import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import R from '../../../../res/R';
 import TextC from '../../../../components/Text';
 import {ChoiceData, DealData} from '../res/rawData';
+import {navigationRef} from '../../../../../App';
 
 const DealItem = ({item, index}) => (
   <TouchableOpacity>
@@ -98,24 +99,25 @@ const DealItem = ({item, index}) => (
   </TouchableOpacity>
 );
 
-export const DealofTheday = () => (
-  <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
+const ListHeaderComponet = () => (
+  <View
+    style={{
+      height: verticalScale(40),
+      paddingHorizontal: scale(20),
+      justifyContent: 'center',
+      width: '100%',
+    }}>
     <View
       style={{
-        height: verticalScale(40),
-        paddingHorizontal: scale(20),
-        justifyContent: 'center',
-        width: '100%',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
       }}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
-        <TextC font="bold" style={{color: '#EC303A'}}>
-          Deal of the day
-        </TextC>
+      <TextC font="bold" style={{color: '#EC303A'}}>
+        Deal of the day
+      </TextC>
+      <TouchableOpacity
+        onPress={() => navigationRef.current.navigate('DealOftheDay')}>
         <TextC
           font="bold"
           style={{
@@ -124,10 +126,18 @@ export const DealofTheday = () => (
           }}>
           See more
         </TextC>
-      </View>
+      </TouchableOpacity>
     </View>
+  </View>
+);
+export const DealofTheday = ({
+  data = DealData,
+  ListHeader = ListHeaderComponet,
+}) => (
+  <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
     <FlatList
-      data={DealData}
+      data={data}
+      ListHeaderComponent={ListHeader}
       renderItem={DealItem}
       showsHorizontalScrollIndicator={false}
       numColumns={2}

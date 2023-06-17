@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import {
   View,
   Image,
@@ -7,7 +9,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import React, {useContext, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import BackArrowCircle from '../../components/buttons/BackButtons';
 import SquareButton from '../../components/buttons/Btn1';
 import SignInWithGoogleButton from '../../components/buttons/SignInWithGoogleBtn';
@@ -36,6 +38,7 @@ const SignUpScreen = () => {
   const [errors, setErrors] = React.useState({});
   const [userInfo, setUserInfo] = useState(null);
   const {setIsUserLoggedIn} = useContext(UserContext);
+  const childComponentRef = useRef(null);
 
   // Handlers
   const validate = () => {
@@ -107,6 +110,8 @@ const SignUpScreen = () => {
   const handleError = (error, input) => {
     setErrors(prevState => ({...prevState, [input]: error}));
   };
+  console.log(childComponentRef.current);
+
   return (
     <ScrollView style={styles.container}>
       {/* BackArrow Icon */}
@@ -186,6 +191,10 @@ const SignUpScreen = () => {
             text={'Sign in'}
             Txtclr={'white'}
             bgclr={'black'}
+            ref={childComponentRef}
+            onPress={async () => {
+              await console.log(childComponentRef.current);
+            }}
           />
         </View>
 
@@ -197,7 +206,6 @@ const SignUpScreen = () => {
             onPress={() => {
               navigation.navigate('SignIn');
             }}>
-            {' '}
             Click here to sign-in
           </Text>
         </View>

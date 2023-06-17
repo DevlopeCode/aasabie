@@ -11,6 +11,7 @@ const HandyPicked = () => {
   return (
     <FlatList
       data={LocalPcked}
+      contentContainerStyle={{width: '100%', alignItems: 'center'}}
       numColumns={3}
       // style={{marginVertical: verticalScale(10)}}
       ListHeaderComponent={() => (
@@ -21,7 +22,7 @@ const HandyPicked = () => {
             justifyContent: 'center',
           }}>
           <TextC font="bold" style={{color: '#EC303A'}}>
-            Handpicked by top influencers
+            HandPicked by top influencers
           </TextC>
         </View>
       )}
