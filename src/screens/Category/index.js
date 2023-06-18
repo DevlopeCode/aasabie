@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
 import {
   FlatList,
@@ -262,7 +263,7 @@ const CategoryScreen = () => {
         flex: 1,
         backgroundColor: '#FFF4F4',
       }}>
-         <Header />
+      <Header />
       {/* onClick={increasePopulation} */}
       {isError && (
         <TouchableOpacity
@@ -277,8 +278,7 @@ const CategoryScreen = () => {
         <FlatList
           ListHeaderComponent={() => (
             <>
-             
-              <View style={{ marginVertical: vs(20)}}>
+              <View style={{marginVertical: vs(20)}}>
                 <SearchBar height color={'white'} />
               </View>
               <Text

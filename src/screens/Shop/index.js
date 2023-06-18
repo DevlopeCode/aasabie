@@ -370,7 +370,6 @@ const Shop = () => {
         </Animated.View>
 
         <SearchBar />
-
         <FirstComponent ref={firstRef} />
         <SecondComponent ref={secondRef} />
         <ThirdComponent ref={thirdRef} />

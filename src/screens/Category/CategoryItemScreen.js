@@ -172,8 +172,14 @@ const CategoryItemScreen = () => {
         source={require('../../assets/images/categpryItembg.png')}
         style={{height: 200, width: '100%', resizeMode: 'contain'}}
       />
-      <Text style={{color: '#EC4850', fontSize: vs(17.5), textAlign: 'center'}}>
-        Explore the varieties, be pleasant{' '}
+      <Text
+        style={{
+          color: '#EC4850',
+          fontSize: vs(17.5),
+          textAlign: 'center',
+          fontFamily: 'Yesteryear-Regular',
+        }}>
+        Explore the varieties, be pleasant
       </Text>
     </View>
   );
@@ -223,20 +229,20 @@ const styles = StyleSheet.create({
     width: width * 0.4,
   },
   topText1: {
-    fontFamily: 'KaushanScript',
+    fontFamily: 'KaushanScript-Regular',
     fontSize: 22,
     color: color.primary,
     textAlign: 'right',
   },
   topText2: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 10,
     color: '#000',
     textAlign: 'right',
     marginVertical: 10,
   },
   topText3: {
-    fontFamily: 'Rancho',
+    fontFamily: 'Rancho-Regular',
     fontSize: 12,
     color: '#000',
     textAlign: 'right',

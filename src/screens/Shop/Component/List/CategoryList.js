@@ -11,6 +11,7 @@ import TextC from '../../../../components/Text';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import R from '../../../../res/R';
 import {CategoryListData} from '../res/rawData';
+import navigationServices from '../../../../utils/navigationServices';
 
 export const CategoryList = () => (
   <View
@@ -49,6 +50,7 @@ export const CategoryList = () => (
       }
       renderItem={({index, item}) => (
         <TouchableOpacity
+          onPress={() => navigationServices.navigate('ApparelScrren')}
           style={{
             alignItems: 'center',
           }}>
