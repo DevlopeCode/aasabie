@@ -12,47 +12,38 @@ import {
   NavigationContainer,
   createNavigationContainerRef,
 } from '@react-navigation/native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export const navigationRef = createNavigationContainerRef();
 
 export default function App() {
-  const [isFontLoaded, setIsFontLoaded] = useState(false);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isUserLoggedInAsGuest, setIsUserLoggedInAsGuest] = useState(false);
-  const [appIsReady, setAppIsReady] = useState(false);
-
-  // useEffect(() => {
-  //   Font.loadAsync({
-  //     Poppins: require('./assets/fonts/Poppins-Regular.ttf'),
-  //     PoppinsSemiBold: require('./assets/fonts/Poppins-SemiBold.ttf'),
-  //     Poppins-Bold: require('./assets/fonts/Poppins-Bold.ttf'),
-  //   }).then(() => {
-  //     setIsFontLoaded(true);
-  //   });
-  // }, []);
-
-  //if(!isFontLoaded) return null;
-
-  if (!isFontLoaded) {
-    return (
-      <GestureHandlerRootView style={{flex: 1}}>
-        <UserContext.Provider
-          value={{
-            isUserLoggedIn,
-            setIsUserLoggedIn,
-            isUserLoggedInAsGuest,
-            setIsUserLoggedInAsGuest,
-          }}>
+  console.warn = () => {};
+  console.error =()=>{}
+  // console.log =()=>{}
+  return (
+    <GestureHandlerRootView style={{flex: 1}}>
+      <UserContext.Provider
+        value={{
+          isUserLoggedIn,
+          setIsUserLoggedIn,
+          isUserLoggedInAsGuest,
+          setIsUserLoggedInAsGuest,
+        }}>
+        <QueryClientProvider client={queryClient}>
           <View style={styles.container}>
             <StatusBar />
             <NavigationContainer ref={navigationRef}>
               <Auth />
             </NavigationContainer>
           </View>
-        </UserContext.Provider>
-      </GestureHandlerRootView>
-    );
-  }
+        </QueryClientProvider>
+      </UserContext.Provider>
+    </GestureHandlerRootView>
+  );
 }
 
 const styles = StyleSheet.create({

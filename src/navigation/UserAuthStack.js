@@ -21,7 +21,6 @@ const UserAuthStack = () => {
   return (
     <Stack.Navigator screenOptions={options} initialRouteName="Splash2">
       <Stack.Screen name="Splash2" component={SplashScreen2} />
-
       <Stack.Screen name="Splash3" component={SplashScreen3} />
       <Stack.Screen name="Splash4" component={SplashScreen4} />
       <Stack.Screen name="SignIn" component={SignInScreen} />

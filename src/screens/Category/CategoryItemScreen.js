@@ -5,25 +5,33 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image
+  Image,
+  FlatList,
+  ImageBackground,
 } from 'react-native';
 import React from 'react';
 import Header from '../../components/Header';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
 import {BackArrowSvg, Serch} from '../../assets/SVG';
 import {SvgXml} from 'react-native-svg';
 import R from '../../res/R';
 import navigationServices from '../../utils/navigationServices';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import { color } from '../../config/color';
-import { width } from '../../config/dimension';
+import {color} from '../../config/color';
+import {width} from '../../config/dimension';
+import {hasRestParameter} from 'typescript';
 // require('../../assets')
 
-const SearchBar = () => {
+export const SearchBar = ({color, height}) => {
   return (
     <View
       style={{
-        height: verticalScale(40),
+        // height:  verticalScale(40),
         width: '100%',
         alignItems: 'center',
         flexDirection: 'row',
@@ -37,19 +45,20 @@ const SearchBar = () => {
 
       <View
         style={{
-          height: verticalScale(27),
+          height: height ? verticalScale(30) : verticalScale(27),
           width: moderateScale(320),
           borderWidth: 1,
           borderColor: R.color.dark.red,
           flexDirection: 'row',
           borderRadius: scale(20),
           alignItems: 'center',
+          backgroundColor: color || 'transparent',
         }}>
         <View style={{width: scale(40), alignItems: 'center'}}>
           <SvgXml xml={Serch} />
         </View>
         <TextInput
-          style={{width: '90%', padding: 0, margin: 0}}
+          style={{width: '90%', padding: 0, margin: 0, fontSize: vs(10)}}
           placeholder="Search on The Pickmart"
           placeholderTextColor={'black'}
         />
@@ -66,10 +75,15 @@ const CategoryItemScreen = () => {
       <SearchBar />
 
       <View style={styles.topSection}>
-        <Image
-          style={styles.topImg}
-          // source={require('../../assets/images/Apparel/PNG FILES/appareltop.png')}
-        />
+        <View style={{borderRadius: 10, overflow: 'hidden'}}>
+          <Image
+            style={styles.topImg}
+            source={{
+              uri: 'https://imgv3.fotor.com/images/slider-image/A-clear-close-up-photo-of-a-woman.jpg',
+            }}
+          />
+        </View>
+
         <View style={styles.topSectionText}>
           <Text style={styles.topText1}>Set your wardrobe!</Text>
           <Text style={styles.topText2}>
@@ -80,12 +94,88 @@ const CategoryItemScreen = () => {
           <Text style={styles.topText3}>JUST GET STARTED</Text>
         </View>
       </View>
+
+      <Text
+        style={{
+          color: '#EC4850',
+          fontWeight: 'bold',
+          textAlign: 'center',
+          marginTop: scale(14),
+          fontSize: vs(13),
+        }}>
+        CHOOSE BY PRODUCT CATEGORY
+      </Text>
+      <View  >
+      <FlatList
+        style={{marginTop: scale(16), marginLeft: 10}}
+        horizontal
+        data={[1, 2, , 34, 44, , 4, , , 5, 5, 5]}
+        renderItem={({item}) => (
+          <View>
+            <View
+              style={{
+                marginTop: 12,
+                marginHorizontal: 13,
+                borderRadius: 10,
+                height: 103,
+                width: 100,
+                backgroundColor: 'blue',
+              }}>
+              <View
+                style={{
+                  height: '101%',
+                  width: '100%',
+                  borderWidth: 1.3,
+                  borderRadius: 10,
+                  marginTop: '-6%',
+                  marginLeft: '4.5%',
+                  borderColor: '#EC4850',
+                }}></View>
+              <View
+                style={{
+                  zIndex: -1,
+                  overflow: 'hidden',
+                  backgroundColor: 'pink',
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  borderRadius: 10,
+                }}>
+                <Image
+                  source={{
+                    uri: 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg',
+                  }}
+                  style={{height: '100%', width: '100%'}}
+                />
+              </View>
+            </View>
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: scale(9),
+                fontWeight: 'bold',
+                color: '#EC4850',
+              }}>
+              MEN
+            </Text>
+          </View>
+        )}
+        // keyExtractor={item => item.id}
+      />
+      </View>
+    
+      <Image
+        source={require('../../assets/images/categpryItembg.png')}
+        style={{height: 200, width: '100%', resizeMode: 'contain'}}
+      />
+      <Text style={{  color: '#EC4850', fontSize:vs(17.5), textAlign:'center'}} >Explore the varieties, be pleasant </Text>
     </View>
   );
 };
 
 export default CategoryItemScreen;
-
 
 const styles = StyleSheet.create({
   searchBar: {
@@ -110,11 +200,13 @@ const styles = StyleSheet.create({
     borderWidth: 1.5,
   },
   topSection: {
+    // backgroundColor:'blue',
+    
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    marginTop: 20,
+    marginTop: 37,
     gap: 20,
     width: width,
   },

@@ -31,8 +31,10 @@ import CartScreen from '../screens/Cart';
 import NewPostScreen from '../screens/NewPost';
 import ShopStack from './ShopStack';
 
+const Tab = createBottomTabNavigator();
+
 const TabNavigation = () => {
-  const Tab = createBottomTabNavigator();
+ 
   return (
     <Tab.Navigator
       screenOptions={{
@@ -49,6 +51,7 @@ const TabNavigation = () => {
       }}>
       <Tab.Screen
         name="HomeStack"
+        // HomeScreen
         component={HomeScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -63,6 +66,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Explore"
+        // ExploreScreen
         component={ExploreScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -91,6 +95,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Category"
+        // CategoryScreen
         component={CategoryScreen}
         options={{
           tabBarItemStyle: {display: 'none'},
@@ -115,6 +120,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="plus"
+        // NewPostScreen
         component={NewPostScreen}
         options={{
           tabBarIcon: ({focused}) => (
@@ -141,6 +147,7 @@ const TabNavigation = () => {
 
       <Tab.Screen
         name={'cart'}
+        // CartScreen
         component={CartScreen}
         options={{
           tabBarItemStyle: {display: 'none'},
@@ -162,6 +169,7 @@ const TabNavigation = () => {
 
       <Tab.Screen
         name="Wishlist"
+        // ProfileScreen
         component={ProfileScreen}
         options={{
           tabBarItemStyle: {display: 'none'},
@@ -180,6 +188,7 @@ const TabNavigation = () => {
 
       <Tab.Screen
         name="Shop"
+        // ShopStack
         component={ShopStack}
         options={{
           tabBarIcon: ({focused}) => (
@@ -211,7 +220,8 @@ const TabNavigation = () => {
       {/* )} */}
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        // ProfileScreen
+        component={()=><></>}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{height: verticalScale(20)}}>
