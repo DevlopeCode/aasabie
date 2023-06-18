@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import ShopScreen from '../screens/Shop';
@@ -32,4 +31,3 @@ const ShopStack = () => {
 
 export default ShopStack;
 
-const styles = StyleSheet.create({});

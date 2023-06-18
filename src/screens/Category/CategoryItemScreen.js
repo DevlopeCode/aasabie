@@ -9,6 +9,8 @@ import {
   Image,
   FlatList,
   ImageBackground,
+  ScrollView,
+  Pressable,
 } from 'react-native';
 import React from 'react';
 import Header from '../../components/Header';
@@ -26,8 +28,121 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {color} from '../../config/color';
 import {width} from '../../config/dimension';
 import {hasRestParameter} from 'typescript';
+import TextC from '../../components/Text';
+import LinearGradient from 'react-native-linear-gradient';
+import {OfferData} from '../Shop/Component/res/rawData';
 // require('../../assets')
+const OfferSlider = () => (
+  <>
+    <View
+      style={{
+        height: verticalScale(18),
+        justifyContent: 'center',
+        width: '100%',
+        alignItems: 'center',
+        marginVertical: vs(20),
+      }}>
+      <TextC
+        font="bold"
+        style={{
+          color: '#EC303A',
+          textTransform: 'uppercase',
+        }}>
+        Special Offers
+      </TextC>
+    </View>
+    <FlatList
+      data={OfferData}
+      showsHorizontalScrollIndicator={false}
+      ItemSeparatorComponent={
+        <View
+          style={{
+            width: moderateScale(10),
+          }}
+        />
+      }
+      style={{
+        width: R.unit.windowWidth(0.98),
+        marginVertical: verticalScale(20),
+        height: verticalScale(100),
+        marginBottom: verticalScale(30),
+      }}
+      horizontal
+      renderItem={({item}) => (
+        <Pressable
+          style={{
+            width: moderateScale(210),
+            paddingHorizontal: scale(8),
+            height: verticalScale(100),
+            marginLeft: scale(10),
+          }}>
+          <Image
+            source={item.image}
+            style={{
+              height: '100%',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: scale(10),
+              backgroundColor: 'red',
+            }}
+          />
+          <LinearGradient
+            colors={['#0F0001', 'rgba(217, 217, 217, 0)', 'transparent']}
+            useAngle={true}
+            angle={90}
+            style={{
+              height: '100%',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              position: 'absolute',
+              borderRadius: scale(10),
+            }}>
+            <View
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                paddingLeft: scale(20),
+              }}>
+              <TextC font="bold" style={{color: R.color.dark.white}}>
+                {item.title}
+              </TextC>
+              <TextC
+                font="medium"
+                style={{
+                  color: R.color.dark.white,
 
+                  fontSize: scale(10),
+                }}>
+                {item.subtitle}
+              </TextC>
+              <View
+                style={{
+                  width: moderateScale(80),
+                  height: verticalScale(20),
+                  borderRadius: scale(20),
+                  backgroundColor: 'white',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: scale(10),
+                }}>
+                <TextC
+                  font="semibold"
+                  style={{
+                    color: '#EC303A',
+                    fontSize: scale(10),
+                  }}>
+                  SHOP NOW
+                </TextC>
+              </View>
+            </View>
+          </LinearGradient>
+        </Pressable>
+      )}
+    />
+  </>
+);
 export const SearchBar = ({color, height}) => {
   return (
     <View
@@ -71,7 +186,8 @@ const CategoryItemScreen = () => {
   const inset = useSafeAreaInsets();
 
   return (
-    <View style={{backgroundColor: 'white', flex: 1, marginTop: inset.top}}>
+    <ScrollView
+      style={{backgroundColor: 'white', flex: 1, marginTop: inset.top}}>
       <Header />
       <SearchBar />
 
@@ -175,13 +291,45 @@ const CategoryItemScreen = () => {
       <Text
         style={{
           color: '#EC4850',
-          fontSize: vs(17.5),
+          fontSize: vs(25),
           textAlign: 'center',
           fontFamily: 'Yesteryear-Regular',
         }}>
         Explore the varieties, be pleasant
       </Text>
-    </View>
+      <OfferSlider />
+      <FlatList
+        data={[
+          'bEST SELLERS',
+          'nEW ARRIVALS',
+          'budget FReINDLY',
+          'ongoing sale',
+        ]}
+        ItemSeparatorComponent={<View style={{height: vs(20)}} />}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity
+              style={{
+                height: vs(60),
+                backgroundColor: '#EC4850',
+                marginHorizontal: scale(20),
+                borderRadius: scale(5),
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <TextC
+                font="bold"
+                variant="h3"
+                color={R.color.dark.white}
+                style={{textTransform: 'uppercase'}}>
+                {item}
+              </TextC>
+            </TouchableOpacity>
+          );
+        }}
+      />
+      <View style={{height: vs(100)}} />
+    </ScrollView>
   );
 };
 
@@ -278,7 +426,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   categoryText: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 12,
     color: '#000',
     textAlign: 'center',
@@ -308,7 +456,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   offerSubHeading: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 10,
     color: color.background,
     marginBottom: 5,
@@ -323,7 +471,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     fontSize: 8,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     color: color.background,
     zIndex: 2,
     textAlign: 'center',
