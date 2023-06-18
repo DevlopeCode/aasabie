@@ -5,7 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
-  Image
+  Image,
 } from 'react-native';
 import React from 'react';
 import Header from '../../components/Header';
@@ -15,8 +15,8 @@ import {SvgXml} from 'react-native-svg';
 import R from '../../res/R';
 import navigationServices from '../../utils/navigationServices';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import { color } from '../../config/color';
-import { width } from '../../config/dimension';
+import {color} from '../../config/color';
+import {width} from '../../config/dimension';
 // require('../../assets')
 
 const SearchBar = () => {
@@ -32,7 +32,7 @@ const SearchBar = () => {
       <TouchableOpacity
         onPress={() => navigationServices.goBack()}
         style={{marginRight: scale(10)}}>
-        <SvgXml xml={BackArrowSvg} />
+        <SvgXml xml={BackArrowSvg()} />
       </TouchableOpacity>
 
       <View
@@ -46,7 +46,7 @@ const SearchBar = () => {
           alignItems: 'center',
         }}>
         <View style={{width: scale(40), alignItems: 'center'}}>
-          <SvgXml xml={Serch} />
+          <SvgXml xml={Serch()} />
         </View>
         <TextInput
           style={{width: '90%', padding: 0, margin: 0}}
@@ -85,7 +85,6 @@ const CategoryItemScreen = () => {
 };
 
 export default CategoryItemScreen;
-
 
 const styles = StyleSheet.create({
   searchBar: {

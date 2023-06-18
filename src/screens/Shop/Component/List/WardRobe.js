@@ -66,7 +66,9 @@ const ItemSlider = () => (
     style={{width: moderateScale(310), marginVertical: verticalScale(20)}}
     renderItem={({item}) => (
       <TouchableOpacity
-        onPress={() => navigationServices.navigate('ProductListScreen')}
+        onPress={() =>
+          navigationServices.navigate('ProductListScreen', item.title)
+        }
         style={{width: moderateScale(120), height: verticalScale(180)}}>
         <ImageBackground
           source={item.image}

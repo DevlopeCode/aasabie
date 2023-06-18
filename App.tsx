@@ -30,7 +30,8 @@ export default function App() {
           setIsUserLoggedInAsGuest,
         }}>
         <View style={styles.container}>
-          <StatusBar />
+          <StatusBar backgroundColor={'#FFFFFFFF'} barStyle={'dark-content'} />
+
           <NavigationContainer ref={navigationRef}>
             <Auth />
           </NavigationContainer>

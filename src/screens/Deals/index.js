@@ -32,7 +32,7 @@ const DealsOfTheDayScreen = () => {
         <TouchableOpacity
           onPress={() => navigationServices.goBack()}
           style={{width: moderateScale(30)}}>
-          <SvgXml xml={BackArrowSvg} />
+          <SvgXml xml={BackArrowSvg()} />
         </TouchableOpacity>
 
         <TextC font="bold" style={{color: '#EC303A'}}>
