@@ -8,6 +8,10 @@ import {
   ActivityIndicator,
   Image,
 } from 'react-native';
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack';
 import React from 'react';
 import Header from '../../components/Header';
 import {moderateScale, vs} from 'react-native-size-matters';
@@ -17,9 +21,9 @@ import {useQuery} from '@tanstack/react-query';
 import {create} from 'zustand';
 import {useEffect} from 'react';
 import {SearchBar} from './CategoryItemScreen';
-import { SvgXml } from 'react-native-svg';
-import { ForwardIcon } from '../../assets/SVG';
-
+import {SvgXml} from 'react-native-svg';
+import {ForwardIcon} from '../../assets/SVG';
+const Stack = createStackNavigator();
 const useBearStore = create(set => ({
   bears: 0,
   increasePopulation: () => set(state => ({bears: state.bears + 1})),
@@ -81,12 +85,11 @@ const CategoryHeader = ({item, DATA, index}) => {
             // backgroundColor: getColor()?.titlecolor,
             width: vs(20),
             marginLeft: moderateScale(10),
-            justifyContent:'center',
+            justifyContent: 'center',
             //  alignItems:'center'
-          }}
-        >
+          }}>
           <SvgXml xml={ForwardIcon(getColor()?.titlecolor)} />
-           {/* ForwardIcon */}
+          {/* ForwardIcon */}
         </View>
       </View>
     </TouchableOpacity>
@@ -99,7 +102,12 @@ const CartegorItemList = ({datalist}) => {
       horizontal
       style={{height: vs(50), marginLeft: 20, marginTop: vs(15)}}
       renderItem={({item}) => (
-        <View style={{height: '100%'}}>
+        <TouchableOpacity
+          onPress={() => {
+            console.log('navigate');
+          }}
+          activeOpacity={0.8}
+          style={{height: '100%'}}>
           <View
             style={{
               height: vs(70),
@@ -137,7 +145,7 @@ const CartegorItemList = ({datalist}) => {
               {item?.name}
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       )}
     />
   );
@@ -254,12 +262,7 @@ const CategoryScreen = () => {
         flex: 1,
         backgroundColor: '#FFF4F4',
       }}>
-      <Header />
-      <View style={{ paddingLeft:20,marginVertical:vs(20) }} >
-      <SearchBar   height color={'white'} />
-      </View>
-      <Text style={{paddingLeft:22, fontWeight:'bold', color:'#EC4850', fontSize:vs(15), marginVertical:vs(8)}} >SHOP BY CATEGORY</Text>
-   
+         <Header />
       {/* onClick={increasePopulation} */}
       {isError && (
         <TouchableOpacity
@@ -272,6 +275,24 @@ const CategoryScreen = () => {
         <ActivityIndicator style={{marginTop: 100}} size={30} />
       ) : (
         <FlatList
+          ListHeaderComponent={() => (
+            <>
+             
+              <View style={{ marginVertical: vs(20)}}>
+                <SearchBar height color={'white'} />
+              </View>
+              <Text
+                style={{
+                  paddingLeft: 22,
+                  fontWeight: 'bold',
+                  color: '#EC4850',
+                  fontSize: vs(15),
+                  marginVertical: vs(8),
+                }}>
+                SHOP BY CATEGORY
+              </Text>
+            </>
+          )}
           data={data}
           style={{flex: 1}}
           keyExtractor={(item, index) => item + index}
@@ -292,7 +313,31 @@ const CategoryScreen = () => {
   );
 };
 
-export default CategoryScreen;
+const CategoryDetail = () => {
+  return (
+    <View style={{height: 300}}>
+      <Text>sdfsdfsf</Text>
+    </View>
+  );
+};
+
+const CategoryStack = () => {
+  const Stack = createStackNavigator();
+
+  const options = {
+    headerShown: false,
+    cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+  };
+
+  return (
+    <Stack.Navigator screenOptions={options} initialRouteName="CategoryScreen">
+      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+      <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
+    </Stack.Navigator>
+  );
+};
+
+export default CategoryStack;
 
 const styles = StyleSheet.create({
   container: {
