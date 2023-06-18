@@ -1,11 +1,11 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, {useRef} from 'react';
+import React from 'react';
 import {Pressable, Text, View} from 'react-native';
 import ProfileScreen from '../screens/Profile/Profile';
-import {Path, Svg, SvgXml} from 'react-native-svg';
+import {SvgXml} from 'react-native-svg';
 import CartIcon from '../assets/TabMenuIcons/CartIcon';
 import Explore from '../assets/TabMenuIcons/Explore';
 import HomeIcon from '../assets/TabMenuIcons/HomeIcon';
@@ -13,14 +13,9 @@ import PlusIcon from '../assets/TabMenuIcons/PlusIcon';
 import Profile from '../assets/TabMenuIcons/Profile';
 import Shop from '../assets/TabMenuIcons/Shop';
 import WishList from '../assets/TabMenuIcons/WishList';
-import {HomeStack} from './HomeStack';
-
 import {StyleSheet} from 'react-native';
 import {color} from '../config/color';
-import {height} from '../config/dimension';
-import {login} from '../utils/apis/api';
-import ShopScreen from '../screens/Shop';
-import {moderateScale, scale, vs} from 'react-native-size-matters';
+import {scale, vs} from 'react-native-size-matters';
 import {verticalScale} from 'react-native-size-matters';
 import {BottomBar, categortTabIcon} from '../assets/SVG';
 import HomeScreen from '../screens/Home/HomeScreen';
@@ -31,8 +26,9 @@ import CartScreen from '../screens/Cart';
 import NewPostScreen from '../screens/NewPost';
 import ShopStack from './ShopStack';
 
+const Tab = createBottomTabNavigator();
+
 const TabNavigation = () => {
-  const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator
       screenOptions={{
@@ -63,25 +59,26 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Explore"
+        // ExploreScreen
         component={ExploreScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Pressable
               style={{height: verticalScale(20)}}
               onPress={() => {
-                navigationRef.current.getCurrentRoute().name != 'Shop'
+                navigationRef.current?.getCurrentRoute().name != 'Shop'
                   ? navigationRef.current.navigate('Explore')
                   : navigationRef.current.navigate('Category');
               }}>
               <View style={styles.icon}>
-                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                {navigationRef.current?.getCurrentRoute().name != 'Shop' ? (
                   <Explore inFocus={focused} />
                 ) : (
                   <SvgXml xml={categortTabIcon} />
                 )}
               </View>
               <Text style={styles.iconText}>
-                {navigationRef.current.getCurrentRoute().name != 'Shop'
+                {navigationRef.current?.getCurrentRoute().name != 'Shop'
                   ? 'Explore'
                   : 'Category'}
               </Text>
@@ -91,6 +88,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="Category"
+        // CategoryScreen
         component={CategoryScreen}
         options={{
           tabBarItemStyle: {display: 'none'},
@@ -98,14 +96,14 @@ const TabNavigation = () => {
           tabBarIcon: ({focused}) => (
             <Pressable style={{height: verticalScale(20)}}>
               <View style={styles.icon}>
-                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                {navigationRef.current?.getCurrentRoute().name != 'Shop' ? (
                   <Explore inFocus={focused} />
                 ) : (
                   <SvgXml xml={categortTabIcon} />
                 )}
               </View>
               <Text style={styles.iconText}>
-                {navigationRef.current.getCurrentRoute().name != 'Shop'
+                {navigationRef.current?.getCurrentRoute().name != 'Shop'
                   ? 'Explore'
                   : 'Category'}
               </Text>
@@ -115,18 +113,19 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name="plus"
+        // NewPostScreen
         component={NewPostScreen}
         options={{
           tabBarIcon: ({focused}) => (
             <Pressable
               style={styles.centericon}
               onPress={() => {
-                navigationRef.current.getCurrentRoute().name != 'Shop'
+                navigationRef.current?.getCurrentRoute().name != 'Shop'
                   ? navigationRef.current.navigate('plus')
                   : navigationRef.current.navigate('cart');
               }}>
               <View style={[styles.icon, styles.centerIconContainer]}>
-                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                {navigationRef.current?.getCurrentRoute().name != 'Shop' ? (
                   <PlusIcon inFocus={focused} />
                 ) : (
                   <View style={styles.icon}>
@@ -141,13 +140,14 @@ const TabNavigation = () => {
 
       <Tab.Screen
         name={'cart'}
+        // CartScreen
         component={CartScreen}
         options={{
           tabBarItemStyle: {display: 'none'},
           tabBarIcon: ({focused}) => (
             <Pressable style={styles.centericon}>
               <View style={[styles.icon, styles.centerIconContainer]}>
-                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                {navigationRef.current?.getCurrentRoute().name != 'Shop' ? (
                   <PlusIcon inFocus={focused} />
                 ) : (
                   <View style={styles.icon}>
@@ -162,6 +162,7 @@ const TabNavigation = () => {
 
       <Tab.Screen
         name="Wishlist"
+        // ProfileScreen
         component={ProfileScreen}
         options={{
           tabBarItemStyle: {display: 'none'},
@@ -180,17 +181,18 @@ const TabNavigation = () => {
 
       <Tab.Screen
         name="Shop"
+        // ShopStack
         component={ShopStack}
         options={{
           tabBarIcon: ({focused}) => (
             <Pressable
               style={{height: verticalScale(20)}}
               onPress={() => {
-                navigationRef.current.getCurrentRoute().name != 'Shop'
+                navigationRef.current?.getCurrentRoute().name != 'Shop'
                   ? navigationRef.current.navigate('Shop')
                   : navigationRef.current.navigate('Wishlist');
               }}>
-              {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+              {navigationRef.current?.getCurrentRoute().name != 'Shop' ? (
                 <View style={styles.icon}>
                   <Shop inFocus={focused} />
                 </View>
@@ -200,7 +202,7 @@ const TabNavigation = () => {
                 </View>
               )}
               <Text style={styles.iconText}>
-                {navigationRef.current.getCurrentRoute().name == 'Shop'
+                {navigationRef.current?.getCurrentRoute().name == 'Shop'
                   ? 'Wishlist'
                   : 'Shop'}
               </Text>
@@ -211,7 +213,8 @@ const TabNavigation = () => {
       {/* )} */}
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        // ProfileScreen
+        component={() => <></>}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={{height: verticalScale(20)}}>

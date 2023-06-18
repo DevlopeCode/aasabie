@@ -13,6 +13,9 @@ import {
   NavigationContainer,
   createNavigationContainerRef,
 } from '@react-navigation/native';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -20,6 +23,9 @@ export default function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isUserLoggedInAsGuest, setIsUserLoggedInAsGuest] = useState(false);
 
+  console.warn = () => {};
+  console.error = () => {};
+  // console.log =()=>{}
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <UserContext.Provider
@@ -29,13 +35,17 @@ export default function App() {
           isUserLoggedInAsGuest,
           setIsUserLoggedInAsGuest,
         }}>
-        <View style={styles.container}>
-          <StatusBar backgroundColor={'#FFFFFFFF'} barStyle={'dark-content'} />
-
-          <NavigationContainer ref={navigationRef}>
-            <Auth />
-          </NavigationContainer>
-        </View>
+        <QueryClientProvider client={queryClient}>
+          <View style={styles.container}>
+            <StatusBar
+              backgroundColor={'#FFFFFFFF'}
+              barStyle={'dark-content'}
+            />
+            <NavigationContainer ref={navigationRef}>
+              <Auth />
+            </NavigationContainer>
+          </View>
+        </QueryClientProvider>
       </UserContext.Provider>
     </GestureHandlerRootView>
   );

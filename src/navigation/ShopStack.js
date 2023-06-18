@@ -6,6 +6,7 @@ import DealsOfTheDayScreen from '../screens/Deals';
 import Apparel from '../screens/Apparel/Apparel';
 import CategoryItemScreen from '../screens/Category/CategoryItemScreen';
 import ProductListScreen from '../screens/ProoductList';
+import SummerScreen from '../screens/Shop/SummerScreen';
 const ShopStackS = createStackNavigator();
 
 const ShopStack = () => {
@@ -24,6 +25,7 @@ const ShopStack = () => {
         name="ProductListScreen"
         component={ProductListScreen}
       />
+      <ShopStackS.Screen name="SummerScreen" component={SummerScreen} />
     </ShopStackS.Navigator>
   );
 };
