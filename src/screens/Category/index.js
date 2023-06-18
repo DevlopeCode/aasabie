@@ -254,7 +254,7 @@ const CategoryScreen = () => {
   //   return <span>Error: {error.message}</span>
   // }
 
-  // console.log(bears, 'bearsbearsbears');
+  // console.log(bears, 'bearsbearsdfsdfsbears');
 
   return (
     <View
