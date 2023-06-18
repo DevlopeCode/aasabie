@@ -16,6 +16,7 @@ import TextC from '../../../../components/Text';
 import R from '../../../../res/R';
 import {OfferData, RobData} from '../res/rawData';
 import LinearGradient from 'react-native-linear-gradient';
+import navigationServices from '../../../../utils/navigationServices';
 const HeadContain = () => (
   <View
     style={{
@@ -65,6 +66,7 @@ const ItemSlider = () => (
     style={{width: moderateScale(310), marginVertical: verticalScale(20)}}
     renderItem={({item}) => (
       <TouchableOpacity
+        onPress={() => navigationServices.navigate('ProductListScreen')}
         style={{width: moderateScale(120), height: verticalScale(180)}}>
         <ImageBackground
           source={item.image}
