@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, StyleSheet, View, Dimensions} from 'react-native';
+import {FlatList, Image, StyleSheet, View, Dimensions, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {SvgXml} from 'react-native-svg';
 import {
@@ -17,6 +17,8 @@ import {
 } from '../../../../assets/SVG';
 import R from '../../../../res/R';
 import {color} from '../../../../config/color';
+import navigationServices from '../../../../utils/navigationServices';
+
 const FeedList = () => {
   return (
     <View
@@ -162,7 +164,8 @@ export const PostCard = () => (
       </View>
     </View>
 
-    <View
+    <TouchableOpacity
+     onPress={() => navigationServices.navigate('ProductDetail')}
       style={{
         height: verticalScale(300),
         marginVertical: verticalScale(10),
@@ -185,7 +188,7 @@ export const PostCard = () => (
         }}
         source={require('../../../../assets/images/FeedItem.png')}
       />
-    </View>
+    </TouchableOpacity>
 
     <TextC variant="h5" font="regular" style={{fontSize: 10}}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate

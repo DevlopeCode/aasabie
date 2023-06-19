@@ -6,6 +6,9 @@ import {
   View,
   ImageBackground,
   TouchableWithoutFeedback,
+  Image,
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import React from 'react';
 // import Carousel from 'react-native-snap-carousel';
@@ -17,15 +20,34 @@ import ShareBtn from './ShareBtn';
 import TryOnBtn from './TryOnBtn';
 import NegotiationIcon from './NegotiationIcon';
 import {color} from '../../config/color';
-import ImageaCarousel from './ImageaCarousel';
 import Varients from './Varients';
 import ProductInfo from './ProductInfo';
 import PriceSection from './PriceSection';
 import {ScrollView} from 'react-native';
+import {ProductHeader} from '../ProoductList/ProductHeader';
+import Carousel from 'react-native-reanimated-carousel';
+import {
+  moderateScale,
+  s,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
+import {navigate} from '../../utils/navigationServices';
+import {SvgXml} from 'react-native-svg';
+import {
+  HeartOulineSvg,
+  HeartOutline,
+  NegociationSVG,
+  ShareSvg,
+  VRSVG,
+} from '../../assets/SVG';
+import R from '../../res/R';
+import TextC from '../../components/Text';
 
 const ProductDetail = () => {
   const testData = {
-    title: 'Product Title',
+    title: 'Trendy Fabulous Kurti - Georgette long sleeeve',
     price: 100,
     description:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vi, consectetur adipiscing elit. Nulla euismod, nisl eget aliquam ultricies, nunc nisl aliquet nunc, vi',
@@ -114,17 +136,142 @@ const ProductDetail = () => {
 
   const [like, setLike] = React.useState(false);
   const [currentVarient, setCurrentVarient] = React.useState(0);
-
+  console.log(currentVarient);
   const handelLike = () => {
     setLike(!like);
   };
 
   return (
-    <View>
-      <ShopTopBar />
+    <ScrollView>
+      <ProductHeader title={'Negotiation'} />
       {/* <ImageaCarousel data={testData.images}/> */}
-
-      <ScrollView>
+      <Carousel
+        // loop
+        width={Dimensions.get('window').width}
+        height={moderateScale(400)}
+        autoPlay={false}
+        pagingEnabled
+        data={testData.variants[0].options}
+        scrollAnimationDuration={1000}
+        // mode="parallax"
+        defaultIndex={currentVarient}
+        onSnapToItem={index => {
+          setCurrentVarient(index);
+        }}
+        renderItem={({item, index}) => {
+          return (
+            <ImageBackground
+              source={{uri: item.images[0]}}
+              imageStyle={{
+                height: vs(400),
+                width: Dimensions.get('window').width,
+              }}
+              style={{
+                height: vs(400),
+                width: Dimensions.get('window').width,
+                justifyContent: 'space-between',
+              }}>
+              <View
+                style={{
+                  height: vs(90),
+                  marginTop: vs(20),
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  paddingHorizontal: s(20),
+                }}>
+                <View
+                  style={{
+                    height: vs(24),
+                    backgroundColor: '#FFFFFF',
+                    width: scale(70),
+                    borderRadius: s(22),
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                    paddingHorizontal: s(5),
+                  }}>
+                  <SvgXml xml={VRSVG} />
+                  <TextC font="bold" variant="h6" color="#9931C0">
+                    TRY ON
+                  </TextC>
+                </View>
+                <View
+                  style={{
+                    height: vs(70),
+                    width: scale(90),
+                    borderRadius: s(22),
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-end',
+                  }}>
+                  <View
+                    style={{
+                      width: s(25),
+                      height: s(25),
+                      borderRadius: s(20),
+                      backgroundColor: R.color.dark.white,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      marginBottom: s(10),
+                    }}>
+                    <SvgXml xml={HeartOulineSvg} />
+                  </View>
+                  <View
+                    style={{
+                      width: s(25),
+                      height: s(25),
+                      borderRadius: s(20),
+                      backgroundColor: R.color.dark.white,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}>
+                    <SvgXml xml={ShareSvg} />
+                  </View>
+                </View>
+              </View>
+              <View
+                style={{
+                  height: vs(100),
+                  alignItems: 'flex-end',
+                  paddingHorizontal: scale(15),
+                }}>
+                <View
+                  style={{
+                    height: vs(35),
+                    // width: s(200),
+                    backgroundColor: '#EC303A',
+                    borderRadius: s(90),
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    paddingHorizontal: s(15),
+                  }}>
+                  <SvgXml xml={NegociationSVG} />
+                  <TextC font="medium" variant="h5" color="white">
+                    Negotiation Available
+                  </TextC>
+                </View>
+              </View>
+            </ImageBackground>
+          );
+        }}
+      />
+      <Varients
+        data={testData.variants[0].options}
+        currentSelected={currentVarient}
+        handelChangeVarient={data => setCurrentVarient(data)}
+      />
+      <ProductInfo
+        title={testData.title}
+        ratingCount={testData.reviews}
+        rating={testData.rating}
+        seen={testData.seens}
+        likes={testData.likes}
+      />
+        <Varients
+        data={testData.variants[0].options}
+        currentSelected={currentVarient}
+        handelChangeVarient={data => setCurrentVarient(data)}
+      />
+      {/* <ScrollView>
         <ImageBackground
           source={{
             uri: testData.variants[0].options[currentVarient].images[0],
@@ -217,38 +364,8 @@ const ProductDetail = () => {
             <Text style={styles.ProductDetailsItemText}>Test</Text>
           </View>
         </View>
-      </ScrollView>
-
-      <SafeAreaView>
-        <View style={styles.bottomOptions}>
-          <TouchableWithoutFeedback>
-            <View style={styles.addbtn}>
-              <Text
-                style={{
-                  fontFamily: 'PoppinsSemiBold',
-                  color: color.primary,
-                  fontSize: 18,
-                }}>
-                Add to Cart
-              </Text>
-            </View>
-          </TouchableWithoutFeedback>
-
-          <TouchableWithoutFeedback>
-            <View style={styles.buybtn}>
-              <Text
-                style={{
-                  fontFamily: 'PoppinsSemiBold',
-                  color: 'white',
-                  fontSize: 18,
-                }}>
-                Buy Now
-              </Text>
-            </View>
-          </TouchableWithoutFeedback>
-        </View>
-      </SafeAreaView>
-    </View>
+      </ScrollView> */}
+    </ScrollView>
   );
 };
 

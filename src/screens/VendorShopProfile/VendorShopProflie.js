@@ -60,7 +60,7 @@ const VendorShopProflie = () => {
       <View style={styles.header}>
         <TouchableWithoutFeedback onPress={handleBack}>
           <View>
-            <BackArrowIcon />
+            {/* <BackArrowIcon /> */}
           </View>
         </TouchableWithoutFeedback>
         <Text style={styles.title}>{profileData.name}</Text>

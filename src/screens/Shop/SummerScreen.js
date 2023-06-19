@@ -14,11 +14,9 @@ import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {SummerDealofTheday} from './Component/List/DealofTheday';
 import TextC from '../../components/Text';
-import R from '../../res/R';
 import {verticalScale} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
 import {summerCircleIcon, BackArrowSvg} from '../../assets/SVG';
-import TopBar from '../../components/TopBar/TopBar';
 
 const {width, height} = Dimensions.get('window');
 

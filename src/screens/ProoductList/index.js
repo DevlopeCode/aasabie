@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, ScrollView, StyleSheet, View} from 'react-native';
+import {FlatList, Image, StyleSheet, View} from 'react-native';
 import React from 'react';
 import {scale, vs} from 'react-native-size-matters';
 import {ProductHeader} from './ProductHeader';
@@ -7,7 +7,7 @@ import FilterList from './FilterList';
 import {ProductCard} from './ProductCard';
 
 const ProductListScreen = ({navigation, route}) => {
-  console.log(route.params);
+  // console.log(route.params);
   const flatdata = [
     <ProductHeader title={route.params} />,
     <FilterList />,
@@ -23,7 +23,6 @@ const ProductListScreen = ({navigation, route}) => {
         renderItem={({item, index}) => (
           <ProductCard item={item} index={index} />
         )}
-        // keyExtractor={item => item.id}
         numColumns={2}
         contentContainerStyle={styles.container}
       />
@@ -40,7 +39,6 @@ const ProductListScreen = ({navigation, route}) => {
         renderItem={({item, index}) => (
           <ProductCard item={item} index={index} />
         )}
-        // keyExtractor={item => item.id}
         numColumns={2}
         contentContainerStyle={styles.container}
       />
