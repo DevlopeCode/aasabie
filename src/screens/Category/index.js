@@ -14,26 +14,29 @@ import {
 } from '@react-navigation/stack';
 import React from 'react';
 import Header from '../../components/Header';
-import {moderateScale, vs} from 'react-native-size-matters';
+import { moderateScale, vs } from 'react-native-size-matters';
 import TextC from '../../components/Text';
-import {navigationRef} from '../../../App';
-import {useQuery} from '@tanstack/react-query';
-import {create} from 'zustand';
-import {useEffect} from 'react';
-import {SearchBar} from './CategoryItemScreen';
-import {SvgXml} from 'react-native-svg';
-import {ForwardIcon} from '../../assets/SVG';
+import { navigationRef } from '../../../App';
+import { useQuery } from '@tanstack/react-query';
+import { create } from 'zustand';
+import { useEffect } from 'react';
+import { SearchBar } from './CategoryItemScreen';
+import { SvgXml } from 'react-native-svg';
+import { ForwardIcon } from '../../assets/SVG';
 import { useNavigation } from '@react-navigation/native';
 import CategoryDetail from './CategoryDetail';
+import FootwearDetail from './FootwearDetail';
+import KidsCategoryDetail from './KidsCategoryDetail';
+import JewelleryDetail from './JewelleryDetail';
 
 const Stack = createStackNavigator();
 const useBearStore = create(set => ({
   bears: 0,
-  increasePopulation: () => set(state => ({bears: state.bears + 1})),
-  removeAllBears: () => set({bears: 0}),
+  increasePopulation: () => set(state => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
 }));
 
-const CategoryHeader = ({item, DATA, index}) => {
+const CategoryHeader = ({ item, DATA, index }) => {
   const getColor = () => {
     // backgroundColor: '#803BC133',
 
@@ -53,7 +56,7 @@ const CategoryHeader = ({item, DATA, index}) => {
         paddingHorizontal: moderateScale(5),
         justifyContent: 'space-between',
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <Image
           source={{
             uri: 'https://www.aasabie.com/storage/app/public/brand/2023-06-09-648312c4e7033.png',
@@ -78,7 +81,7 @@ const CategoryHeader = ({item, DATA, index}) => {
           {item?.name}
         </TextC>
       </View>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <TextC font="medium" variant="content" color={getColor()?.titlecolor}>
           View All
         </TextC>
@@ -98,20 +101,46 @@ const CategoryHeader = ({item, DATA, index}) => {
     </TouchableOpacity>
   );
 };
-const CartegorItemList = ({datalist}) => {
-const { navigate }= useNavigation()
+const CartegorItemList = ({  datalist }) => {
+  const { navigate } = useNavigation()
   return (
     <FlatList
       data={datalist}
       horizontal
-      style={{height: vs(50), marginLeft: 20, marginTop: vs(15)}}
-      renderItem={({item}) => (
+      style={{ height: vs(50), marginLeft: 20, marginTop: vs(15) }}
+      renderItem={({ item , index}) => (
         <TouchableOpacity
           onPress={() => {
-            navigate('CategoryDetail')
+            if (index == 1) {
+              const dataPayload ={
+                data:[1, 2, 3, 4, 5, 6]
+              }
+              navigate('FootwearDetail',dataPayload)
+            }
+            if (index == 0) {
+              const dataPayload ={
+                data:[1, 2, 3, 4, 5, 3, 2, 2]
+              }
+              navigate('CategoryDetail',dataPayload)
+            }
+
+            if (index == 2) {
+              const dataPayload ={
+                data:[1, 2, 3, 4, 5, 6]
+              }
+              navigate('KidsCategoryDetail',dataPayload)
+            }
+
+            if (index == 3) {
+              const dataPayload ={
+                data:[1, 2, 3, 4, 5, 6]
+              }
+              navigate('JewelleryDetail',dataPayload)
+            }
+
           }}
           activeOpacity={0.8}
-          style={{height: '100%'}}>
+          style={{ height: '100%' }}>
           <View
             style={{
               height: vs(70),
@@ -131,7 +160,7 @@ const { navigate }= useNavigation()
                 overflow: 'hidden',
               }}>
               <Image
-                style={{height: '100%', width: '100%'}}
+                style={{ height: '100%', width: '100%' }}
                 source={{
                   uri: 'https://st4.depositphotos.com/4678277/40811/i/600/depositphotos_408110334-stock-photo-full-length-body-size-view.jpg',
                 }}
@@ -160,9 +189,9 @@ const CategoryScreen = () => {
     title: 'AppAreals',
     backgroundColor: '#803BC133',
     data: [
-      {img: '', item: 'men'},
-      {img: '', item: 'women'},
-      {img: '', item: 'Kids'},
+      { img: '', item: 'men' },
+      { img: '', item: 'women' },
+      { img: '', item: 'Kids' },
     ],
   };
   const DATA = [
@@ -173,9 +202,9 @@ const CategoryScreen = () => {
       titlecolor: '#803BC1',
 
       data: [
-        {img: '', item: 'men'},
-        {img: '', item: 'women'},
-        {img: '', item: 'Kids'},
+        { img: '', item: 'men' },
+        { img: '', item: 'women' },
+        { img: '', item: 'Kids' },
       ],
     },
     {
@@ -184,9 +213,9 @@ const CategoryScreen = () => {
       titlecolor: '#FF981F',
 
       data: [
-        {img: '', item: 'men'},
-        {img: '', item: 'women'},
-        {img: '', item: 'Kids'},
+        { img: '', item: 'men' },
+        { img: '', item: 'women' },
+        { img: '', item: 'Kids' },
       ],
     },
     {
@@ -195,9 +224,9 @@ const CategoryScreen = () => {
       titlecolor: '#21B8F3',
 
       data: [
-        {img: '', item: 'men'},
-        {img: '', item: 'women'},
-        {img: '', item: 'Kids'},
+        { img: '', item: 'men' },
+        { img: '', item: 'women' },
+        { img: '', item: 'Kids' },
       ],
     },
     {
@@ -206,9 +235,9 @@ const CategoryScreen = () => {
       titlecolor: '#CF3B89',
 
       data: [
-        {img: '', item: 'men'},
-        {img: '', item: 'women'},
-        {img: '', item: 'Kids'},
+        { img: '', item: 'men' },
+        { img: '', item: 'women' },
+        { img: '', item: 'Kids' },
       ],
     },
     {
@@ -217,9 +246,9 @@ const CategoryScreen = () => {
       titlecolor: '#023C7E',
 
       data: [
-        {img: '', item: 'men'},
-        {img: '', item: 'women'},
-        {img: '', item: 'Kids'},
+        { img: '', item: 'men' },
+        { img: '', item: 'women' },
+        { img: '', item: 'Kids' },
       ],
     },
     {
@@ -228,9 +257,9 @@ const CategoryScreen = () => {
       titlecolor: '#803BC1',
 
       data: [
-        {img: '', item: 'men'},
-        {img: '', item: 'women'},
-        {img: '', item: 'Kids'},
+        { img: '', item: 'men' },
+        { img: '', item: 'women' },
+        { img: '', item: 'Kids' },
       ],
     },
   ];
@@ -244,7 +273,7 @@ const CategoryScreen = () => {
     return response;
   };
 
-  const {isLoading, isError, data, error} = useQuery({
+  const { isLoading, isError, data, error } = useQuery({
     queryKey: ['assembleCategory'],
     queryFn: getCategory,
   });
@@ -266,23 +295,23 @@ const CategoryScreen = () => {
         flex: 1,
         backgroundColor: '#FFF4F4',
       }}>
-         <Header />
+      <Header />
       {/* onClick={increasePopulation} */}
       {isError && (
         <TouchableOpacity
           onPress={increasePopulation}
-          style={{height: 300, backgroundColor: 'red'}}>
+          style={{ height: 300, backgroundColor: 'red' }}>
           <Text>Error in api response</Text>
         </TouchableOpacity>
       )}
       {isLoading ? (
-        <ActivityIndicator style={{marginTop: 100}} size={30} />
+        <ActivityIndicator style={{ marginTop: 100 }} size={30} />
       ) : (
         <FlatList
           ListHeaderComponent={() => (
             <>
-             
-              <View style={{ marginVertical: vs(20)}}>
+
+              <View style={{ marginVertical: vs(20) }}>
                 <SearchBar height color={'white'} />
               </View>
               <Text
@@ -298,16 +327,16 @@ const CategoryScreen = () => {
             </>
           )}
           data={data}
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           keyExtractor={(item, index) => item + index}
-          contentContainerStyle={{paddingHorizontal: 20}}
-          renderItem={({item, index}) => {
+          contentContainerStyle={{ paddingHorizontal: 20 }}
+          renderItem={({ item, index }) => {
             console.log(JSON.stringify(item), 'itemitemitem');
             // return <></>
             return (
               <View style={styles.item}>
                 <CategoryHeader DATA={DATA} index={index} item={item} />
-                <CartegorItemList datalist={item?.childes} />
+                <CartegorItemList index={index} datalist={item?.childes} />
               </View>
             );
           }}
@@ -331,10 +360,15 @@ const CategoryStack = () => {
     <Stack.Navigator screenOptions={options} initialRouteName="CategoryScreen">
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
+      <Stack.Screen name="FootwearDetail" component={FootwearDetail} />
+      <Stack.Screen name="KidsCategoryDetail" component={KidsCategoryDetail} />
+      <Stack.Screen name="JewelleryDetail" component={JewelleryDetail} />
     </Stack.Navigator>
   );
 };
-
+// JewelleryDetail
+// KidsCategoryDetail
+// FootwearDetail
 export default CategoryStack;
 
 const styles = StyleSheet.create({
