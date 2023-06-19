@@ -61,8 +61,7 @@ const HeadLayout = () => {
 }
 
 export default function FootwearDetail(prop) {
-    // footwear_cover_2
-    // BEST OF COLLECTIONS
+
     return (
         <View style={{ flex: 1 }} >
             <CategoryDetail

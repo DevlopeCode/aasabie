@@ -87,9 +87,8 @@ const TypeFootWear = () => {
 
 
 export default function CategoryDetail({ categoryCardColor='#EC4850', categoryTitle, coverImage, route, HeadLayout, HeadLayoutTwo, showCategoryList }) {
-
   const { data } = route.params
-  // console.log(headLayout,'headLayoutheadLayout')
+  
   return (
     <ScrollView style={{ flex: 1, backgroundColor: 'white' }}>
       <Header />
