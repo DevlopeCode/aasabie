@@ -23,6 +23,9 @@ import {useEffect} from 'react';
 import {SearchBar} from './CategoryItemScreen';
 import {SvgXml} from 'react-native-svg';
 import {ForwardIcon} from '../../assets/SVG';
+import { useNavigation } from '@react-navigation/native';
+import CategoryDetail from './CategoryDetail';
+
 const Stack = createStackNavigator();
 const useBearStore = create(set => ({
   bears: 0,
@@ -96,6 +99,7 @@ const CategoryHeader = ({item, DATA, index}) => {
   );
 };
 const CartegorItemList = ({datalist}) => {
+const { navigate }= useNavigation()
   return (
     <FlatList
       data={datalist}
@@ -104,7 +108,7 @@ const CartegorItemList = ({datalist}) => {
       renderItem={({item}) => (
         <TouchableOpacity
           onPress={() => {
-            console.log('navigate');
+            navigate('CategoryDetail')
           }}
           activeOpacity={0.8}
           style={{height: '100%'}}>
@@ -313,13 +317,7 @@ const CategoryScreen = () => {
   );
 };
 
-const CategoryDetail = () => {
-  return (
-    <View style={{height: 300}}>
-      <Text>sdfsdfsf</Text>
-    </View>
-  );
-};
+
 
 const CategoryStack = () => {
   const Stack = createStackNavigator();

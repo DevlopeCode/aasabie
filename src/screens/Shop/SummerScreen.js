@@ -18,12 +18,7 @@ import {verticalScale} from 'react-native-size-matters';
 import { SvgXml } from 'react-native-svg';
 import { summerCircleIcon, BackArrowSvg } from '../../assets/SVG';
 import TopBar from '../../components/TopBar/TopBar';
-
-const {width, height} = Dimensions.get('window');
-
-const wp = w => (width / 100) * w;
-
-const hp = h => (height / 100) * h;
+import { hp, wp } from '../../components/Responsive';
 
 const TopOffers = ({style}) => {
   return (
@@ -108,7 +103,7 @@ const ImageLayout = () => {
   );
 };
 
-const DiscountComponent = () => {
+ export const DiscountComponent = () => {
   return (
     <View
       style={{
