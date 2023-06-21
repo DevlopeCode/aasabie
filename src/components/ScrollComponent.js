@@ -12,38 +12,39 @@ import React, {
   useRef,
 
 } from 'react';
-import {color} from '../config/color';
-import { verticalScale, moderateScale} from 'react-native-size-matters';
+import { color } from '../config/color';
+import { verticalScale, moderateScale } from 'react-native-size-matters';
 
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import HomeIcon from '../assets/TabMenuIcons/HomeIcon';
-import {vs} from 'react-native-size-matters';
+import { vs } from 'react-native-size-matters';
 import Explore from '../assets/TabMenuIcons/Explore';
-import {SvgXml} from 'react-native-svg';
-import {categortTabIcon} from '../assets/SVG';
+import { SvgXml } from 'react-native-svg';
+import { categortTabIcon } from '../assets/SVG';
 import WishList from '../assets/TabMenuIcons/WishList';
 import Profile from '../assets/TabMenuIcons/Profile';
 import PlusIcon from '../assets/TabMenuIcons/PlusIcon';
 import CartIcon from '../assets/TabMenuIcons/CartIcon';
-
+import TopBar from './TopBar/TopBar';
+{/* <TopBar /> */}
 const CONTAINER_HEIGHT = 80;
 
-const IconComponent = ({Icon, onPress}) => {
+const IconComponent = ({ Icon, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={{flex: 1}}>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8} style={{ flex: 1 }}>
       <Icon />
     </TouchableOpacity>
   );
 };
 
 const BottomTab = () => {
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
 
   return (
-    <View style={{height: CONTAINER_HEIGHT, flexDirection: 'row'}}>
+    <View style={{ height: CONTAINER_HEIGHT, flexDirection: 'row' }}>
       <Image
         source={require('../assets/images/bottom_layer.png')}
-        style={{height: '100%', width: '100%', resizeMode: 'stretch'}}
+        style={{ height: '100%', width: '100%', resizeMode: 'stretch' }}
       />
       <View
         style={{
@@ -61,7 +62,7 @@ const BottomTab = () => {
             navigate('HomeStack');
           }}
           Icon={() => (
-            <View style={{height: verticalScale(20)}}>
+            <View style={{ height: verticalScale(20) }}>
               <View
                 style={{
                   alignItems: 'center',
@@ -88,7 +89,7 @@ const BottomTab = () => {
             navigate('Explore');
           }}
           Icon={() => (
-            <View style={{height: verticalScale(20)}}>
+            <View style={{ height: verticalScale(20) }}>
               <View
                 style={{
                   alignItems: 'center',
@@ -185,7 +186,7 @@ const BottomTab = () => {
             navigate('Wishlist');
           }}
           Icon={() => (
-            <View style={{height: verticalScale(20)}}>
+            <View style={{ height: verticalScale(20) }}>
               <View onPress={e => e.preventDefault()}>
                 <View
                   style={{
@@ -214,7 +215,7 @@ const BottomTab = () => {
             navigate('Profile');
           }}
           Icon={() => (
-            <View style={{height: verticalScale(20)}}>
+            <View style={{ height: verticalScale(20) }}>
               <View
                 style={{
                   alignItems: 'center',
@@ -240,7 +241,7 @@ const BottomTab = () => {
   );
 };
 
-const ScrollContainer = ({children}) => {
+const ScrollContainer = ({ children }) => {
   const scrollY = useRef(new Animated.Value(0)).current;
   const offsetAnim = useRef(new Animated.Value(0)).current;
 
@@ -260,7 +261,7 @@ const ScrollContainer = ({children}) => {
   var _offsetValue = 0;
   var _scrollValue = 0;
   useEffect(() => {
-    scrollY.addListener(({value}) => {
+    scrollY.addListener(({ value }) => {
       const diff = value - _scrollValue;
       _scrollValue = value;
       _clampedScrollValue = Math.min(
@@ -268,7 +269,7 @@ const ScrollContainer = ({children}) => {
         CONTAINER_HEIGHT,
       );
     });
-    offsetAnim.addListener(({value}) => {
+    offsetAnim.addListener(({ value }) => {
       _offsetValue = value;
     });
   }, []);
@@ -280,7 +281,7 @@ const ScrollContainer = ({children}) => {
   const onMomentumScrollEnd = () => {
     const toValue =
       _scrollValue > CONTAINER_HEIGHT &&
-      _clampedScrollValue > CONTAINER_HEIGHT / 2
+        _clampedScrollValue > CONTAINER_HEIGHT / 2
         ? _offsetValue + CONTAINER_HEIGHT
         : _offsetValue - CONTAINER_HEIGHT;
 
@@ -390,11 +391,22 @@ const ScrollContainer = ({children}) => {
     'Profile',
   ];
 
+  const opacity = clampedScroll.interpolate({
+    inputRange: [0, CONTAINER_HEIGHT - 20, CONTAINER_HEIGHT],
+    outputRange: [1, 0.05, 0],
+    extrapolate: 'clamp',
+  });
+
+  const headerTranslate = clampedScroll.interpolate({
+    inputRange: [0, CONTAINER_HEIGHT],
+    outputRange: [0, -CONTAINER_HEIGHT],
+    extrapolate: 'clamp',
+  });
   return (
     <View style={styles.container}>
       <ScrollView
         onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY}}}],
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           {
             useNativeDriver: false,
           },
@@ -413,9 +425,20 @@ const ScrollContainer = ({children}) => {
       <Animated.View
         style={[
           styles.view,
+          { top: 0, transform: [{ translateY: headerTranslate }] },
+        ]}>
+         
+        <Animated.View style={{ height: CONTAINER_HEIGHT, backgroundColor: 'white', opacity }} >
+        <TopBar style={{opacity}} />
+        </Animated.View>
+
+      </Animated.View>
+      <Animated.View
+        style={[
+          styles.view,
           {
             bottom: 0,
-            transform: [{translateY: bottomTabTranslate}],
+            transform: [{ translateY: bottomTabTranslate }],
           },
         ]}>
         <BottomTab />

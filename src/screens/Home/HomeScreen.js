@@ -357,74 +357,6 @@ const FourthComponent = forwardRef(FourthComponentRef);
 const SixthComponent = forwardRef(SixthComponentRef);
 const SeventhComponent = forwardRef(SeventhComponentRef);
 
-// function StickyHeaderScrollview({children, title, ...res}) {
-//   const [pos, setPos] = React.useState('down');
-//   let value = 0;
-//   const scrollY = new Animated.Value(100);
-//   const headerCheck = pos > 15 ? {backgroundColor: 'white', elevation: 5} : {};
-//   // onScroll={e => setPos(e.nativeEvent.contentOffset.y)}
-//   console.log(scrollY, 'scrollYscrollY');
-
-//   const checkIsScrollUp = () => {
-//     if (scrollY > 100) {
-//       console.log('it is run on minus');
-//       scrollY.interpolate({
-//         inputRange: [scrollY, scrollY - 100],
-//         outputRange: [0, 100],
-//       });
-//     } else {
-//       console.log('it is run on plus');
-//       return scrollY.interpolate({
-//         inputRange: [0, 100],
-//         outputRange: [0, 100],
-//       });
-//     }
-//   };
-//   return (
-//     <View style={{flex: 1}}>
-//       <Animated.ScrollView
-//         onScrollAnimationEnd={() => {
-//           console.log('end scroll --->');
-//         }}
-//         onScroll={Animated.event(
-//           [{nativeEvent: {contentOffset: {y: scrollY}}}],
-//           {
-//             useNativeDriver: false,
-//             listener: event => {
-//             },
-//           },
-//         )}
-//         scrollEventThrottle={16}
-//         // onScroll={e => setPos(e.nativeEvent.contentOffset.y)}
-//         showsVerticalScrollIndicator={false}
-//         {...res}>
-//         {children}
-//       </Animated.ScrollView>
-//       <Animated.View
-//         style={{
-//           height: 100,
-//           backgroundColor: 'red',
-//           position: 'absolute',
-//           bottom: 0,
-//           left: 0,
-//           right: 0,
-//           transform: [
-//             {
-//               translateY: scrollY.interpolate({
-//                 inputRange: [0, 100],
-//                 outputRange: [0, 100],
-//               }),
-//             },
-//           ],
-//         }}>
-//         <TouchableOpacity
-//           style={{height: 30, backgroundColor: 'yellow'}}
-//           onPress={() => {}}></TouchableOpacity>
-//       </Animated.View>
-//     </View>
-//   );
-// }
-
 const HomeScreen = ({navigation}) => {
   const secondRef = useRef();
   const thirdRef = useRef();
@@ -470,7 +402,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollContainer>
-        <TopBar />
+        {/* <TopBar /> */}
         <FirstComponent />
         <SecondComponent ref={secondRef} />
         <ThirdComponent ref={thirdRef} />
