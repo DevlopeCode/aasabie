@@ -11,27 +11,22 @@ const ChoiceItem = ({item, index}) => (
     <ImageBackground
       source={item.image}
       style={{
-        height: verticalScale(90),
+        height: verticalScale(80),
         width: moderateScale(150),
         justifyContent: 'flex-end',
         alignItems: 'flex-end',
         marginHorizontal: scale(8),
       }}
-      imageStyle={{height: verticalScale(90), width: moderateScale(150)}}>
+      imageStyle={{height: verticalScale(80), width: moderateScale(150)}}>
       <View
         style={{
           height: verticalScale(30),
           width: moderateScale(60),
-          backgroundColor: 'red',
+          backgroundColor: '#DF4444',
           justifyContent: 'center',
           alignItems: 'center',
         }}>
-        <TextC
-          font="bold"
-          style={{
-            color: R.color.dark.white,
-            fontSize: scale(12),
-          }}>
+        <TextC font="bold" variant="h5" color={R.color.dark.white}>
           {item.title}
         </TextC>
       </View>
@@ -49,7 +44,7 @@ export const ChoiceList = () => (
         width: '100%',
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TextC font="bold" style={{color: '#EC303A'}}>
+        <TextC font="bold" variant="h5" color="#EC303A">
           CHOOSE YOUR CHOICE
         </TextC>
       </View>

@@ -29,6 +29,7 @@ import {DealofTheday} from './Component/List/DealofTheday';
 import Explore from './Component/List/Explore';
 import {RecentList} from './Component/List/RecentList';
 import HandyPicked from './Component/List/HandyPicked';
+import BottomBanner from './Component/List/BottomBanner';
 const CONTAINER_HEIGHT = 100;
 class LoadingComponent extends React.PureComponent {
   render() {
@@ -210,7 +211,7 @@ const HandyPickedRef = (props, ref) => {
   return <HandyPicked />;
 };
 
-const CategoryListSecondRef = (props, ref) => {
+const BottomBannerRef = (props, ref) => {
   const [showComponent, setComponent] = useState(true);
   useImperativeHandle(ref, () => ({
     setComponent,
@@ -220,7 +221,7 @@ const CategoryListSecondRef = (props, ref) => {
     return <LoadingComponent />;
   }
 
-  return <CategoryList />;
+  return <BottomBanner />;
 };
 
 const FirstComponent = forwardRef(CategoryRef);
@@ -236,7 +237,7 @@ const TenthComponent = forwardRef(DealofThedayRef);
 const EleventhComponent = forwardRef(ExploreRef);
 const TwelthComponent = forwardRef(RecentListRef);
 const ThirtenthComponent = forwardRef(HandyPickedRef);
-const FourtenthComponent = forwardRef(CategoryListSecondRef);
+const FourtenthComponent = forwardRef(BottomBannerRef);
 
 const Shop = () => {
   const scrollY = useRef(new Animated.Value(0)).current;

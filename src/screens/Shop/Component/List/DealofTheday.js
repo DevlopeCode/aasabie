@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import {FlatList, ImageBackground, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {moderateScale, scale, verticalScale, vs} from 'react-native-size-matters';
+import {
+  moderateScale,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
 import R from '../../../../res/R';
 import TextC from '../../../../components/Text';
 import {ChoiceData, DealData} from '../res/rawData';
@@ -103,27 +108,21 @@ const ListHeaderComponet = () => (
   <View
     style={{
       height: verticalScale(40),
-      paddingHorizontal: scale(20),
+      paddingHorizontal: scale(10),
       justifyContent: 'center',
       width: '100%',
     }}>
     <View
       style={{
         flexDirection: 'row',
-        alignItems: 'center',
         justifyContent: 'space-between',
       }}>
-      <TextC font="bold" style={{color: '#EC303A'}}>
+      <TextC font="bold" color="#EC303A" variant="h5">
         Deal of the day
       </TextC>
       <TouchableOpacity
         onPress={() => navigationRef.current.navigate('DealOftheDay')}>
-        <TextC
-          font="bold"
-          style={{
-            color: R.color.dark.black,
-            fontSize: scale(9),
-          }}>
+        <TextC font="bold" color={R.color.dark.black} variant="h6">
           See more
         </TextC>
       </TouchableOpacity>
@@ -152,9 +151,15 @@ export const DealofTheday = ({
   </View>
 );
 
-
 const SummerDealItem = ({item, index}) => (
-  <TouchableOpacity activeOpacity={1} style={{ marginLeft:moderateScale(16), backgroundColor:'white', borderRadius:11,paddingVertical:vs(7)}} >
+  <TouchableOpacity
+    activeOpacity={1}
+    style={{
+      marginLeft: moderateScale(16),
+      backgroundColor: 'white',
+      borderRadius: 11,
+      paddingVertical: vs(7),
+    }}>
     <ImageBackground
       source={item.image}
       style={{
@@ -252,7 +257,7 @@ export const SummerDealofTheday = ({
   <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
     <FlatList
       data={data}
-      style={{marginLeft:-moderateScale(16)}}
+      style={{marginLeft: -moderateScale(16)}}
       ListHeaderComponent={ListHeader}
       // DealItem
       renderItem={SummerDealItem}

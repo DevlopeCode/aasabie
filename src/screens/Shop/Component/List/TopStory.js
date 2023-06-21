@@ -1,7 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import {Dimensions, FlatList, Image, View} from 'react-native';
 import React from 'react';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import {LocalSory} from '../res/rawData';
 import R from '../../../../res/R';
@@ -21,14 +26,14 @@ export const TopStory = () => (
           alignItems: 'center',
           justifyContent: 'flex-start',
         }}>
-        <TextC font="bold" style={{color: '#EC303A', fontSize: scale(15)}}>
+        <TextC font="bold" variant="h5" color="#EC303A">
           TOP STORIES BY VENDOR
         </TextC>
         <Image
           source={require('../../../../assets/images/new.png')}
           style={{
-            height: scale(30),
-            width: scale(30),
+            height: vs(20),
+            width: vs(20),
           }}
         />
       </View>
@@ -40,10 +45,11 @@ export const TopStory = () => (
         }}>
         <TextC
           font="bold"
+          variant="h5"
           style={{
             color: R.color.dark.black,
             textTransform: 'uppercase',
-            fontSize: scale(15),
+            // fontSize: scale(15),
           }}>
           view all
         </TextC>
@@ -66,15 +72,15 @@ export const TopStory = () => (
       renderItem={({item}) => (
         <View
           style={{
-            marginLeft: 20,
+            marginLeft: scale(10),
             borderRadius: scale(10),
             overflow: 'hidden',
           }}>
           <Image
             source={item.image}
             style={{
-              height: verticalScale(60),
-              width: verticalScale(60),
+              height: verticalScale(50),
+              width: verticalScale(50),
               borderRadius: verticalScale(45),
               overflow: 'hidden',
             }}

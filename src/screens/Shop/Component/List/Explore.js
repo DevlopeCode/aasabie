@@ -19,13 +19,7 @@ const Explore = () => {
             justifyContent: 'center',
             width: moderateScale(355),
           }}>
-          <TextC
-            font="bold"
-            style={{
-              color: '#EC303A',
-              textTransform: 'uppercase',
-              textAlign: 'left',
-            }}>
+          <TextC font="bold" color="#EC303A" variant="h5">
             EXPLORE
           </TextC>
         </View>

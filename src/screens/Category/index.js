@@ -24,6 +24,7 @@ import {useEffect} from 'react';
 import {SearchBar} from './CategoryItemScreen';
 import {SvgXml} from 'react-native-svg';
 import {ForwardIcon} from '../../assets/SVG';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 const Stack = createStackNavigator();
 const useBearStore = create(set => ({
   bears: 0,
@@ -72,7 +73,7 @@ const CategoryHeader = ({item, DATA, index}) => {
             marginRight: moderateScale(10),
           }}
         /> */}
-        <TextC font="bold" color={getColor()?.titlecolor}>
+        <TextC font="bold" color={getColor()?.titlecolor} variant="h5">
           {item?.name}
         </TextC>
       </View>
@@ -142,6 +143,7 @@ const CartegorItemList = ({datalist}) => {
                 fontWeight: 'bold',
                 textAlign: 'center',
                 marginTop: 5,
+                color: '#EC4850',
               }}>
               {item?.name}
             </Text>
@@ -256,12 +258,13 @@ const CategoryScreen = () => {
   // }
 
   // console.log(bears, 'bearsbearsdfsdfsbears');
-
+  const inset = useSafeAreaInsets();
   return (
     <View
       style={{
         flex: 1,
         backgroundColor: '#FFF4F4',
+        paddingTop: inset.top,
       }}>
       <Header />
       {/* onClick={increasePopulation} */}
@@ -281,16 +284,16 @@ const CategoryScreen = () => {
               <View style={{marginVertical: vs(20)}}>
                 <SearchBar height color={'white'} />
               </View>
-              <Text
+              <TextC
+                font="bold"
+                color="#EC4850"
+                variant="h4"
                 style={{
-                  paddingLeft: 22,
-                  fontWeight: 'bold',
-                  color: '#EC4850',
-                  fontSize: vs(15),
+                  // fontSize: vs(15),
                   marginVertical: vs(8),
                 }}>
                 SHOP BY CATEGORY
-              </Text>
+              </TextC>
             </>
           )}
           data={data}

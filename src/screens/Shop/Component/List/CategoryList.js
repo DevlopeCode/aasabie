@@ -8,7 +8,12 @@ import {
 } from 'react-native';
 import React from 'react';
 import TextC from '../../../../components/Text';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
 import R from '../../../../res/R';
 import {CategoryListData} from '../res/rawData';
 import navigationServices from '../../../../utils/navigationServices';
@@ -16,7 +21,7 @@ import navigationServices from '../../../../utils/navigationServices';
 export const CategoryList = () => (
   <View
     style={{
-      height: verticalScale(150),
+      height: verticalScale(100),
       width: Dimensions.get('window').width,
       alignItems: 'center',
     }}>
@@ -26,7 +31,7 @@ export const CategoryList = () => (
         width: '100%',
         paddingHorizontal: scale(18),
       }}>
-      <TextC font="bold" style={{color: R.color.dark.red}}>
+      <TextC font="bold" variant="h5" style={{color: R.color.dark.red}}>
         PRODUCT CATEGORIES
       </TextC>
     </View>
@@ -35,7 +40,7 @@ export const CategoryList = () => (
       data={CategoryListData}
       horizontal
       style={{
-        height: verticalScale(100),
+        height: verticalScale(90),
         width: moderateScale(330),
       }}
       contentContainerStyle={{
@@ -44,7 +49,7 @@ export const CategoryList = () => (
       ItemSeparatorComponent={
         <View
           style={{
-            width: moderateScale(20),
+            width: moderateScale(10),
           }}
         />
       }
@@ -57,18 +62,14 @@ export const CategoryList = () => (
           <Image
             source={item.image}
             style={{
-              height: scale(80),
-              width: scale(80),
+              height: vs(50),
+              width: vs(50),
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: scale(10),
             }}
           />
-          <TextC
-            font="bold"
-            style={{
-              fontSize: scale(13),
-            }}>
+          <TextC font="bold" variant="small">
             {item.title}
           </TextC>
         </TouchableOpacity>
