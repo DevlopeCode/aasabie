@@ -14,7 +14,7 @@ const SearchBar = () => {
         width: '100%',
         alignItems: 'center',
         position: 'relative',
-        marginTop: '25%',
+        marginTop: '5%',
       }}>
       <View
         style={{

@@ -30,6 +30,8 @@ import Explore from './Component/List/Explore';
 import {RecentList} from './Component/List/RecentList';
 import HandyPicked from './Component/List/HandyPicked';
 import BottomBanner from './Component/List/BottomBanner';
+import ScrollContainer from '../../components/ScrollComponent';
+
 const CONTAINER_HEIGHT = 100;
 class LoadingComponent extends React.PureComponent {
   render() {
@@ -259,62 +261,6 @@ const Shop = () => {
   var interval,
     i = 0;
 
-  const clampedScroll = Animated.diffClamp(
-    Animated.add(
-      scrollY.interpolate({
-        inputRange: [0, 1],
-        outputRange: [0, 1],
-        extrapolateLeft: 'clamp',
-      }),
-      offsetAnim,
-    ),
-    0,
-    CONTAINER_HEIGHT,
-  );
-  var _clampedScrollValue = 0;
-  var _offsetValue = 0;
-  var _scrollValue = 0;
-  useEffect(() => {
-    scrollY.addListener(({value}) => {
-      const diff = value - _scrollValue;
-      _scrollValue = value;
-      _clampedScrollValue = Math.min(
-        Math.max(_clampedScrollValue + diff, 0),
-        CONTAINER_HEIGHT,
-      );
-    });
-    offsetAnim.addListener(({value}) => {
-      _offsetValue = value;
-    });
-  }, []);
-
-  var scrollEndTimer = null;
-  const onMomentumScrollBegin = () => {
-    clearTimeout(scrollEndTimer);
-  };
-  const onMomentumScrollEnd = () => {
-    const toValue =
-      _scrollValue > CONTAINER_HEIGHT &&
-      _clampedScrollValue > CONTAINER_HEIGHT / 2
-        ? _offsetValue + CONTAINER_HEIGHT
-        : _offsetValue - CONTAINER_HEIGHT;
-
-    Animated.timing(offsetAnim, {
-      toValue,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
-  };
-  const onScrollEndDrag = () => {
-    scrollEndTimer = setTimeout(onMomentumScrollEnd, 250);
-  };
-
-  const headerTranslate = clampedScroll.interpolate({
-    inputRange: [0, CONTAINER_HEIGHT],
-    outputRange: [0, -CONTAINER_HEIGHT],
-    extrapolate: 'clamp',
-  });
-
   const showComponents = componentIndex => {
     const component = {
       0: () => firstRef.current?.setComponent(false),
@@ -351,42 +297,23 @@ const Shop = () => {
   }, []);
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
-      <Animated.ScrollView
-        onMomentumScrollBegin={onMomentumScrollBegin}
-        onMomentumScrollEnd={onMomentumScrollEnd}
-        onScrollEndDrag={onScrollEndDrag}
-        scrollEventThrottle={1}
-        nestedScrollEnabled
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {y: scrollY}}}],
-          {useNativeDriver: true},
-        )}>
-        <Animated.View
-          style={[
-            styles.view,
-            {top: 0, transform: [{translateY: headerTranslate}]},
-          ]}>
-          <TopBar />
-        </Animated.View>
-
-        <SearchBar />
-        <FirstComponent ref={firstRef} />
-        <SecondComponent ref={secondRef} />
-        <ThirdComponent ref={thirdRef} />
-        <FourthComponent ref={fourthRef} />
-        <FifthComponent ref={fifthRef} />
-        <SixthComponent ref={sixthRef} />
-        <SeventhComponent ref={seventhRef} />
-        <EighthComponent ref={eightRef} />
-        <NinethComponent ref={ninthRef} />
-        <TenthComponent ref={tenthRef} />
-        <EleventhComponent ref={eleventhRef} />
-        <TwelthComponent ref={twelthRef} />
-        <ThirtenthComponent ref={thirteenthRef} />
-        <FourtenthComponent ref={fourteenthRef} />
-      </Animated.ScrollView>
-    </SafeAreaView>
+    <ScrollContainer>
+      <SearchBar />
+      <FirstComponent ref={firstRef} />
+      <SecondComponent ref={secondRef} />
+      <ThirdComponent ref={thirdRef} />
+      <FourthComponent ref={fourthRef} />
+      <FifthComponent ref={fifthRef} />
+      <SixthComponent ref={sixthRef} />
+      <SeventhComponent ref={seventhRef} />
+      <EighthComponent ref={eightRef} />
+      <NinethComponent ref={ninthRef} />
+      <TenthComponent ref={tenthRef} />
+      <EleventhComponent ref={eleventhRef} />
+      <TwelthComponent ref={twelthRef} />
+      <ThirtenthComponent ref={thirteenthRef} />
+      <FourtenthComponent ref={fourteenthRef} />
+    </ScrollContainer>
   );
 };
 

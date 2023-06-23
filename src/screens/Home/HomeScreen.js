@@ -1,15 +1,19 @@
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-unused-vars */
 import {
   View,
   StyleSheet,
-  ScrollView,
   FlatList,
   SafeAreaView,
   Image,
   Text,
   TouchableOpacity,
   ActivityIndicator,
+  Animated,
+  ScrollView,
+  Pressable,
 } from 'react-native';
 import React, {
   useEffect,
@@ -22,11 +26,12 @@ import {color} from '../../config/color';
 import Stories from '../../components/stories/Stories';
 import TopBar from '../../components/TopBar/TopBar';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-
 import {PostCard} from '../../components/Card/PostCard';
 import ReelsHoriZontal from '../../components/Card/RealsHoriZontal';
 import TextC from '../../components/Text';
 import R from '../../res/R';
+import ScrollContainer from '../../components/ScrollComponent';
+
 export const LocalPcked = [
   {
     image: require('../../assets/images/Handpick1.png'),
@@ -68,15 +73,14 @@ const LocalSory = [
   },
 ];
 
-
-class LoadingComponent extends React.PureComponent{
-
-  render(){
-    return(
-      <View style={{height:200, justifyContent:'center', alignItems:'center'}} >
+class LoadingComponent extends React.PureComponent {
+  render() {
+    return (
+      <View
+        style={{height: 200, justifyContent: 'center', alignItems: 'center'}}>
         <ActivityIndicator size={30} />
       </View>
-    )
+    );
   }
 }
 
@@ -111,7 +115,9 @@ const SecondComponentRef = (props, ref) => {
     setShowComponent,
   }));
 
-  if (showComponent) return <LoadingComponent/>
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>
@@ -143,7 +149,9 @@ const ThirdComponentRef = (props, ref) => {
   useImperativeHandle(ref, () => ({
     setShowComponent,
   }));
-  if (showComponent) return <LoadingComponent/>
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
   return (
     <>
       <View
@@ -217,13 +225,14 @@ const ThirdComponentRef = (props, ref) => {
 };
 
 const FourthComponentRef = (props, ref) => {
-
   const [showComponent, setShowComponent] = useState(true);
   useImperativeHandle(ref, () => ({
     setShowComponent,
   }));
-  
-  if (showComponent) return <LoadingComponent/>
+
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
   return (
     <>
       <FlatList
@@ -273,7 +282,9 @@ const SixthComponentRef = (props, ref) => {
   useImperativeHandle(ref, () => ({
     setShowComponent,
   }));
-  if (showComponent) return <LoadingComponent/>
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
   return (
     <>
       <View
@@ -335,7 +346,9 @@ const SeventhComponentRef = (props, ref) => {
     setShowComponent,
   }));
 
-  if (showComponent) return <LoadingComponent/>
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>
@@ -357,14 +370,16 @@ const FourthComponent = forwardRef(FourthComponentRef);
 const SixthComponent = forwardRef(SixthComponentRef);
 const SeventhComponent = forwardRef(SeventhComponentRef);
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const secondRef = useRef();
   const thirdRef = useRef();
   const fourthRef = useRef();
   const sixthRef = useRef();
   const seventhRef = useRef();
-
-  var interval,i = 0;
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const offsetAnim = useRef(new Animated.Value(0)).current;
+  var interval,
+    i = 0;
 
   const showComponents = componentIndex => {
     const component = {
@@ -374,32 +389,41 @@ const HomeScreen = () => {
       3: () => sixthRef.current.setShowComponent(false),
       4: () => seventhRef.current.setShowComponent(false),
     };
-    component[componentIndex]()
+    component[componentIndex]();
   };
 
   useEffect(() => {
     function dostuff() {
       console.log('this is the values', i);
-      showComponents(i)
-      if (i < 4) i++;
-      else clearInterval(interval);
+      showComponents(i);
+      if (i < 4) {
+        i++;
+      } else {
+        clearInterval(interval);
+      }
     }
-
+    // navigation.setOptions({tabBarStyle:{bottom:0}})
     interval = setInterval(dostuff, 2400);
   }, []);
 
+  // tabBarStyle: {
+
+  //   position: 'absolute',
+  //   elevation: 0,
+  //   borderTopWidth: 0,
+  //   bottom: scale(27),
+  // }
+  console.log(navigation, 'navigationnavigationnavigation');
+
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <TopBar />
-        <FirstComponent />
-        <SecondComponent ref={secondRef} />
-        <ThirdComponent ref={thirdRef} />
-        <FourthComponent ref={fourthRef} />
-        <SixthComponent ref={sixthRef} />
-        <SeventhComponent ref={seventhRef} />
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollContainer>
+      <FirstComponent />
+      <SecondComponent ref={secondRef} />
+      <ThirdComponent ref={thirdRef} />
+      <FourthComponent ref={fourthRef} />
+      <SixthComponent ref={sixthRef} />
+      <SeventhComponent ref={seventhRef} />
+    </ScrollContainer>
   );
 };
 

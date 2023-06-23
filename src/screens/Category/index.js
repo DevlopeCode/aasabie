@@ -20,11 +20,17 @@ import TextC from '../../components/Text';
 import {navigationRef} from '../../../App';
 import {useQuery} from '@tanstack/react-query';
 import {create} from 'zustand';
-import {useEffect} from 'react';
 import {SearchBar} from './CategoryItemScreen';
 import {SvgXml} from 'react-native-svg';
 import {ForwardIcon} from '../../assets/SVG';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+
+import {useNavigation} from '@react-navigation/native';
+import CategoryDetail from './CategoryDetail';
+import FootwearDetail from './FootwearDetail';
+import KidsCategoryDetail from './KidsCategoryDetail';
+import JewelleryDetail from './JewelleryDetail';
+
 const Stack = createStackNavigator();
 const useBearStore = create(set => ({
   bears: 0,
@@ -98,15 +104,41 @@ const CategoryHeader = ({item, DATA, index}) => {
   );
 };
 const CartegorItemList = ({datalist}) => {
+  const {navigate} = useNavigation();
   return (
     <FlatList
       data={datalist}
       horizontal
       style={{height: vs(50), marginLeft: 20, marginTop: vs(15)}}
-      renderItem={({item}) => (
+      renderItem={({item, index}) => (
         <TouchableOpacity
           onPress={() => {
-            console.log('navigate');
+            if (index == 1) {
+              const dataPayload = {
+                data: [1, 2, 3, 4, 5, 6],
+              };
+              navigate('FootwearDetail', dataPayload);
+            }
+            if (index == 0) {
+              const dataPayload = {
+                data: [1, 2, 3, 4, 5, 3, 2, 2],
+              };
+              navigate('CategoryDetail', dataPayload);
+            }
+
+            if (index == 2) {
+              const dataPayload = {
+                data: [1, 2, 3, 4, 5, 6],
+              };
+              navigate('KidsCategoryDetail', dataPayload);
+            }
+
+            if (index == 3) {
+              const dataPayload = {
+                data: [1, 2, 3, 4, 5, 6],
+              };
+              navigate('JewelleryDetail', dataPayload);
+            }
           }}
           activeOpacity={0.8}
           style={{height: '100%'}}>
@@ -306,20 +338,12 @@ const CategoryScreen = () => {
             return (
               <View style={styles.item}>
                 <CategoryHeader DATA={DATA} index={index} item={item} />
-                <CartegorItemList datalist={item?.childes} />
+                <CartegorItemList index={index} datalist={item?.childes} />
               </View>
             );
           }}
         />
       )}
-    </View>
-  );
-};
-
-const CategoryDetail = () => {
-  return (
-    <View style={{height: 300}}>
-      <Text>sdfsdfsf</Text>
     </View>
   );
 };
@@ -336,10 +360,15 @@ const CategoryStack = () => {
     <Stack.Navigator screenOptions={options} initialRouteName="CategoryScreen">
       <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
       <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
+      <Stack.Screen name="FootwearDetail" component={FootwearDetail} />
+      <Stack.Screen name="KidsCategoryDetail" component={KidsCategoryDetail} />
+      <Stack.Screen name="JewelleryDetail" component={JewelleryDetail} />
     </Stack.Navigator>
   );
 };
-
+// JewelleryDetail
+// KidsCategoryDetail
+// FootwearDetail
 export default CategoryStack;
 
 const styles = StyleSheet.create({
