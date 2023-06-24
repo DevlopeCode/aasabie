@@ -31,6 +31,8 @@ import {RecentList} from './Component/List/RecentList';
 import HandyPicked from './Component/List/HandyPicked';
 import BottomBanner from './Component/List/BottomBanner';
 import ScrollContainer from '../../components/ScrollComponent';
+import { useQuery } from 'react-query';
+import { useFetch } from '../../requests/requestHook';
 
 const CONTAINER_HEIGHT = 100;
 class LoadingComponent extends React.PureComponent {
@@ -46,6 +48,8 @@ class LoadingComponent extends React.PureComponent {
 
 const CategoryRef = (props, ref) => {
   const [showComponent, setComponent] = useState(true);
+
+
   useImperativeHandle(ref, () => ({
     setComponent,
   }));
@@ -162,6 +166,10 @@ const PickMartRef = (props, ref) => {
 };
 
 const DealofThedayRef = (props, ref) => {
+
+const [dealsOfTheDay]= useFetch('dealsoftheday/deal-of-the-day')
+
+console.log(dealsOfTheDay,'dealsOfTheDaydealsOfTheDaydealsOfTheDay====>')
   const [showComponent, setComponent] = useState(true);
   useImperativeHandle(ref, () => ({
     setComponent,
@@ -170,8 +178,8 @@ const DealofThedayRef = (props, ref) => {
   if (showComponent) {
     return <LoadingComponent />;
   }
-
-  return <DealofTheday />;
+  // data={dealsOfTheDay}
+  return <DealofTheday  />;
 };
 
 const ExploreRef = (props, ref) => {
@@ -258,6 +266,8 @@ const Shop = () => {
   const twelthRef = useRef();
   const thirteenthRef = useRef();
   const fourteenthRef = useRef();
+ 
+
   var interval,
     i = 0;
 

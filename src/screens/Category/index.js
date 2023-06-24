@@ -19,12 +19,10 @@ import {moderateScale, vs} from 'react-native-size-matters';
 import TextC from '../../components/Text';
 import {navigationRef} from '../../../App';
 import {useQuery} from '@tanstack/react-query';
-import {create} from 'zustand';
 import {SearchBar} from './CategoryItemScreen';
 import {SvgXml} from 'react-native-svg';
 import {ForwardIcon} from '../../assets/SVG';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
 import {useNavigation} from '@react-navigation/native';
 import CategoryDetail from './CategoryDetail';
 import FootwearDetail from './FootwearDetail';
@@ -33,11 +31,6 @@ import JewelleryDetail from './JewelleryDetail';
 import CategoryItemScreen from './CategoryItemScreen';
 
 const Stack = createStackNavigator();
-const useBearStore = create(set => ({
-  bears: 0,
-  increasePopulation: () => set(state => ({bears: state.bears + 1})),
-  removeAllBears: () => set({bears: 0}),
-}));
 
 const CategoryHeader = ({item, DATA, index}) => {
   const getColor = () => {
@@ -263,9 +256,7 @@ const CategoryScreen = () => {
     },
   ];
 
-  const bears = useBearStore(state => state.bears);
-  const increasePopulation = useBearStore(state => state.increasePopulation);
-
+  
   const getCategory = async () => {
     const data = await fetch('https://www.aasabie.com/api/v1/categories');
     const response = await data.json();
@@ -289,7 +280,7 @@ const CategoryScreen = () => {
 
       {isError && (
         <TouchableOpacity
-          onPress={increasePopulation}
+          // onPress={increasePopulation}
           style={{height: 300, backgroundColor: 'red'}}>
           <Text>Error in api response</Text>
         </TouchableOpacity>

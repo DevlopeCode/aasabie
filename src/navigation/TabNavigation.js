@@ -3,7 +3,7 @@
 
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Pressable, Text, View} from 'react-native';
 import ProfileScreen from '../screens/Profile/Profile';
 import {SvgXml} from 'react-native-svg';
@@ -26,10 +26,23 @@ import CategoryScreen from '../screens/Category';
 import CartScreen from '../screens/Cart';
 import NewPostScreen from '../screens/NewPost';
 import ShopStack from './ShopStack';
+import {useBaseUrl} from '../contexts/storeState';
+import { useFetch } from '../requests/requestHook';
 
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
+  const [baseUrlResponse]= useFetch('config')
+
+  const increasePopulation = useBaseUrl(state => state.increasePopulation);
+
+  useEffect(() => {
+    if(baseUrlResponse!=='loading'){
+      increasePopulation(baseUrlResponse);
+    }
+  }, [baseUrlResponse]);
+
+
   return (
     <View style={{flex: 1}}>
       <Tab.Navigator
