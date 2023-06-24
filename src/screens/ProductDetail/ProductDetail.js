@@ -10,8 +10,8 @@ import {
   Dimensions,
   TouchableOpacity,
 } from 'react-native';
-import React from 'react';
-// import Carousel from 'react-native-snap-carousel';
+import React, {useRef} from 'react';
+import Carousel, {Pagination} from 'react-native-snap-carousel';
 
 import ShopTopBar from '../../components/ShopTopBar/ShopTopBar';
 import {height, width} from '../../config/dimension';
@@ -25,7 +25,7 @@ import ProductInfo from './ProductInfo';
 import PriceSection from './PriceSection';
 import {ScrollView} from 'react-native';
 import {ProductHeader} from '../ProoductList/ProductHeader';
-import Carousel from 'react-native-reanimated-carousel';
+// import Carousel from 'react-native-reanimated-carousel';
 import {
   moderateScale,
   s,
@@ -140,24 +140,28 @@ const ProductDetail = () => {
   const handelLike = () => {
     setLike(!like);
   };
-
+  const sliderRef = useRef(null);
   return (
     <ScrollView>
       <ProductHeader title={'Negotiation'} />
       {/* <ImageaCarousel data={testData.images}/> */}
       <Carousel
         // loop
-        width={Dimensions.get('window').width}
-        height={moderateScale(400)}
+        ref={sliderRef}
+        sliderWidth={Dimensions.get('window').width}
+        itemWidth={Dimensions.get('window').width}
         autoPlay={false}
-        pagingEnabled
+        loop={true}
+        loopClonesPerSide={2}
+        autoplay={true}
+        autoplayDelay={500}
+        autoplayInterval={1000}
+        onSnapToItem={index => setCurrentVarient(index)}
         data={testData.variants[0].options}
-        scrollAnimationDuration={1000}
+        // scrollAnimationDuration={1000}
         // mode="parallax"
+
         defaultIndex={currentVarient}
-        onSnapToItem={index => {
-          setCurrentVarient(index);
-        }}
         renderItem={({item, index}) => {
           return (
             <ImageBackground
@@ -254,6 +258,22 @@ const ProductDetail = () => {
           );
         }}
       />
+      <Pagination
+        dotsLength={testData.variants[0].options.length}
+        activeDotIndex={currentVarient}
+        containerStyle={{width: '100%', alignItems: 'center'}}
+        dotColor={'rgba(255, 255, 255, 0.92)'}
+        dotStyle={{
+          width: 15,
+          height: 15,
+          borderRadius: 10,
+        }}
+        inactiveDotColor={'red'}
+        // inactiveDotOpacity={0.4}
+        // inactiveDotScale={0.6}
+        carouselRef={sliderRef}
+        tappableDots={!!sliderRef}
+      />
       <Varients
         data={testData.variants[0].options}
         currentSelected={currentVarient}
@@ -266,7 +286,7 @@ const ProductDetail = () => {
         seen={testData.seens}
         likes={testData.likes}
       />
-        <Varients
+      <Varients
         data={testData.variants[0].options}
         currentSelected={currentVarient}
         handelChangeVarient={data => setCurrentVarient(data)}

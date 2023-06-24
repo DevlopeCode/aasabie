@@ -1,14 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {DownArrowSVG} from '../../assets/SVG';
 import TextC from '../../components/Text';
 import {SvgXml} from 'react-native-svg';
 import {ms, scale, vs} from 'react-native-size-matters';
+import {navigationRef} from '../../../App';
 
-const FilterItem = ({title}) => {
+const FilterItem = ({title, onPress = () => {}}) => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={onPress}
       style={{
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
@@ -21,7 +23,7 @@ const FilterItem = ({title}) => {
         {title}
       </TextC>
       <SvgXml xml={DownArrowSVG} />
-    </View>
+    </TouchableOpacity>
   );
 };
 const FilterList = () => {
@@ -38,7 +40,10 @@ const FilterList = () => {
       <FilterItem title="Sort" />
       <FilterItem title="Brand" />
       <FilterItem title="Price" />
-      <FilterItem title="Filter" />
+      <FilterItem
+        title="Filter"
+        onPress={() => navigationRef.current.navigate('FilterScreen')}
+      />
     </View>
   );
 };

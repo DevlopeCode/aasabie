@@ -26,6 +26,7 @@ import CategoryScreen from '../screens/Category';
 import CartScreen from '../screens/Cart';
 import NewPostScreen from '../screens/NewPost';
 import ShopStack from './ShopStack';
+import WishListScreen from '../screens/WishList';
 
 const Tab = createBottomTabNavigator();
 
@@ -166,7 +167,7 @@ const TabNavigation = () => {
         <Tab.Screen
           name="Wishlist"
           // ProfileScreen
-          component={ProfileScreen}
+          component={WishListScreen}
           options={{
             tabBarItemStyle: {display: 'none'},
             tabBarIcon: ({focused}) => (

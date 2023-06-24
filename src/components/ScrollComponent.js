@@ -189,7 +189,9 @@ const BottomTab = () => {
 
         <IconComponent
           onPress={() => {
-            navigate('Shop');
+            navigationRef.current.getCurrentRoute().name != 'Shop'
+              ? navigate('Shop')
+              : navigate('Wishlist');
           }}
           Icon={() => (
             <View style={{height: verticalScale(20)}}>

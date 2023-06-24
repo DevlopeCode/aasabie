@@ -12,12 +12,14 @@ import {SvgXml} from 'react-native-svg';
 import {HeartOulineSvg, NegociationSVG, ShareSvg} from '../../assets/SVG';
 import TextC from '../../components/Text';
 import R from '../../res/R';
+import {navigationRef} from '../../../App';
 
 const CardLeft = ({Active}) => {
   return (
     <>
       {Active ? (
-        <View
+        <TouchableOpacity
+          onPress={() => navigationRef.navigate('ProductDetail')}
           style={{
             width: scale(30),
             backgroundColor: '#FFAFB4',
@@ -36,7 +38,7 @@ const CardLeft = ({Active}) => {
             style={{width: '100%', alignItems: 'center', marginBottom: vs(10)}}>
             <SvgXml xml={NegociationSVG} />
           </View>
-        </View>
+        </TouchableOpacity>
       ) : (
         <View
           style={{
