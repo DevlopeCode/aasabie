@@ -1,9 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, StyleSheet, View, Dimensions} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  View,
+  Dimensions,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import React from 'react';
 import {SvgXml} from 'react-native-svg';
 import {
   moderateScale,
+  s,
   scale,
   verticalScale,
   vs,
@@ -17,6 +26,8 @@ import {
 } from '../../../../assets/SVG';
 import R from '../../../../res/R';
 import {color} from '../../../../config/color';
+import navigationServices from '../../../../utils/navigationServices';
+
 const FeedList = () => {
   return (
     <View
@@ -39,7 +50,7 @@ const FeedList = () => {
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}>
-          <TextC font="bold" style={{color: '#EC303A', fontSize: scale(15)}}>
+          <TextC font="bold" variant="h5" color="#EC303A">
             CHECK OUR FEED
           </TextC>
           <Image
@@ -58,10 +69,10 @@ const FeedList = () => {
           }}>
           <TextC
             font="bold"
+            variant="h5"
+            color={R.color.dark.black}
             style={{
-              color: R.color.dark.black,
               textTransform: 'uppercase',
-              fontSize: scale(15),
             }}>
             view all
           </TextC>
@@ -71,15 +82,15 @@ const FeedList = () => {
         showsHorizontalScrollIndicator={false}
         style={{
           width: moderateScale(320),
-          height: verticalScale(595),
+          marginTop: Platform.OS === 'android' ? scale(20) : s(1),
         }}
-        // contentContainerStyle={{
-        //   alignItems: 'center',
-        // }}
+        contentContainerStyle={{
+          alignItems: 'center',
+        }}
         ItemSeparatorComponent={
           <View
             style={{
-              width: moderateScale(15),
+              width: moderateScale(20),
             }}
           />
         }
@@ -97,72 +108,62 @@ export const PostCard = () => (
   <View style={styles.cardContainer}>
     <View
       style={{
-        flex: 2,
-
-        justifyContent: 'flex-end',
+        flexDirection: 'row',
+        height: verticalScale(50),
+        width: '100%',
+        paddingHorizontal: scale(10),
       }}>
       <View
         style={{
-          flexDirection: 'row',
-          height: verticalScale(50),
-          width: '100%',
-          paddingHorizontal: scale(10),
+          width: '80%',
+          //  backgroundColor: 'white'
         }}>
         <View
           style={{
-            width: '80%',
-            //  backgroundColor: 'white'
+            height: verticalScale(50),
+            flexDirection: 'row',
+            alignItems: 'center',
           }}>
-          <View
-            style={{
-              height: verticalScale(50),
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}>
-            <View>
-              <SvgXml xml={CardImgGirl} />
-              <SvgXml
-                xml={VerfiedGreen}
-                style={{
-                  position: 'absolute',
-                  marginLeft: scale(28),
-                  marginTop: -scale(1),
-                }}
-              />
-            </View>
-            <View style={{paddingLeft: scale(10)}}>
-              <TextC
-                font="bold"
-                variant="title2"
-                color={R.color.dark.black}
-                style={{fontSize: scale(13)}}>
-                Andrew Daniel
-              </TextC>
-              <TextC
-                font="bold"
-                variant="title3"
-                color={R.color.dark.black1}
-                style={{fontSize: scale(10)}}>
-                Singer
-              </TextC>
-            </View>
+          <View>
+            <SvgXml xml={CardImgGirl} />
+            <SvgXml
+              xml={VerfiedGreen}
+              style={{
+                position: 'absolute',
+                marginLeft: scale(28),
+                marginTop: -scale(1),
+              }}
+            />
+          </View>
+          <View style={{paddingLeft: scale(10)}}>
+            <TextC
+              font="semibold"
+              variant="h5"
+              color={R.color.dark.black}
+              // style={{fontSize: scale(13)}}
+            >
+              Andrew Daniel
+            </TextC>
+            <TextC font="regular" variant="h6" color={R.color.dark.black1}>
+              Singer
+            </TextC>
           </View>
         </View>
-        <View
-          style={{
-            width: '20%',
-            // backgroundColor: 'aqua',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexDirection: 'row',
-          }}>
-          <SvgXml xml={SendFilled} color={'black'} />
-          <SvgXml xml={MenuBlack} color={'black'} />
-        </View>
+      </View>
+      <View
+        style={{
+          width: '20%',
+          // backgroundColor: 'aqua',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexDirection: 'row',
+        }}>
+        <SvgXml xml={SendFilled} color={'black'} />
+        <SvgXml xml={MenuBlack} color={'black'} />
       </View>
     </View>
-
-    <View
+    <TouchableOpacity
+      onPress={() => navigationServices.navigate('ProductDetail')}
       style={{
         height: verticalScale(300),
         marginVertical: verticalScale(10),
@@ -172,29 +173,20 @@ export const PostCard = () => (
           height: '100%',
           width: '100%',
           resizeMode: 'cover',
-          shadowColor: '#000000',
-          shadowOffset: {
-            width: 0,
-            height: 4,
-          },
-          shadowOpacity: 0.19,
-          shadowRadius: 5.62,
-          elevation: 6,
+
           borderRadius: scale(10),
           backgroundColor: 'white',
         }}
         source={require('../../../../assets/images/FeedItem.png')}
       />
-    </View>
+    </TouchableOpacity>
 
-    <TextC variant="h5" font="regular" style={{fontSize: 10}}>
+    <TextC variant="h6" font="regular">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
       libero et velit interdum, ac aliquet odio mattis.
     </TextC>
     <View
       style={{
-        width: '95%',
-        height: verticalScale(160),
         flexDirection: 'row',
         justifyContent: 'space-between',
       }}>
@@ -219,8 +211,8 @@ const ProductDemo = ({
     <Image
       source={require('../../../../assets/images/FeedItem.png')}
       style={{
-        width: moderateScale(80),
-        height: verticalScale(110),
+        width: moderateScale(70),
+        height: verticalScale(95),
         resizeMode: 'cover',
         overflow: 'hidden',
         marginVertical: 10,
@@ -237,9 +229,8 @@ const ProductDemo = ({
       <TextC
         font="semibold"
         numberOfLines={2}
+        variant="small"
         style={{
-          fontSize: vs(10),
-
           color: R.color.dark.black1,
         }}>
         {title}
@@ -251,27 +242,17 @@ const ProductDemo = ({
           justifyContent: 'space-between',
           height: verticalScale(30),
         }}>
-        <TextC
-          font="semibold"
-          style={{
-            fontSize: vs(10),
-            color: R.color.dark.black,
-          }}>
+        <TextC font="semibold" variant="h6" color={R.color.dark.black}>
           {price}
         </TextC>
-        <TextC
-          font="semibold"
-          style={{
-            fontSize: vs(8),
-            color: R.color.dark.gray2,
-          }}>
+        <TextC font="semibold" variant="small" color={R.color.dark.gray2}>
           {offprice}
         </TextC>
       </View>
       <TextC
         font="semibold"
+        variant="h6"
         style={{
-          fontSize: scale(10),
           color: '#3F345A',
         }}>
         ({offpercentage} Off)
@@ -286,9 +267,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cardContainer: {
-    width: moderateScale(320),
+    width: moderateScale(315),
     borderRadius: 8,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     elevation: 4,
     shadowColor: '#000',
     shadowOffset: {
@@ -296,8 +277,8 @@ const styles = StyleSheet.create({
       height: 2,
     },
     padding: scale(10),
-    marginBottom: scale(20),
-    height: verticalScale(580),
-    marginTop: scale(30),
+    overflow: 'hidden',
+    marginVertical: scale(10),
+    marginHorizontal: s(10),
   },
 });

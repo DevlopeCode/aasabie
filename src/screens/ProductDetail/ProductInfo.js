@@ -1,15 +1,19 @@
+/* eslint-disable react-native/no-inline-styles */
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {color} from '../../config/color';
 import StarIcon from './StarIcon';
 import LikeBtn from './LikeBtn';
-import UserIcon from '../../assets/UserIcon';
+import TextC from '../../components/Text';
+// import UserIcon from '../../assets/UserIcon';
 
 const ProductInfo = props => {
   return (
     <SafeAreaView>
       <View style={styles.productInfoContainer}>
-        <Text style={styles.mainTitle}>{props.title}</Text>
+        <TextC font="medium" variant="h5">
+          {props.title}
+        </TextC>
 
         <View style={styles.otherInfo}>
           <View style={{flexDirection: 'row', gap: 3, alignItems: 'center'}}>
@@ -20,16 +24,20 @@ const ProductInfo = props => {
               <StarIcon active={true} size={18} />
               <StarIcon active={false} size={18} />
             </View>
-            <Text style={styles.rating}>{props.ratingCount} Rating</Text>
+            <TextC font="medium" variant="h6" color="red">
+              {props.ratingCount} Rating
+            </TextC>
           </View>
 
           <View style={{flexDirection: 'row', gap: 3, alignItems: 'center'}}>
             <LikeBtn size={28} />
-            <Text style={styles.rating}>{props.likes} Likes</Text>
+            <TextC font="medium" variant="h6" color="red">
+              294 Likes
+            </TextC>
           </View>
 
           <View style={{flexDirection: 'row', gap: 3, alignItems: 'center'}}>
-            <UserIcon size={25} />
+            {/* <UserIcon size={25} /> */}
             <Text style={styles.rating}>{props.seen} Seen</Text>
           </View>
         </View>

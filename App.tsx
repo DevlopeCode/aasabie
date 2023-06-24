@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react/react-in-jsx-scope */
 
 import 'react-native-gesture-handler';
@@ -21,8 +22,9 @@ export const navigationRef = createNavigationContainerRef();
 export default function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isUserLoggedInAsGuest, setIsUserLoggedInAsGuest] = useState(false);
+
   console.warn = () => {};
-  console.error =()=>{}
+  console.error = () => {};
   // console.log =()=>{}
   return (
     <GestureHandlerRootView style={{flex: 1}}>
@@ -35,7 +37,10 @@ export default function App() {
         }}>
         <QueryClientProvider client={queryClient}>
           <View style={styles.container}>
-            <StatusBar />
+            <StatusBar
+              backgroundColor={'#FFFFFFFF'}
+              barStyle={'dark-content'}
+            />
             <NavigationContainer ref={navigationRef}>
               <Auth />
             </NavigationContainer>

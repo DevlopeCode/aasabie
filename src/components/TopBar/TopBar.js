@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Animated} from 'react-native';
 import React from 'react';
 import {height, width} from '../../config/dimension';
 import {color} from '../../config/color';
@@ -6,9 +6,10 @@ import MenuIcon from './MenuIcon';
 import NotificationIcon from './NotificationIcon';
 import {SvgXml} from 'react-native-svg';
 import {MessageSVG} from '../../assets/SVG';
+
 const TopBar = ({style}) => {
   return (
-    <View style={[styles.TopBarConatiner, style]}>
+    <Animated.View style={[styles.TopBarConatiner, style]}>
       <MenuIcon />
 
       <Text style={styles.topBarTitle}>Aasabie</Text>
@@ -17,7 +18,7 @@ const TopBar = ({style}) => {
         <NotificationIcon newNotification={true} />
         <SvgXml xml={MessageSVG} color={'red'} />
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

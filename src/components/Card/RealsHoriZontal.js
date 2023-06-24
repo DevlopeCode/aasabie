@@ -8,7 +8,13 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  s,
+  scale,
+  verticalScale,
+  vs,
+} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
 import {
   CardImgGirl,
@@ -37,14 +43,19 @@ const ReelsHoriZontal = () => {
         <View style={{flex: 2, padding: scale(10)}}>
           <TouchableOpacity
             style={{
-              height: verticalScale(25),
-              width: moderateScale(60),
+              // height: verticalScale(20),
+              width: moderateScale(55),
+              // paddingHorizontal: s(10),
+              paddingVertical: vs(2),
               backgroundColor: R.color.dark.white,
               borderRadius: scale(15),
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <TextC font="bold" style={{color: R.color.dark.black}}>
+            <TextC
+              font="semibold"
+              variant="h6"
+              style={{color: R.color.dark.black}}>
               Reels
             </TextC>
           </TouchableOpacity>
@@ -67,14 +78,12 @@ const ReelsHoriZontal = () => {
             style={{
               flexDirection: 'row',
               height: verticalScale(50),
-              //   backgroundColor: 'red',
               width: '100%',
               paddingHorizontal: scale(10),
             }}>
             <View
               style={{
                 width: '80%',
-                //  backgroundColor: 'white'
               }}>
               <View
                 style={{
@@ -94,16 +103,10 @@ const ReelsHoriZontal = () => {
                   />
                 </View>
                 <View style={{paddingLeft: scale(10)}}>
-                  <TextC
-                    font="medium"
-                    variant="title2"
-                    color={R.color.dark.white}>
+                  <TextC font="medium" variant="h5" color={R.color.dark.white}>
                     Andrew Daniel
                   </TextC>
-                  <TextC
-                    font="medium"
-                    variant="title3"
-                    color={R.color.dark.white}>
+                  <TextC font="regular" variant="h6" color={R.color.dark.white}>
                     VFX Artist
                   </TextC>
                 </View>

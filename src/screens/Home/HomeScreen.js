@@ -1,222 +1,3 @@
-// import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-// import React, {forwardRef, useImperativeHandle, useRef, useState} from 'react';
-// import {hp, wp} from '../../components/Responsive';
-// import {moderateScale, vs} from 'react-native-size-matters';
-// import {TouchableRipple} from 'react-native-paper';
-// import {Checkbox} from 'react-native-paper';
-
-// const ButtonComponent = ({selected, title, setSelectedCategory}) => {
-//   const style = selected ? {fontWeight: '700'} : {};
-
-//   return (
-//     <TouchableRipple
-//       onPress={() => setSelectedCategory(title)}
-//       style={{
-//         height: hp(10),
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         backgroundColor: selected ? 'white' : 'transparent',
-//       }}>
-//       <Text
-//         style={{
-//           fontSize: vs(13),
-//           color: selected ? '#EC303A' : 'black',
-//           ...style,
-//         }}>
-//         {title}
-//       </Text>
-//     </TouchableRipple>
-//   );
-// };
-
-// const CategoryComponent = (props, ref) => {
-//   const [selectedCategory, setSelectedCategory] = useState('');
-
-//   const value = () => selectedCategory;
-
-//   useImperativeHandle(ref, () => ({
-//     value,
-//   }));
-
-//   return (
-//     <>
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Gender'}
-//         title="Gender"
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Category'}
-//         title="Category"
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Discounts'}
-//         title="Discounts"
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Customer\nRatings'}
-//         title={`Customer\nRatings`}
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Size'}
-//         title="Size"
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Price'}
-//         title="Price"
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Color'}
-//         title="Color"
-//       />
-//       <ButtonComponent
-//         setSelectedCategory={setSelectedCategory}
-//         selected={selectedCategory == 'Brand'}
-//         title="Brand"
-//       />
-//     </>
-//   );
-// };
-
-// const CategoryComponentRef = forwardRef(CategoryComponent);
-
-// const RowPrice = () => (
-//   <View
-//     style={{
-//       flexDirection: 'row',
-//       alignItems: 'center',
-//       paddingLeft: wp(8),
-//       // backgroundColor:'yellow',
-//       height: moderateScale(60),
-//     }}>
-//     <View
-//       style={{
-//         height: 20,
-//         width: 20,
-//         borderWidth: 2,
-//         borderRadius: 2,
-//       }}></View>
-//     <Text style={{paddingLeft: '10%', fontSize: vs(12)}}>
-//       Rs. 299 and Below
-//     </Text>
-//   </View>
-// );
-
-// const ContainerValue = (props, ref) => {
-//   const [value, setValue] = useState(0);
-
-//   return (
-//     <>
-//       {value == 0 && (
-//         <>
-//           <RowPrice title="Women" />
-//           <RowPrice title="Men" />
-//         </>
-//       )}
-
-//       {value == 1 && (
-//         <>
-//           <RowPrice title="Women Party Gown" />
-//           <RowPrice title="Crop Tops &  Tees" />
-//           <RowPrice title="Lehengas & Sarees" />
-//           <RowPrice title="Bottomwear" />
-//           <RowPrice title="Skirts" />
-//           <RowPrice title="Kurtis" />
-//           <RowPrice title="Lingerie" />
-//           <RowPrice title="Sport wear" />
-//           <RowPrice title="Nightwear" />
-//         </>
-//       )}
-//       {value == 2 && (
-//         <>
-//           <RowPrice title="30% or more" />
-//           <RowPrice title="40% or more" />
-//           <RowPrice title="50% or more" />
-//           <RowPrice title="60% or more" />
-//           <RowPrice title="70% or more" />
-//         </>
-//       )}
-
-//       {value == 3 && (
-//         <>
-//           <RowPrice title="4 and above" />
-//           <RowPrice title="3 and above" />
-         
-//         </>
-//       )}
-
-//     {value == 4 && (
-//         <>
-//           <RowPrice title="Free" />
-//           <RowPrice title="XS" />
-//           <RowPrice title="S" />
-//           <RowPrice title="M" />
-//           <RowPrice title="L" />
-//           <RowPrice title="L" />
-//           <RowPrice title="L" />
-//           <RowPrice title="L" />
-//           <RowPrice title="L" />
-          
-
-         
-//         </>
-//       )}
-//       {/* <RowPrice title="Rs. 299 and Below" />
-//       <RowPrice title="Rs. 299 and Below" />
-//       <RowPrice title="Rs. 299 and Below" />
-//       <RowPrice title="Rs. 299 and Below" />
-//       <RowPrice title="Rs. 299 and Below" />
-//       <RowPrice title="Rs. 299 and Below" /> */}
-//     </>
-//   );
-// };
-
-// export default function HomeScreen() {
-//   const containerRef = useRef();
-//   return (
-//     <View style={{flex: 1, backgroundColor: 'red', flexDirection: 'row'}}>
-//       <View style={{flex: 1, backgroundColor: '#F2F3F7'}}>
-//         <CategoryComponentRef ref={containerRef} />
-//         <View
-//           style={{
-//             position: 'absolute',
-//             bottom: 0,
-//             left: 0,
-//             right: 0,
-//             height: hp(10),
-//             backgroundColor: 'white',
-//             paddingLeft: '16%',
-//             justifyContent: 'center',
-//           }}>
-//           <Text
-//             style={{
-//               color: '#EC303A',
-//               fontFamily: 'Poppins-SemiBold',
-//               fontSize: vs(15),
-//             }}>
-//             18,925
-//           </Text>
-//           <Text style={{color: '#EC303A'}}>Products found</Text>
-//         </View>
-//       </View>
-//       <View
-//         style={{
-//           paddingVertical: hp(3),
-//           flex: 1.5,
-//           backgroundColor: '#FFFFFF',
-//         }}></View>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({});
-
 import {
   View,
   StyleSheet,
@@ -330,7 +111,9 @@ const SecondComponentRef = (props, ref) => {
     setShowComponent,
   }));
 
-  if (showComponent) return <LoadingComponent />;
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>
@@ -362,7 +145,9 @@ const ThirdComponentRef = (props, ref) => {
   useImperativeHandle(ref, () => ({
     setShowComponent,
   }));
-  if (showComponent) return <LoadingComponent />;
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
   return (
     <>
       <View
@@ -441,7 +226,9 @@ const FourthComponentRef = (props, ref) => {
     setShowComponent,
   }));
 
-  if (showComponent) return <LoadingComponent />;
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
   return (
     <>
       <FlatList
@@ -491,7 +278,9 @@ const SixthComponentRef = (props, ref) => {
   useImperativeHandle(ref, () => ({
     setShowComponent,
   }));
-  if (showComponent) return <LoadingComponent />;
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
   return (
     <>
       <View
@@ -553,7 +342,9 @@ const SeventhComponentRef = (props, ref) => {
     setShowComponent,
   }));
 
-  if (showComponent) return <LoadingComponent />;
+  if (showComponent) {
+    return <LoadingComponent />;
+  }
 
   return (
     <>
@@ -574,74 +365,6 @@ const ThirdComponent = forwardRef(ThirdComponentRef);
 const FourthComponent = forwardRef(FourthComponentRef);
 const SixthComponent = forwardRef(SixthComponentRef);
 const SeventhComponent = forwardRef(SeventhComponentRef);
-
-// function StickyHeaderScrollview({children, title, ...res}) {
-//   const [pos, setPos] = React.useState('down');
-//   let value = 0;
-//   const scrollY = new Animated.Value(100);
-//   const headerCheck = pos > 15 ? {backgroundColor: 'white', elevation: 5} : {};
-//   // onScroll={e => setPos(e.nativeEvent.contentOffset.y)}
-//   console.log(scrollY, 'scrollYscrollY');
-
-//   const checkIsScrollUp = () => {
-//     if (scrollY > 100) {
-//       console.log('it is run on minus');
-//       scrollY.interpolate({
-//         inputRange: [scrollY, scrollY - 100],
-//         outputRange: [0, 100],
-//       });
-//     } else {
-//       console.log('it is run on plus');
-//       return scrollY.interpolate({
-//         inputRange: [0, 100],
-//         outputRange: [0, 100],
-//       });
-//     }
-//   };
-//   return (
-//     <View style={{flex: 1}}>
-//       <Animated.ScrollView
-//         onScrollAnimationEnd={() => {
-//           console.log('end scroll --->');
-//         }}
-//         onScroll={Animated.event(
-//           [{nativeEvent: {contentOffset: {y: scrollY}}}],
-//           {
-//             useNativeDriver: false,
-//             listener: event => {
-//             },
-//           },
-//         )}
-//         scrollEventThrottle={16}
-//         // onScroll={e => setPos(e.nativeEvent.contentOffset.y)}
-//         showsVerticalScrollIndicator={false}
-//         {...res}>
-//         {children}
-//       </Animated.ScrollView>
-//       <Animated.View
-//         style={{
-//           height: 100,
-//           backgroundColor: 'red',
-//           position: 'absolute',
-//           bottom: 0,
-//           left: 0,
-//           right: 0,
-//           transform: [
-//             {
-//               translateY: scrollY.interpolate({
-//                 inputRange: [0, 100],
-//                 outputRange: [0, 100],
-//               }),
-//             },
-//           ],
-//         }}>
-//         <TouchableOpacity
-//           style={{height: 30, backgroundColor: 'yellow'}}
-//           onPress={() => {}}></TouchableOpacity>
-//       </Animated.View>
-//     </View>
-//   );
-// }
 
 const HomeScreen = ({navigation}) => {
   const secondRef = useRef();
@@ -669,8 +392,11 @@ const HomeScreen = ({navigation}) => {
     function dostuff() {
       console.log('this is the values', i);
       showComponents(i);
-      if (i < 4) i++;
-      else clearInterval(interval);
+      if (i < 4) {
+        i++;
+      } else {
+        clearInterval(interval);
+      }
     }
     // navigation.setOptions({tabBarStyle:{bottom:0}})
     interval = setInterval(dostuff, 2400);
@@ -686,17 +412,14 @@ const HomeScreen = ({navigation}) => {
   console.log(navigation, 'navigationnavigationnavigation');
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollContainer>
-        <TopBar />
-        <FirstComponent />
-        <SecondComponent ref={secondRef} />
-        <ThirdComponent ref={thirdRef} />
-        <FourthComponent ref={fourthRef} />
-        <SixthComponent ref={sixthRef} />
-        <SeventhComponent ref={seventhRef} />
-      </ScrollContainer>
-    </SafeAreaView>
+    <ScrollContainer>
+      <FirstComponent />
+      <SecondComponent ref={secondRef} />
+      <ThirdComponent ref={thirdRef} />
+      <FourthComponent ref={fourthRef} />
+      <SixthComponent ref={sixthRef} />
+      <SeventhComponent ref={seventhRef} />
+    </ScrollContainer>
   );
 };
 

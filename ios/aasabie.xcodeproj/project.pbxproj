@@ -18,8 +18,11 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		897E43B6E79B4B6197455E70 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4E9AF0067BF24F51AD78D53C /* Poppins-Light.ttf */; };
 		8F35057AE0134255BBDCAB46 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E86576511C4D4BF29CBF2DA3 /* Poppins-Regular.ttf */; };
+		B5758CA142E14929AF7E886F /* Rancho-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3980F4F4C48F458491D9FAA8 /* Rancho-Regular.ttf */; };
 		C0119424B4CE1E8E534DA470 /* Pods_aasabie_aasabieTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E63C9FAB5A488840354CB386 /* Pods_aasabie_aasabieTests.framework */; };
+		C79BFE552D5A448787683B77 /* Yesteryear-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C91DF3DA4B974D9EB3894671 /* Yesteryear-Regular.ttf */; };
 		DCA7C8F3650644A19E6B10CE /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5ADE4B3C60804140985C8CF7 /* Poppins-SemiBold.ttf */; };
+		E431CB1754DF40B09BED93CF /* KaushanScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D979321A948E402F9E9951F9 /* KaushanScript-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = aasabie/main.m; sourceTree = "<group>"; };
 		1FD97A512A307368004A3126 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		299E439E88F345C28057E2FE /* Pods_aasabie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aasabie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3980F4F4C48F458491D9FAA8 /* Rancho-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Rancho-Regular.ttf"; path = "../assets/fonts/Rancho-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-aasabie.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aasabie.debug.xcconfig"; path = "Target Support Files/Pods-aasabie/Pods-aasabie.debug.xcconfig"; sourceTree = "<group>"; };
 		4E9AF0067BF24F51AD78D53C /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-aasabie.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aasabie.release.xcconfig"; path = "Target Support Files/Pods-aasabie/Pods-aasabie.release.xcconfig"; sourceTree = "<group>"; };
@@ -53,6 +57,8 @@
 		812A182577734FF69BBBAA6B /* Poppins-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Bold.ttf"; path = "../assets/fonts/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = aasabie/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-aasabie-aasabieTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aasabie-aasabieTests.release.xcconfig"; path = "Target Support Files/Pods-aasabie-aasabieTests/Pods-aasabie-aasabieTests.release.xcconfig"; sourceTree = "<group>"; };
+		C91DF3DA4B974D9EB3894671 /* Yesteryear-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Yesteryear-Regular.ttf"; path = "../assets/fonts/Yesteryear-Regular.ttf"; sourceTree = "<group>"; };
+		D979321A948E402F9E9951F9 /* KaushanScript-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "KaushanScript-Regular.ttf"; path = "../assets/fonts/KaushanScript-Regular.ttf"; sourceTree = "<group>"; };
 		E63C9FAB5A488840354CB386 /* Pods_aasabie_aasabieTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aasabie_aasabieTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E86576511C4D4BF29CBF2DA3 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Regular.ttf"; path = "../assets/fonts/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -170,6 +176,9 @@
 				78A5724097734C8A87DF739B /* Poppins-Medium.ttf */,
 				E86576511C4D4BF29CBF2DA3 /* Poppins-Regular.ttf */,
 				5ADE4B3C60804140985C8CF7 /* Poppins-SemiBold.ttf */,
+				C91DF3DA4B974D9EB3894671 /* Yesteryear-Regular.ttf */,
+				D979321A948E402F9E9951F9 /* KaushanScript-Regular.ttf */,
+				3980F4F4C48F458491D9FAA8 /* Rancho-Regular.ttf */,
 			);
 			name = Resources;
 			path = "";
@@ -278,6 +287,9 @@
 				1924A336E264473B87558350 /* Poppins-Medium.ttf in Resources */,
 				8F35057AE0134255BBDCAB46 /* Poppins-Regular.ttf in Resources */,
 				DCA7C8F3650644A19E6B10CE /* Poppins-SemiBold.ttf in Resources */,
+				C79BFE552D5A448787683B77 /* Yesteryear-Regular.ttf in Resources */,
+				E431CB1754DF40B09BED93CF /* KaushanScript-Regular.ttf in Resources */,
+				B5758CA142E14929AF7E886F /* Rancho-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

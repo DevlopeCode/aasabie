@@ -220,8 +220,8 @@ const SignInScreen = () => {
             Txtclr={'white'}
             bgclr={'black'}
             ref={childComponentRef}
-            onPresss={(e)=>{
-              setIsUserLoggedIn(true)
+            onPresss={e => {
+              setIsUserLoggedIn(true);
             }}
           />
         </View>

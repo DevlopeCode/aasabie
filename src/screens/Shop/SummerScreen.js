@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   StyleSheet,
   Text,
@@ -13,12 +14,11 @@ import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
 import {SummerDealofTheday} from './Component/List/DealofTheday';
 import TextC from '../../components/Text';
-import R from '../../res/R';
 import {verticalScale} from 'react-native-size-matters';
-import { SvgXml } from 'react-native-svg';
-import { summerCircleIcon, BackArrowSvg } from '../../assets/SVG';
-import TopBar from '../../components/TopBar/TopBar';
-import { hp, wp } from '../../components/Responsive';
+import {SvgXml} from 'react-native-svg';
+import {summerCircleIcon, BackArrowSvg} from '../../assets/SVG';
+// import TopBar from '../../components/TopBar/TopBar';
+import {hp, wp} from '../../components/Responsive';
 
 const TopOffers = ({style}) => {
   return (
@@ -103,7 +103,7 @@ const ImageLayout = () => {
   );
 };
 
- export const DiscountComponent = () => {
+export const DiscountComponent = () => {
   return (
     <View
       style={{
@@ -214,12 +214,29 @@ const ListHeaderComponet = () => (
 );
 
 export default function SummerScreen() {
+  if (false) {
+    return <></>;
+  }
   return (
     <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
-     <View style={{paddingHorizontal:wp(4), flexDirection:'row',height:50,  alignItems:'center'}} >
-      <SvgXml xml={BackArrowSvg} />
-      <Text style={{color:'#EC303A', marginLeft:wp(3), fontSize:vs(12), fontWeight:'500'}} >Special Offer Summer Sale</Text>
-     </View>
+      <View
+        style={{
+          paddingHorizontal: wp(4),
+          flexDirection: 'row',
+          height: 50,
+          alignItems: 'center',
+        }}>
+        <SvgXml xml={BackArrowSvg()} />
+        <Text
+          style={{
+            color: '#EC303A',
+            marginLeft: wp(3),
+            fontSize: vs(12),
+            fontWeight: '500',
+          }}>
+          Special Offer Summer Sale
+        </Text>
+      </View>
       <Image
         style={{
           height: 200,
@@ -236,7 +253,7 @@ export default function SummerScreen() {
           width: wp(100),
           resizeMode: 'contain',
           height: hp(20),
-          marginBottom:-hp(18)
+          marginBottom: -hp(18),
         }}
         source={require('../../assets/images/summer_bg_cover.png')}
       />
@@ -252,8 +269,12 @@ export default function SummerScreen() {
       </Text>
       <TopOffers />
       <TopOffers style={{marginTop: -hp(0.8)}} />
-      <View style={{alignItems: 'flex-end',marginBottom:-hp(17), marginTop:hp(4.5) }}>
-       
+      <View
+        style={{
+          alignItems: 'flex-end',
+          marginBottom: -hp(17),
+          marginTop: hp(4.5),
+        }}>
         <LinearGradient
           colors={['#FECD04', '#F88430']}
           start={{x: 0, y: 1}}
@@ -424,11 +445,16 @@ export default function SummerScreen() {
           }}>
           VIRTUAL REALITY FASHION
         </Text>
-<Image
-style={{height:'60%', width:'87%', alignSelf:'center', marginTop:'11%'}}
-   source={require('../../assets/images/summer_virtual_icon.png')}
-// source={require('summer_virtual_icon')}
-/>
+        <Image
+          style={{
+            height: '60%',
+            width: '87%',
+            alignSelf: 'center',
+            marginTop: '11%',
+          }}
+          source={require('../../assets/images/summer_virtual_icon.png')}
+          // source={require('summer_virtual_icon')}
+        />
         <View
           style={{
             position: 'absolute',
@@ -438,11 +464,11 @@ style={{height:'60%', width:'87%', alignSelf:'center', marginTop:'11%'}}
             width: 55,
             borderRadius: 35,
             backgroundColor: 'rgba(255,255,255, 0.4)',
-            justifyContent:'center',
-            alignItems:'center'
+            justifyContent: 'center',
+            alignItems: 'center',
           }}>
-            <SvgXml xml={summerCircleIcon} />
-          </View>
+          <SvgXml xml={summerCircleIcon} />
+        </View>
       </View>
       <Image
         style={{
@@ -455,7 +481,7 @@ style={{height:'60%', width:'87%', alignSelf:'center', marginTop:'11%'}}
         }}
         source={require('../../assets/images/tree_left.png')}
       />
-       <Image
+      <Image
         style={{
           height: moderateScale(150),
           width: moderateScale(130),
@@ -463,7 +489,7 @@ style={{height:'60%', width:'87%', alignSelf:'center', marginTop:'11%'}}
           zIndex: -1,
           resizeMode: 'contain',
           marginTop: -moderateScale(190),
-          marginBottom:moderateScale(40),
+          marginBottom: moderateScale(40),
         }}
         source={require('../../assets/images/tree_right.png')}
       />
@@ -479,7 +505,8 @@ style={{height:'60%', width:'87%', alignSelf:'center', marginTop:'11%'}}
             height: 143,
             borderRadius: 12,
             backgroundColor: '#C345DB',
-          }}></View>
+          }}
+        />
         <View
           style={{
             flex: 1,
@@ -487,14 +514,16 @@ style={{height:'60%', width:'87%', alignSelf:'center', marginTop:'11%'}}
             borderRadius: 12,
             backgroundColor: '#C345DB',
             marginHorizontal: wp(5),
-          }}></View>
+          }}
+        />
         <View
           style={{
             flex: 1,
             height: 143,
             borderRadius: 12,
             backgroundColor: '#C345DB',
-          }}></View>
+          }}
+        />
       </View>
       <Image
         style={{

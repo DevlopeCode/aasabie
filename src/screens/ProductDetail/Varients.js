@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {
   FlatList,
   ImageBackground,
@@ -9,14 +10,22 @@ import {
 } from 'react-native';
 import React from 'react';
 import {color} from '../../config/color';
+import TextC from '../../components/Text';
+import R from '../../res/R';
 
-const Varients = ({data, changeVarient, currentSelected}) => {
-  const [currentVarient, setCurrentVarient] = React.useState(currentSelected);
+const Varients = ({
+  data,
+  currentSelected,
+  changeVarient,
+  currentVarient,
+  handelChangeVarient,
+}) => {
+  // const [currentVarient, setCurrentVarient] = React.useState(currentSelected);
 
-  const handelChangeVarient = index => {
-    setCurrentVarient(index);
-    changeVarient(index);
-  };
+  // const handelChangeVarient = index => {
+  //   setCurrentVarient(index);
+  //   changeVarient(index);
+  // };
 
   return (
     <SafeAreaView>
@@ -28,13 +37,19 @@ const Varients = ({data, changeVarient, currentSelected}) => {
             justifyContent: 'space-between',
             marginBottom: 10,
           }}>
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.varientData}>Color: </Text>
-            <Text style={styles.varientDataBold}>Red Wine</Text>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <TextC font="medium" variant="h5" color={R.color.dark.gray2}>
+              Color:
+            </TextC>
+            <TextC font="medium" variant="h5" color={R.color.dark.black}>
+              Red Wine
+            </TextC>
           </View>
 
           <View>
-            <Text style={styles.varientData}>Availble Color: {6}</Text>
+            <TextC font="medium" variant="h5" color={R.color.dark.gray3}>
+              Availble Color: 6
+            </TextC>
           </View>
         </View>
         <FlatList
@@ -50,7 +65,7 @@ const Varients = ({data, changeVarient, currentSelected}) => {
                   source={{uri: item.varientImage}}
                   style={[
                     styles.varientCard,
-                    currentVarient == index ? styles.activeVarientcard : null,
+                    currentSelected == index ? styles.activeVarientcard : null,
                   ]}
                 />
               </TouchableWithoutFeedback>

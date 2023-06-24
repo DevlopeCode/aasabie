@@ -9,7 +9,12 @@ import {
 import React from 'react';
 import {TopData} from '../res/rawData';
 import TextC from '../../../../components/Text';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  s,
+  scale,
+  verticalScale,
+} from 'react-native-size-matters';
 import R from '../../../../res/R';
 
 const TopListItem = ({item}) => (
@@ -17,7 +22,7 @@ const TopListItem = ({item}) => (
     style={{
       alignItems: 'center',
       width: moderateScale(150),
-      height: verticalScale(240),
+      height: verticalScale(220),
       justifyContent: 'center',
       shadowColor: '#000',
       shadowOffset: {
@@ -33,8 +38,7 @@ const TopListItem = ({item}) => (
     <View
       style={{
         width: moderateScale(135),
-        // marginRight: 10,
-        height: verticalScale(235),
+        height: verticalScale(220),
         borderRadius: scale(8),
         overflow: 'hidden',
         backgroundColor: '#FFF',
@@ -43,13 +47,18 @@ const TopListItem = ({item}) => (
         source={item.image}
         style={{
           width: '100%',
-          height: verticalScale(140),
+          height: verticalScale(120),
           resizeMode: 'cover',
           overflow: 'hidden',
           marginVertical: 10,
         }}
       />
-      <View style={{width: moderateScale(130), alignItems: 'center'}}>
+      <View
+        style={{
+          width: moderateScale(130),
+          alignItems: 'center',
+          // justifyContent: 'center',
+        }}>
         <TextC
           font="semibold"
           numberOfLines={2}
@@ -63,29 +72,31 @@ const TopListItem = ({item}) => (
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent: 'space-around',
+            justifyContent: 'space-between',
           }}>
           <TextC
             font="semibold"
+            variant="h6"
             style={{
-              fontSize: scale(13),
+              // fontSize: scale(13),
               color: R.color.dark.black,
+              paddingRight: s(10),
             }}>
             {item.price}
           </TextC>
           <TextC
             font="semibold"
+            variant="small"
             style={{
-              fontSize: scale(10),
               color: R.color.dark.gray2,
+              textDecorationLine: 'line-through',
             }}>
             {item.offprice}
           </TextC>
           <TextC
             font="semibold"
+            variant="h6"
             style={{
-              fontSize: scale(10),
-
               color: R.color.dark.black1,
             }}>
             ({item.offpercentage} Off)
@@ -131,8 +142,9 @@ export const TopList = () => (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TextC
           font="bold"
+          variant="h5"
+          color="#EC303A"
           style={{
-            color: '#EC303A',
             textTransform: 'uppercase',
           }}>
           TOP 10 mOST SOLD PRODUCTS THIS WEEK

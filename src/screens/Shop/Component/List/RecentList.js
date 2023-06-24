@@ -3,33 +3,23 @@ import {Dimensions, FlatList, Image, View} from 'react-native';
 import React from 'react';
 import {TopData} from '../res/rawData';
 import TextC from '../../../../components/Text';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {
+  moderateScale,
+  ms,
+  scale,
+  verticalScale,
+} from 'react-native-size-matters';
 import R from '../../../../res/R';
 
 const RecentListItem = ({item}) => (
   <View
     style={{
-      alignItems: 'center',
-      paddingVertical: scale(10),
-      width: moderateScale(150),
-      // height: verticalScale(220),
-      justifyContent: 'center',
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 2,
-      },
-      shadowOpacity: 0.2,
-      shadowRadius: 2,
-      elevation: 2,
+      padding: 10,
       backgroundColor: '#FFF',
       borderRadius: scale(8),
     }}>
     <View
       style={{
-        width: moderateScale(135),
-        // marginRight: 10,
-        // height: verticalScale(200),
         borderRadius: scale(8),
         overflow: 'hidden',
         backgroundColor: '#FFF',
@@ -37,21 +27,18 @@ const RecentListItem = ({item}) => (
       <Image
         source={item.image}
         style={{
-          width: '100%',
+          width: ms(135),
           height: verticalScale(140),
           resizeMode: 'cover',
           overflow: 'hidden',
-          marginVertical: 10,
         }}
       />
-      <View style={{width: moderateScale(130), alignItems: 'center'}}>
+      <View style={{width: ms(135)}}>
         <TextC
           numberOfLines={2}
-          font="semibold"
-          style={{
-            fontSize: scale(10),
-            color: R.color.dark.black1,
-          }}>
+          font="medium"
+          variant="h6"
+          color={R.color.dark.black1}>
           {item.title}
         </TextC>
         <View
@@ -60,30 +47,13 @@ const RecentListItem = ({item}) => (
             alignItems: 'center',
             justifyContent: 'space-around',
           }}>
-          <TextC
-            font="semibold"
-            style={{
-              fontSize: scale(13),
-
-              color: R.color.dark.black,
-            }}>
+          <TextC font="bold" color={R.color.dark.black} variant="h5">
             {item.price}
           </TextC>
-          <TextC
-            font="semibold"
-            style={{
-              fontSize: scale(10),
-
-              color: R.color.dark.gray2,
-            }}>
+          <TextC font="semibold" color={R.color.dark.gray2} variant="h6">
             {item.offprice}
           </TextC>
-          <TextC
-            font="semibold"
-            style={{
-              fontSize: scale(10),
-              color: R.color.dark.red,
-            }}>
+          <TextC font="semibold" color={R.color.dark.red} variant="h6">
             ({item.offpercentage} Off)
           </TextC>
         </View>
@@ -107,12 +77,7 @@ export const RecentList = () => (
         width: '100%',
       }}>
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TextC
-          font="bold"
-          style={{
-            color: '#EC303A',
-            textTransform: 'uppercase',
-          }}>
+        <TextC font="bold" color="#EC303A" variant="h5">
           Recently Viewed
         </TextC>
       </View>
@@ -127,7 +92,7 @@ export const RecentList = () => (
       ItemSeparatorComponent={
         <View
           style={{
-            width: moderateScale(15),
+            width: moderateScale(1),
           }}
         />
       }

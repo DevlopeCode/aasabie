@@ -14,7 +14,7 @@ const SearchBar = () => {
         width: '100%',
         alignItems: 'center',
         position: 'relative',
-        marginTop: '25%',
+        marginTop: '5%',
       }}>
       <View
         style={{
@@ -27,7 +27,7 @@ const SearchBar = () => {
           alignItems: 'center',
         }}>
         <View style={{width: scale(40), alignItems: 'center'}}>
-          <SvgXml xml={Serch} />
+          <SvgXml xml={Serch()} />
         </View>
         <TextInput
           style={{width: '90%', padding: 0, margin: 0}}

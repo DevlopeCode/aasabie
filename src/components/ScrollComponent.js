@@ -1,3 +1,7 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react-native/no-inline-styles */
 import {
   View,
   StyleSheet,
@@ -7,14 +11,9 @@ import {
   Animated,
   ScrollView,
 } from 'react-native';
-import React, {
-  useEffect,
-  useRef,
-
-} from 'react';
+import React, {useEffect, useRef} from 'react';
 import {color} from '../config/color';
-import { verticalScale, moderateScale} from 'react-native-size-matters';
-
+import {verticalScale, moderateScale} from 'react-native-size-matters';
 import {useNavigation} from '@react-navigation/native';
 import HomeIcon from '../assets/TabMenuIcons/HomeIcon';
 import {vs} from 'react-native-size-matters';
@@ -25,6 +24,9 @@ import WishList from '../assets/TabMenuIcons/WishList';
 import Profile from '../assets/TabMenuIcons/Profile';
 import PlusIcon from '../assets/TabMenuIcons/PlusIcon';
 import CartIcon from '../assets/TabMenuIcons/CartIcon';
+import TopBar from './TopBar/TopBar';
+import {navigationRef} from '../../App';
+import Shop from '../assets/TabMenuIcons/Shop';
 
 const CONTAINER_HEIGHT = 80;
 
@@ -38,7 +40,7 @@ const IconComponent = ({Icon, onPress}) => {
 
 const BottomTab = () => {
   const {navigate} = useNavigation();
-
+  console.log(navigationRef.current.getCurrentRoute().name);
   return (
     <View style={{height: CONTAINER_HEIGHT, flexDirection: 'row'}}>
       <Image
@@ -85,7 +87,9 @@ const BottomTab = () => {
 
         <IconComponent
           onPress={() => {
-            navigate('Explore');
+            navigationRef.current.getCurrentRoute().name == 'Shop'
+              ? navigate('Category')
+              : navigate('Shop');
           }}
           Icon={() => (
             <View style={{height: verticalScale(20)}}>
@@ -95,7 +99,7 @@ const BottomTab = () => {
                   height: vs(40),
                   justifyContent: 'center',
                 }}>
-                {true ? (
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
                   <Explore inFocus={true} />
                 ) : (
                   <SvgXml xml={categortTabIcon} />
@@ -108,7 +112,9 @@ const BottomTab = () => {
                   textAlign: 'center',
                   fontFamily: 'Poppins-Bold',
                 }}>
-                {true ? 'Explore' : 'Category'}
+                {navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? 'Explore'
+                  : 'Category'}
               </Text>
             </View>
           )}
@@ -129,16 +135,12 @@ const BottomTab = () => {
             style={{
               height: moderateScale(50),
               width: moderateScale(50),
-              // backgroundColor: 'black',
               justifyContent: 'center',
               alignItems: 'center',
               borderRadius: moderateScale(40),
             }}>
             <View
               style={{
-                // position: 'absolute',
-                // bottom: 15,
-                // marginLeft: -40,
                 height: 50,
                 width: 50,
                 borderRadius: 40,
@@ -146,9 +148,9 @@ const BottomTab = () => {
                 elevation: 2,
               }}
               onPress={() => {
-                // navigationRef.current.getCurrentRoute().name != 'Shop'
-                //   ? navigationRef.current.navigate('plus')
-                //   : navigationRef.current.navigate('cart');
+                navigationRef.current.getCurrentRoute().name != 'Shop'
+                  ? navigationRef.current.navigate('plus')
+                  : navigationRef.current.navigate('cart');
               }}>
               <View
                 style={[
@@ -163,7 +165,12 @@ const BottomTab = () => {
                     alignItems: 'center',
                   },
                 ]}>
-                {true ? (
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                  <PlusIcon inFocus={true} />
+                ) : (
+                  <CartIcon colour={'black'} />
+                )}
+                {/* {true ? (
                   <PlusIcon inFocus={true} />
                 ) : (
                   <View
@@ -174,7 +181,7 @@ const BottomTab = () => {
                     }}>
                     <CartIcon colour={'black'} />
                   </View>
-                )}
+                )} */}
               </View>
             </View>
           </TouchableOpacity>
@@ -182,19 +189,30 @@ const BottomTab = () => {
 
         <IconComponent
           onPress={() => {
-            navigate('Wishlist');
+            navigate('Shop');
           }}
           Icon={() => (
             <View style={{height: verticalScale(20)}}>
               <View onPress={e => e.preventDefault()}>
-                <View
-                  style={{
-                    alignItems: 'center',
-                    height: vs(40),
-                    justifyContent: 'center',
-                  }}>
-                  <WishList inFocus={false} />
-                </View>
+                {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
+                  <View
+                    style={{
+                      alignItems: 'center',
+                      height: vs(40),
+                      justifyContent: 'center',
+                    }}>
+                    <Shop inFocus={true} />
+                  </View>
+                ) : (
+                  <View
+                    style={{
+                      alignItems: 'center',
+                      height: vs(40),
+                      justifyContent: 'center',
+                    }}>
+                    <WishList colour={'white'} />
+                  </View>
+                )}
               </View>
               <Text
                 style={{
@@ -203,7 +221,9 @@ const BottomTab = () => {
                   textAlign: 'center',
                   fontFamily: 'Poppins-Bold',
                 }}>
-                WishList
+                {navigationRef.current.getCurrentRoute().name == 'Shop'
+                  ? 'WishList'
+                  : 'Shop'}
               </Text>
             </View>
           )}
@@ -303,6 +323,7 @@ const ScrollContainer = ({children}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: 'white',
     },
     view: {
       position: 'absolute',
@@ -378,6 +399,11 @@ const ScrollContainer = ({children}) => {
     icon: {
       marginHorizontal: 10,
     },
+    icontab: {
+      alignItems: 'center',
+      height: vs(40),
+      justifyContent: 'center',
+    },
   });
 
   const SCREEN = [
@@ -390,6 +416,17 @@ const ScrollContainer = ({children}) => {
     'Profile',
   ];
 
+  const opacity = clampedScroll.interpolate({
+    inputRange: [0, CONTAINER_HEIGHT - 20, CONTAINER_HEIGHT],
+    outputRange: [1, 0.05, 0],
+    extrapolate: 'clamp',
+  });
+
+  const headerTranslate = clampedScroll.interpolate({
+    inputRange: [0, CONTAINER_HEIGHT],
+    outputRange: [0, -CONTAINER_HEIGHT],
+    extrapolate: 'clamp',
+  });
   return (
     <View style={styles.container}>
       <ScrollView
@@ -410,6 +447,16 @@ const ScrollContainer = ({children}) => {
               <View style={{height:200, margin:5, backgroundColor:'blue'}} ></View>
             ))} */}
       </ScrollView>
+      <Animated.View
+        style={[
+          styles.view,
+          {top: 0, transform: [{translateY: headerTranslate}]},
+        ]}>
+        <Animated.View
+          style={{height: CONTAINER_HEIGHT, backgroundColor: 'white', opacity}}>
+          <TopBar style={{opacity}} />
+        </Animated.View>
+      </Animated.View>
       <Animated.View
         style={[
           styles.view,

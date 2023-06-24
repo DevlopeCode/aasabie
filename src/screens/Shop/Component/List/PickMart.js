@@ -27,7 +27,7 @@ const PickMart = () => {
             alignItems: 'center',
             justifyContent: 'flex-start',
           }}>
-          <TextC font="bold" style={{color: '#EC303A', fontSize: scale(15)}}>
+          <TextC font="bold" color="#EC303A" variant="h5">
             HOT ON PICKMART
           </TextC>
           <Image
@@ -46,10 +46,10 @@ const PickMart = () => {
           }}>
           <TextC
             font="bold"
+            color={R.color.dark.black}
+            variant="h5"
             style={{
-              color: R.color.dark.black,
               textTransform: 'uppercase',
-              fontSize: scale(15),
             }}>
             view all
           </TextC>

@@ -11,11 +11,12 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
+import {moderateScale, s, scale, verticalScale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import R from '../../../../res/R';
 import {OfferData, RobData} from '../res/rawData';
 import LinearGradient from 'react-native-linear-gradient';
+import navigationServices from '../../../../utils/navigationServices';
 const HeadContain = () => (
   <View
     style={{
@@ -25,24 +26,26 @@ const HeadContain = () => (
     }}>
     <View
       style={{
-        height: verticalScale(60),
+        height: verticalScale(50),
         justifyContent: 'space-between',
         alignItems: 'center',
       }}>
       <TextC
-        font="semibold"
+        font="regular"
+        variant="title"
         style={{
           color: '#EC303A',
 
-          fontSize: scale(15),
+          // fontSize: scale(15),
         }}>
         EVERYDAY WARDROBE
       </TextC>
       <TextC
         font="semibold"
+        variant="title2"
         style={{
           color: R.color.dark.black,
-          fontSize: scale(18),
+          // fontSize: scale(18),
         }}>
         Staples that elevate your wardrobe
       </TextC>
@@ -65,6 +68,9 @@ const ItemSlider = () => (
     style={{width: moderateScale(310), marginVertical: verticalScale(20)}}
     renderItem={({item}) => (
       <TouchableOpacity
+        onPress={() =>
+          navigationServices.navigate('ProductListScreen', item.title)
+        }
         style={{width: moderateScale(120), height: verticalScale(180)}}>
         <ImageBackground
           source={item.image}
@@ -109,8 +115,10 @@ const OfferSlider = () => (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <TextC
           font="bold"
+          variant="h5"
+          color="#EC303A"
+          gutterLeft={s(12)}
           style={{
-            color: '#EC303A',
             textTransform: 'uppercase',
           }}>
           Special Offers

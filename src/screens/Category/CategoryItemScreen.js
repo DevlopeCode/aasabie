@@ -1,3 +1,4 @@
+/* eslint-disable no-sparse-arrays */
 /* eslint-disable react-native/no-inline-styles */
 import {
   StyleSheet,
@@ -8,6 +9,8 @@ import {
   Image,
   FlatList,
   ImageBackground,
+  ScrollView,
+  Pressable,
 } from 'react-native';
 import React from 'react';
 import Header from '../../components/Header';
@@ -25,8 +28,122 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {color} from '../../config/color';
 import {width} from '../../config/dimension';
 import {hasRestParameter} from 'typescript';
-// require('../../assets')
+import TextC from '../../components/Text';
+import LinearGradient from 'react-native-linear-gradient';
+import {OfferData} from '../Shop/Component/res/rawData';
+import ScrollContainer from '../../components/ScrollComponent';
 
+const OfferSlider = () => (
+  <>
+    <View
+      style={{
+        height: verticalScale(18),
+        justifyContent: 'center',
+        width: '100%',
+        alignItems: 'center',
+        marginVertical: vs(20),
+      }}>
+      <TextC
+        font="bold"
+        style={{
+          color: '#EC303A',
+          textTransform: 'uppercase',
+        }}>
+        Special Offers
+      </TextC>
+    </View>
+    <FlatList
+      data={OfferData}
+      showsHorizontalScrollIndicator={false}
+      ItemSeparatorComponent={
+        <View
+          style={{
+            width: moderateScale(10),
+          }}
+        />
+      }
+      style={{
+        width: R.unit.windowWidth(0.98),
+        marginVertical: verticalScale(20),
+        height: verticalScale(100),
+        marginBottom: verticalScale(30),
+      }}
+      horizontal
+      renderItem={({item}) => (
+        <Pressable
+          style={{
+            width: moderateScale(210),
+            paddingHorizontal: scale(8),
+            height: verticalScale(100),
+            marginLeft: scale(10),
+          }}>
+          <Image
+            source={item.image}
+            style={{
+              height: '100%',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderRadius: scale(10),
+              backgroundColor: 'red',
+            }}
+          />
+          <LinearGradient
+            colors={['#0F0001', 'rgba(217, 217, 217, 0)', 'transparent']}
+            useAngle={true}
+            angle={90}
+            style={{
+              height: '100%',
+              width: '100%',
+              justifyContent: 'center',
+              alignItems: 'flex-start',
+              position: 'absolute',
+              borderRadius: scale(10),
+            }}>
+            <View
+              style={{
+                height: '100%',
+                justifyContent: 'center',
+                paddingLeft: scale(20),
+              }}>
+              <TextC font="bold" style={{color: R.color.dark.white}}>
+                {item.title}
+              </TextC>
+              <TextC
+                font="medium"
+                style={{
+                  color: R.color.dark.white,
+
+                  fontSize: scale(10),
+                }}>
+                {item.subtitle}
+              </TextC>
+              <View
+                style={{
+                  width: moderateScale(80),
+                  height: verticalScale(20),
+                  borderRadius: scale(20),
+                  backgroundColor: 'white',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginTop: scale(10),
+                }}>
+                <TextC
+                  font="semibold"
+                  style={{
+                    color: '#EC303A',
+                    fontSize: scale(10),
+                  }}>
+                  SHOP NOW
+                </TextC>
+              </View>
+            </View>
+          </LinearGradient>
+        </Pressable>
+      )}
+    />
+  </>
+);
 export const SearchBar = ({color, height}) => {
   return (
     <View
@@ -40,7 +157,7 @@ export const SearchBar = ({color, height}) => {
       <TouchableOpacity
         onPress={() => navigationServices.goBack()}
         style={{marginRight: scale(10)}}>
-        <SvgXml xml={BackArrowSvg} />
+        <SvgXml xml={BackArrowSvg()} />
       </TouchableOpacity>
 
       <View
@@ -55,7 +172,7 @@ export const SearchBar = ({color, height}) => {
           backgroundColor: color || 'transparent',
         }}>
         <View style={{width: scale(40), alignItems: 'center'}}>
-          <SvgXml xml={Serch} />
+          <SvgXml xml={Serch()} />
         </View>
         <TextInput
           style={{width: '90%', padding: 0, margin: 0, fontSize: vs(10)}}
@@ -70,10 +187,8 @@ const CategoryItemScreen = () => {
   const inset = useSafeAreaInsets();
 
   return (
-    <View style={{backgroundColor: 'white', flex: 1, marginTop: inset.top}}>
-      <Header />
+    <ScrollContainer style={{backgroundColor: 'white', flex: 1, marginTop: inset.top}}>
       <SearchBar />
-
       <View style={styles.topSection}>
         <View style={{borderRadius: 10, overflow: 'hidden'}}>
           <Image
@@ -105,73 +220,114 @@ const CategoryItemScreen = () => {
         }}>
         CHOOSE BY PRODUCT CATEGORY
       </Text>
-      <View  >
-      <FlatList
-        style={{marginTop: scale(16), marginLeft: 10}}
-        horizontal
-        data={[1, 2, , 34, 44, , 4, , , 5, 5, 5]}
-        renderItem={({item}) => (
-          <View>
-            <View
-              style={{
-                marginTop: 12,
-                marginHorizontal: 13,
-                borderRadius: 10,
-                height: 103,
-                width: 100,
-                backgroundColor: 'blue',
-              }}>
+      <View>
+        <FlatList
+          style={{marginTop: scale(16), marginLeft: 10}}
+          horizontal
+          data={[1, 2, , 34, 44, , 4, , , 5, 5, 5]}
+          renderItem={({item}) => (
+            <View>
               <View
                 style={{
-                  height: '101%',
-                  width: '100%',
-                  borderWidth: 1.3,
+                  marginTop: 12,
+                  marginHorizontal: 13,
                   borderRadius: 10,
-                  marginTop: '-6%',
-                  marginLeft: '4.5%',
-                  borderColor: '#EC4850',
-                }}></View>
-              <View
-                style={{
-                  zIndex: -1,
-                  overflow: 'hidden',
-                  backgroundColor: 'pink',
-                  position: 'absolute',
-                  left: 0,
-                  right: 0,
-                  top: 0,
-                  bottom: 0,
-                  borderRadius: 10,
+                  height: 103,
+                  width: 100,
+                  backgroundColor: 'blue',
                 }}>
-                <Image
-                  source={{
-                    uri: 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg',
+                <View
+                  style={{
+                    height: '101%',
+                    width: '100%',
+                    borderWidth: 1.3,
+                    borderRadius: 10,
+                    marginTop: '-6%',
+                    marginLeft: '4.5%',
+                    borderColor: '#EC4850',
                   }}
-                  style={{height: '100%', width: '100%'}}
                 />
+                <View
+                  style={{
+                    zIndex: -1,
+                    overflow: 'hidden',
+                    backgroundColor: 'pink',
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    bottom: 0,
+                    borderRadius: 10,
+                  }}>
+                  <Image
+                    source={{
+                      uri: 'https://imgv3.fotor.com/images/cover-photo-image/a-beautiful-girl-with-gray-hair-and-lucxy-neckless-generated-by-Fotor-AI.jpg',
+                    }}
+                    style={{height: '100%', width: '100%'}}
+                  />
+                </View>
               </View>
+              <Text
+                style={{
+                  textAlign: 'center',
+                  marginTop: scale(9),
+                  fontWeight: 'bold',
+                  color: '#EC4850',
+                }}>
+                MEN
+              </Text>
             </View>
-            <Text
-              style={{
-                textAlign: 'center',
-                marginTop: scale(9),
-                fontWeight: 'bold',
-                color: '#EC4850',
-              }}>
-              MEN
-            </Text>
-          </View>
-        )}
-        // keyExtractor={item => item.id}
-      />
+          )}
+          // keyExtractor={item => item.id}
+        />
       </View>
-    
+
       <Image
         source={require('../../assets/images/categpryItembg.png')}
         style={{height: 200, width: '100%', resizeMode: 'contain'}}
       />
-      <Text style={{  color: '#EC4850', fontSize:vs(17.5), textAlign:'center'}} >Explore the varieties, be pleasant </Text>
-    </View>
+      <Text
+        style={{
+          color: '#EC4850',
+          fontSize: vs(25),
+          textAlign: 'center',
+          fontFamily: 'Yesteryear-Regular',
+        }}>
+        Explore the varieties, be pleasant
+      </Text>
+      <OfferSlider />
+      <FlatList
+        data={[
+          'bEST SELLERS',
+          'nEW ARRIVALS',
+          'budget FReINDLY',
+          'ongoing sale',
+        ]}
+        ItemSeparatorComponent={<View style={{height: vs(20)}} />}
+        renderItem={({item}) => {
+          return (
+            <TouchableOpacity
+              style={{
+                height: vs(60),
+                backgroundColor: '#EC4850',
+                marginHorizontal: scale(20),
+                borderRadius: scale(5),
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <TextC
+                font="bold"
+                variant="h3"
+                color={R.color.dark.white}
+                style={{textTransform: 'uppercase'}}>
+                {item}
+              </TextC>
+            </TouchableOpacity>
+          );
+        }}
+      />
+      <View style={{height: vs(100)}} />
+    </ScrollContainer>
   );
 };
 
@@ -201,7 +357,7 @@ const styles = StyleSheet.create({
   },
   topSection: {
     // backgroundColor:'blue',
-    
+
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -219,20 +375,20 @@ const styles = StyleSheet.create({
     width: width * 0.4,
   },
   topText1: {
-    fontFamily: 'KaushanScript',
+    fontFamily: 'KaushanScript-Regular',
     fontSize: 22,
     color: color.primary,
     textAlign: 'right',
   },
   topText2: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 10,
     color: '#000',
     textAlign: 'right',
     marginVertical: 10,
   },
   topText3: {
-    fontFamily: 'Rancho',
+    fontFamily: 'Rancho-Regular',
     fontSize: 12,
     color: '#000',
     textAlign: 'right',
@@ -268,7 +424,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   categoryText: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 12,
     color: '#000',
     textAlign: 'center',
@@ -294,15 +450,15 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: color.background,
     // marginBottom: 5,
-    fontSize: 12,
+    // fontSize: 12,
     zIndex: 2,
   },
   offerSubHeading: {
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     fontSize: 10,
     color: color.background,
     marginBottom: 5,
-    fontSize: 6,
+    // fontSize: 6,
     zIndex: 2,
   },
 
@@ -313,7 +469,7 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 10,
     fontSize: 8,
-    fontFamily: 'Poppins',
+    fontFamily: 'Poppins-Regular',
     color: color.background,
     zIndex: 2,
     textAlign: 'center',

@@ -1,11 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable eqeqeq */
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable react/no-unstable-nested-components */
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React, {useRef} from 'react';
+import React from 'react';
 import {Pressable, Text, View} from 'react-native';
 import ProfileScreen from '../screens/Profile/Profile';
-import {Path, Svg, SvgXml} from 'react-native-svg';
+import {SvgXml} from 'react-native-svg';
 import CartIcon from '../assets/TabMenuIcons/CartIcon';
 import Explore from '../assets/TabMenuIcons/Explore';
 import HomeIcon from '../assets/TabMenuIcons/HomeIcon';
@@ -13,14 +14,9 @@ import PlusIcon from '../assets/TabMenuIcons/PlusIcon';
 import Profile from '../assets/TabMenuIcons/Profile';
 import Shop from '../assets/TabMenuIcons/Shop';
 import WishList from '../assets/TabMenuIcons/WishList';
-import {HomeStack} from './HomeStack';
-
 import {StyleSheet} from 'react-native';
 import {color} from '../config/color';
-import {height} from '../config/dimension';
-import {login} from '../utils/apis/api';
-import ShopScreen from '../screens/Shop';
-import {moderateScale, scale, vs} from 'react-native-size-matters';
+import {scale, vs} from 'react-native-size-matters';
 import {verticalScale} from 'react-native-size-matters';
 import {BottomBar, categortTabIcon} from '../assets/SVG';
 import HomeScreen from '../screens/Home/HomeScreen';
@@ -46,9 +42,8 @@ const TabNavigation = () => {
             elevation: 0,
             borderTopWidth: 0,
             bottom: -scale(57),
-            // bottom: -scale(27),
           },
-          tabBarBackground: () => <SvgXml xml={BottomBar} />,
+          tabBarItemStyle: {display: 'none'},
         }}>
         <Tab.Screen
           name="HomeStack"
@@ -222,7 +217,7 @@ const TabNavigation = () => {
         <Tab.Screen
           name="Profile"
           // ProfileScreen
-          component={() => <></>}
+          component={ProfileScreen}
           options={{
             tabBarIcon: ({focused}) => (
               <View style={{height: verticalScale(20)}}>

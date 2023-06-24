@@ -1,10 +1,11 @@
-import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import ShopScreen from '../screens/Shop';
 import DealsOfTheDayScreen from '../screens/Deals';
-import Apparel from '../screens/Apparel/Apparel';
 import CategoryItemScreen from '../screens/Category/CategoryItemScreen';
+import ProductListScreen from '../screens/ProoductList';
+import SummerScreen from '../screens/Shop/SummerScreen';
+import ProductDetail from '../screens/ProductDetail/ProductDetail';
 const ShopStackS = createStackNavigator();
 
 const ShopStack = () => {
@@ -19,10 +20,14 @@ const ShopStack = () => {
         options={{presentation: 'card'}}
       />
       <ShopStackS.Screen name="ApparelScrren" component={CategoryItemScreen} />
+      <ShopStackS.Screen
+        name="ProductListScreen"
+        component={ProductListScreen}
+      />
+      <ShopStackS.Screen name="SummerScreen" component={SummerScreen} />
+      <ShopStackS.Screen name="ProductDetail" component={ProductDetail} />
     </ShopStackS.Navigator>
   );
 };
 
 export default ShopStack;
-
-const styles = StyleSheet.create({});
