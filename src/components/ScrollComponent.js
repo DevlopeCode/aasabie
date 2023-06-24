@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-undef */
 /* eslint-disable eqeqeq */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unstable-nested-components */
@@ -88,7 +87,9 @@ const BottomTab = () => {
 
         <IconComponent
           onPress={() => {
-            navigate('Explore');
+            navigationRef.current.getCurrentRoute().name == 'Shop'
+              ? navigate('Category')
+              : navigate('Shop');
           }}
           Icon={() => (
             <View style={{height: verticalScale(20)}}>
@@ -220,7 +221,9 @@ const BottomTab = () => {
                   textAlign: 'center',
                   fontFamily: 'Poppins-Bold',
                 }}>
-                WishList
+                {navigationRef.current.getCurrentRoute().name == 'Shop'
+                  ? 'WishList'
+                  : 'Shop'}
               </Text>
             </View>
           )}
@@ -320,6 +323,7 @@ const ScrollContainer = ({children}) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
+      backgroundColor: 'white',
     },
     view: {
       position: 'absolute',
