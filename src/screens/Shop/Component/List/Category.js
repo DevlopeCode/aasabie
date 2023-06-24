@@ -1,38 +1,63 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {CategoryData} from '../res/rawData';
-import {Dimensions, FlatList, TouchableOpacity, View} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {verticalScale, moderateScale, scale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import {SvgXml} from 'react-native-svg';
 import R from '../../../../res/R';
+import {useBaseUrl} from '../../../../contexts/storeState';
+import {useFetch} from '../../../../requests/requestHook';
+import {ActivityIndicator} from 'react-native-paper';
+import { useCategories } from '../../../../contexts/storeState';
 
-export const Category = () => (
-  <View
-    style={{
-      height: verticalScale(50),
-      width: Dimensions.get('screen').width,
-      alignItems: 'center',
-    }}>
-    <FlatList
-      data={CategoryData}
-      showsHorizontalScrollIndicator={false}
-      horizontal
-      ItemSeparatorComponent={
-        <View
-          style={{
-            width: moderateScale(5),
-          }}
-        />
-      }
+
+export const Category = () => {
+  const setCategory = useCategories(state => state.setHomeCategories);
+  const [data] = useFetch('products/home-categories', setCategory);
+
+  return (
+    <View
       style={{
+        height: verticalScale(50),
+        width: Dimensions.get('screen').width,
+        alignItems: 'center',
         backgroundColor: '#FFACB1',
-      }}
-      renderItem={CartegoryItem}
-    />
-  </View>
-);
+      }}>
+      {data === 'loading' ? (
+        <ActivityIndicator size={20} color="white" style={{marginTop: '5%'}} />
+      ) : (
+        <FlatList
+          data={data}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          ItemSeparatorComponent={
+            <View
+              style={{
+                width: moderateScale(5),
+              }}
+            />
+          }
+          style={{
+            backgroundColor: '#FFACB1',
+          }}
+          renderItem={detail => <CartegoryItem {...detail} />}
+        />
+      )}
+    </View>
+  );
+};
+
 const CartegoryItem = ({item}) => {
+  const URL = useBaseUrl(state => state.url);
+  const IMG_URL = URL?.base_urls?.category_image_url + '/' + item?.icon;
+
   return (
     <TouchableOpacity
       style={{
@@ -44,7 +69,10 @@ const CartegoryItem = ({item}) => {
         justifyContent: 'center',
       }}>
       <View style={{height: scale(20), width: scale(20)}}>
-        {item.image && <SvgXml xml={item.image} />}
+        <Image
+          source={{uri: IMG_URL}}
+          style={{height: 17, width: 17, resizeMode: 'contain'}}
+        />
       </View>
       <TextC
         numberOfLines={1}
@@ -53,7 +81,7 @@ const CartegoryItem = ({item}) => {
           fontSize: scale(11),
           color: R.color.dark.white,
         }}
-        children={item.title}
+        children={item?.name}
       />
     </TouchableOpacity>
   );

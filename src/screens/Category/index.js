@@ -19,37 +19,27 @@ import {moderateScale, vs} from 'react-native-size-matters';
 import TextC from '../../components/Text';
 import {navigationRef} from '../../../App';
 import {useQuery} from '@tanstack/react-query';
-import {create} from 'zustand';
 import {SearchBar} from './CategoryItemScreen';
 import {SvgXml} from 'react-native-svg';
 import {ForwardIcon} from '../../assets/SVG';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-
 import {useNavigation} from '@react-navigation/native';
 import CategoryDetail from './CategoryDetail';
 import FootwearDetail from './FootwearDetail';
 import KidsCategoryDetail from './KidsCategoryDetail';
 import JewelleryDetail from './JewelleryDetail';
+import CategoryItemScreen from './CategoryItemScreen';
 
 const Stack = createStackNavigator();
-const useBearStore = create(set => ({
-  bears: 0,
-  increasePopulation: () => set(state => ({bears: state.bears + 1})),
-  removeAllBears: () => set({bears: 0}),
-}));
 
 const CategoryHeader = ({item, DATA, index}) => {
   const getColor = () => {
-    // backgroundColor: '#803BC133',
-
-    // titlecolor: '#803BC1',
     return DATA[index] || DATA[DATA?.length - index];
   };
 
-  // DATA={DATA} index={index}
   return (
     <TouchableOpacity
-      onPress={() => navigationRef.current.navigate('ApparelScrren')}
+      onPress={() => navigationRef.current.navigate('ApparelScrren_bottom')}
       style={{
         flexDirection: 'row',
         height: vs(30),
@@ -185,7 +175,7 @@ const CartegorItemList = ({datalist}) => {
     />
   );
 };
-// datalist
+
 const CategoryScreen = () => {
   const obj = {
     title: 'AppAreals',
@@ -266,9 +256,7 @@ const CategoryScreen = () => {
     },
   ];
 
-  const bears = useBearStore(state => state.bears);
-  const increasePopulation = useBearStore(state => state.increasePopulation);
-
+  
   const getCategory = async () => {
     const data = await fetch('https://www.aasabie.com/api/v1/categories');
     const response = await data.json();
@@ -280,16 +268,6 @@ const CategoryScreen = () => {
     queryFn: getCategory,
   });
 
-  // if (isLoading) {
-  //   return <span>Loading...</span>
-  // }
-
-  // if (isError) {
-  //   return
-  //   return <span>Error: {error.message}</span>
-  // }
-
-  // console.log(bears, 'bearsbearsdfsdfsbears');
   const inset = useSafeAreaInsets();
   return (
     <View
@@ -299,10 +277,10 @@ const CategoryScreen = () => {
         paddingTop: inset.top,
       }}>
       <Header />
-      {/* onClick={increasePopulation} */}
+
       {isError && (
         <TouchableOpacity
-          onPress={increasePopulation}
+          // onPress={increasePopulation}
           style={{height: 300, backgroundColor: 'red'}}>
           <Text>Error in api response</Text>
         </TouchableOpacity>
@@ -321,7 +299,6 @@ const CategoryScreen = () => {
                 color="#EC4850"
                 variant="h4"
                 style={{
-                  // fontSize: vs(15),
                   marginVertical: vs(8),
                 }}>
                 SHOP BY CATEGORY
@@ -358,17 +335,17 @@ const CategoryStack = () => {
 
   return (
     <Stack.Navigator screenOptions={options} initialRouteName="CategoryScreen">
-      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
-      <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
-      <Stack.Screen name="FootwearDetail" component={FootwearDetail} />
-      <Stack.Screen name="KidsCategoryDetail" component={KidsCategoryDetail} />
-      <Stack.Screen name="JewelleryDetail" component={JewelleryDetail} />
+      <Stack.Screen name="CategoryScreen"         component={CategoryScreen} />
+      <Stack.Screen name="CategoryDetail"         component={CategoryDetail} />
+      <Stack.Screen name="FootwearDetail"         component={FootwearDetail} />
+      <Stack.Screen name="KidsCategoryDetail"     component={KidsCategoryDetail} />
+      <Stack.Screen name="JewelleryDetail"        component={JewelleryDetail} />
+      <Stack.Screen name="ApparelScrren_bottom"   component={CategoryItemScreen}
+      />
     </Stack.Navigator>
   );
 };
-// JewelleryDetail
-// KidsCategoryDetail
-// FootwearDetail
+
 export default CategoryStack;
 
 const styles = StyleSheet.create({

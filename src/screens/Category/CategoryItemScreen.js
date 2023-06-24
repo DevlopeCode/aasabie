@@ -31,7 +31,8 @@ import {hasRestParameter} from 'typescript';
 import TextC from '../../components/Text';
 import LinearGradient from 'react-native-linear-gradient';
 import {OfferData} from '../Shop/Component/res/rawData';
-// require('../../assets')
+import ScrollContainer from '../../components/ScrollComponent';
+
 const OfferSlider = () => (
   <>
     <View
@@ -186,11 +187,8 @@ const CategoryItemScreen = () => {
   const inset = useSafeAreaInsets();
 
   return (
-    <ScrollView
-      style={{backgroundColor: 'white', flex: 1, marginTop: inset.top}}>
-      <Header />
+    <ScrollContainer style={{backgroundColor: 'white', flex: 1, marginTop: inset.top}}>
       <SearchBar />
-
       <View style={styles.topSection}>
         <View style={{borderRadius: 10, overflow: 'hidden'}}>
           <Image
@@ -329,7 +327,7 @@ const CategoryItemScreen = () => {
         }}
       />
       <View style={{height: vs(100)}} />
-    </ScrollView>
+    </ScrollContainer>
   );
 };
 
