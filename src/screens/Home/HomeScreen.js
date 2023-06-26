@@ -398,19 +398,13 @@ const HomeScreen = ({navigation}) => {
         clearInterval(interval);
       }
     }
-    // navigation.setOptions({tabBarStyle:{bottom:0}})
+   
     interval = setInterval(dostuff, 2400);
   }, []);
 
-  // tabBarStyle: {
 
-  //   position: 'absolute',
-  //   elevation: 0,
-  //   borderTopWidth: 0,
-  //   bottom: scale(27),
-  // }
   console.log(navigation, 'navigationnavigationnavigation');
-
+  // https://www.aasabie.com/api/v1/config
   return (
     <ScrollContainer>
       <FirstComponent />

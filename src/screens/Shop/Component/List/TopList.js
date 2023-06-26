@@ -16,6 +16,10 @@ import {
   verticalScale,
 } from 'react-native-size-matters';
 import R from '../../../../res/R';
+import { useFetch } from '../../../../requests/requestHook';
+import { ActivityIndicator } from 'react-native-paper';
+import { hp } from '../../../../components/Responsive';
+
 
 const TopListItem = ({item}) => (
   <View
@@ -125,63 +129,72 @@ const TopListItem = ({item}) => (
   </View>
 );
 
-export const TopList = () => (
-  <View
-    style={{
-      marginVertical: verticalScale(10),
-      alignItems: 'center',
-      width: Dimensions.get('screen').width,
-    }}>
+export const TopList = () => {
+const [topTenSold]= useFetch('products/best-sellings')
+console.log(topTenSold,'topTenSoldtopTenSoldtopTenSold')
+// https://www.aasabie.com/api/v1/products/best-sellings
+
+  return(
     <View
       style={{
-        height: verticalScale(40),
-        paddingHorizontal: scale(20),
-        justifyContent: 'center',
-        width: '100%',
+        marginVertical: verticalScale(10),
+        alignItems: 'center',
+        width: Dimensions.get('screen').width,
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TextC
-          font="bold"
-          variant="h5"
-          color="#EC303A"
-          style={{
-            textTransform: 'uppercase',
-          }}>
-          TOP 10 mOST SOLD PRODUCTS THIS WEEK
-        </TextC>
+      <View
+        style={{
+          height: verticalScale(40),
+          paddingHorizontal: scale(20),
+          justifyContent: 'center',
+          width: '100%',
+        }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <TextC
+            font="bold"
+            variant="h5"
+            color="#EC303A"
+            style={{
+              textTransform: 'uppercase',
+            }}>
+            TOP 10 mOST SOLD PRODUCTS THIS WEEK
+          </TextC>
+        </View>
       </View>
+      
+      {topTenSold==='loading'?<ActivityIndicator   color="#EC303A" style={{marginBottom:hp(5), marginTop:hp(4)}} />: <FlatList
+        // data={TopData}
+        data={topTenSold}
+        renderItem={TopListItem}
+        keyExtractor={item => item.id}
+        showsHorizontalScrollIndicator={false}
+        style={{
+          // height: verticalScale(100),
+          width: moderateScale(330),
+        }}
+        ItemSeparatorComponent={
+          <View
+            style={{
+              width: moderateScale(15),
+            }}
+          />
+        }
+        horizontal
+        contentContainerStyle={{
+          // paddingHorizontal: 10,
+          paddingVertical: 5,
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.2,
+          shadowRadius: 2,
+          elevation: 2,
+          backgroundColor: '#FFF',
+          //   backgroundColor: 'red',
+        }}
+      /> }
+      {/**/}
     </View>
-    <FlatList
-      data={TopData}
-      renderItem={TopListItem}
-      keyExtractor={item => item.id}
-      showsHorizontalScrollIndicator={false}
-      style={{
-        // height: verticalScale(100),
-        width: moderateScale(330),
-      }}
-      ItemSeparatorComponent={
-        <View
-          style={{
-            width: moderateScale(15),
-          }}
-        />
-      }
-      horizontal
-      contentContainerStyle={{
-        // paddingHorizontal: 10,
-        paddingVertical: 5,
-        shadowColor: '#000',
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 2,
-        elevation: 2,
-        backgroundColor: '#FFF',
-        //   backgroundColor: 'red',
-      }}
-    />
-  </View>
-);
+  )
+};
