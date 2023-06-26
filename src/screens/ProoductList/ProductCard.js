@@ -13,6 +13,7 @@ import {HeartOulineSvg, NegociationSVG, ShareSvg} from '../../assets/SVG';
 import TextC from '../../components/Text';
 import R from '../../res/R';
 import {navigationRef} from '../../../App';
+import {navigate} from '../../utils/navigationServices';
 
 const CardLeft = ({Active}) => {
   return (
@@ -94,9 +95,11 @@ const CardRight = ({Active}) => {
     </View>
   );
 };
-export const ProductCard = ({index}) => {
+export const ProductCard = ({index, item}) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigate('ProductDetail', item)}>
       <ImageBackground
         source={{
           uri: 'https://www.aasabie.com/storage/app/public/product/2023-06-12-6486d4945067d.png',
@@ -151,7 +154,7 @@ export const ProductCard = ({index}) => {
           </TextC>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

@@ -6,17 +6,8 @@ import {ProductHeader} from './ProductHeader';
 import FilterList from './FilterList';
 import {ProductCard} from './ProductCard';
 
-const ProductListScreen = ({navigation, route}) => {
-  // console.log(route.params);
-  const flatdata = [
-    <ProductHeader title={route.params} />,
-    <FilterList />,
-    <Image
-      source={{
-        uri: 'https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
-      }}
-      style={{height: vs(200)}}
-    />,
+export const ProductCardList = () => {
+  return (
     <View style={{backgroundColor: 'white'}}>
       <FlatList
         data={[1, 2, 3, 4, 5, 6]}
@@ -26,7 +17,22 @@ const ProductListScreen = ({navigation, route}) => {
         numColumns={2}
         contentContainerStyle={styles.container}
       />
-    </View>,
+    </View>
+  );
+};
+const ProductListScreen = ({route}) => {
+  console.log(route);
+  console.log(route.params);
+  const flatdata = [
+    <ProductHeader title={route?.params?.name || route?.params} />,
+    <FilterList />,
+    <Image
+      source={{
+        uri: 'https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',
+      }}
+      style={{height: vs(200)}}
+    />,
+    <ProductCardList />,
     <Image
       source={{
         uri: 'https://images.unsplash.com/flagged/photo-1556637640-2c80d3201be8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80',

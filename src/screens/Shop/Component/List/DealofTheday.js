@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, ImageBackground, TouchableOpacity, View} from 'react-native';
+import { FlatList, ImageBackground, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import {
   moderateScale,
@@ -9,16 +9,22 @@ import {
 } from 'react-native-size-matters';
 import R from '../../../../res/R';
 import TextC from '../../../../components/Text';
-import {ChoiceData, DealData} from '../res/rawData';
-import {navigationRef} from '../../../../../App';
+import { ChoiceData, DealData } from '../res/rawData';
+import { navigationRef } from '../../../../../App';
+import { useFetch } from '../../../../requests/requestHook';
+import { useBaseUrl } from '../../../../contexts/storeState';
 
-const DealItem = ({item, index}) => {
+const DealItem = ({ item, index }) => {
+  const url = useBaseUrl(state=>state.url)
 
-console.log(item,'itemitemitem=====>')
-  return(
-    <TouchableOpacity>
+  const IMG = url?.base_urls?.product_thumbnail_url+'/'+ item?.thumbnail
+
+
+  return (
+    <TouchableOpacity activeOpacity={0.8} >
       <ImageBackground
-        source={item.image}
+        source={{uri:IMG}}
+        resizeMethod='scale'
         style={{
           height: verticalScale(110),
           width: moderateScale(150),
@@ -27,8 +33,8 @@ console.log(item,'itemitemitem=====>')
           marginHorizontal: scale(8),
           padding: scale(6),
         }}
-        imageStyle={{height: verticalScale(110), width: moderateScale(150)}}>
-        <View
+        imageStyle={{ height: verticalScale(110), width: moderateScale(150) }}>
+       {item&& <View
           style={{
             height: verticalScale(20),
             width: moderateScale(70),
@@ -46,7 +52,7 @@ console.log(item,'itemitemitem=====>')
             }}>
             1 day left
           </TextC>
-        </View>
+        </View>}
       </ImageBackground>
       <View
         style={{
@@ -57,24 +63,24 @@ console.log(item,'itemitemitem=====>')
           height: verticalScale(60),
           justifyContent: 'space-between',
         }}>
-        <View style={{width: '70%'}}>
+        <View style={{ width: '70%' }}>
           <TextC
             numberOfLines={2}
-            style={{fontSize: scale(8.5), color: R.color.dark.black}}>
-            {item.title}
+            style={{ fontSize: scale(8.5), color: R.color.dark.black }}>
+            {item?.name}
           </TextC>
-          <TextC style={{fontSize: scale(10), color: '#EC303A'}}>
-            ({item.offpercentage} Off)
-          </TextC>
+         {item?.discount>0&& <TextC style={{ textDecorationLine: 'line-through', fontSize: scale(10), color: '#EC303A' }}>
+            ({item?.discount} Off)
+          </TextC>}
         </View>
-        <View style={{width: '30%'}}>
+        <View style={{ width: '30%' }}>
           <TextC
             font="bold"
             style={{
               fontSize: scale(10),
               color: R.color.dark.black,
             }}>
-            {item.price}
+            {item?.purchase_price}
           </TextC>
           <TextC
             style={{
@@ -82,11 +88,11 @@ console.log(item,'itemitemitem=====>')
               color: R.color.dark.gray2,
               textDecorationLine: 'line-through',
             }}>
-            {item.offprice}
+            {item?.unit_price}
           </TextC>
         </View>
       </View>
-      <TouchableOpacity
+     {item&& <TouchableOpacity
         style={{
           height: verticalScale(30),
           width: moderateScale(150),
@@ -100,10 +106,10 @@ console.log(item,'itemitemitem=====>')
         <TextC
           font="bold"
           color={R.color.dark.white}
-          style={{fontSize: scale(13)}}>
+          style={{ fontSize: scale(13) }}>
           22:00:30 hr left
         </TextC>
-      </TouchableOpacity>
+      </TouchableOpacity>}
     </TouchableOpacity>
   )
 };
@@ -133,29 +139,36 @@ const ListHeaderComponet = () => (
     </View>
   </View>
 );
+// https://www.aasabie.com/api/v1/dealsoftheday/deal-of-the-day
 export const DealofTheday = ({
   data = DealData,
   ListHeader = ListHeaderComponet,
-}) => (
-  <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
-    <FlatList
-      data={data}
-      ListHeaderComponent={ListHeader}
-      renderItem={DealItem}
-      showsHorizontalScrollIndicator={false}
-      numColumns={2}
-      ItemSeparatorComponent={
-        <View
-          style={{
-            height: moderateScale(15),
-          }}
-        />
-      }
-    />
-  </View>
-);
+}) => {
+  const [dealsOfTheDay] = useFetch('dealsoftheday/deal-of-the-day')
 
-const SummerDealItem = ({item, index}) => (
+  if(dealsOfTheDay==='loading') return <></>
+
+  return (
+    <View style={{ marginVertical: verticalScale(10), alignItems: 'center' }}>
+      <FlatList
+        data={[dealsOfTheDay,false]}
+        ListHeaderComponent={ListHeader}
+        renderItem={(e)=><DealItem {...e} />}
+        showsHorizontalScrollIndicator={false}
+        numColumns={2}
+        ItemSeparatorComponent={
+          <View
+            style={{
+              height: moderateScale(15),
+            }}
+          />
+        }
+      />
+    </View>
+  )
+};
+
+const SummerDealItem = ({ item, index }) => (
   <TouchableOpacity
     activeOpacity={1}
     style={{
@@ -174,7 +187,7 @@ const SummerDealItem = ({item, index}) => (
         marginHorizontal: scale(8),
         padding: scale(6),
       }}
-      imageStyle={{height: verticalScale(110), width: moderateScale(150)}}>
+      imageStyle={{ height: verticalScale(110), width: moderateScale(150) }}>
       <View
         style={{
           height: verticalScale(20),
@@ -205,17 +218,17 @@ const SummerDealItem = ({item, index}) => (
         // backgroundColor:'pink',
         justifyContent: 'space-between',
       }}>
-      <View style={{width: '70%'}}>
+      <View style={{ width: '70%' }}>
         <TextC
           numberOfLines={2}
-          style={{fontSize: scale(8.5), color: R.color.dark.black}}>
+          style={{ fontSize: scale(8.5), color: R.color.dark.black }}>
           {item.title}
         </TextC>
-        <TextC style={{fontSize: scale(10), color: '#EC303A'}}>
+        <TextC style={{ fontSize: scale(10), color: '#EC303A' }}>
           ({item.offpercentage} Off)
         </TextC>
       </View>
-      <View style={{width: '30%'}}>
+      <View style={{ width: '30%' }}>
         <TextC
           font="bold"
           style={{
@@ -248,7 +261,7 @@ const SummerDealItem = ({item, index}) => (
       <TextC
         font="bold"
         color={R.color.dark.white}
-        style={{fontSize: scale(13)}}>
+        style={{ fontSize: scale(13) }}>
         22:00:30 hr left
       </TextC>
     </TouchableOpacity>
@@ -258,10 +271,10 @@ export const SummerDealofTheday = ({
   data = DealData,
   ListHeader = ListHeaderComponet,
 }) => (
-  <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
+  <View style={{ marginVertical: verticalScale(10), alignItems: 'center' }}>
     <FlatList
       data={data}
-      style={{marginLeft: -moderateScale(16)}}
+      style={{ marginLeft: -moderateScale(16) }}
       ListHeaderComponent={ListHeader}
       // DealItem
       renderItem={SummerDealItem}

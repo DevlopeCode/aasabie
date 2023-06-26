@@ -31,8 +31,8 @@ import {RecentList} from './Component/List/RecentList';
 import HandyPicked from './Component/List/HandyPicked';
 import BottomBanner from './Component/List/BottomBanner';
 import ScrollContainer from '../../components/ScrollComponent';
-import { useQuery } from 'react-query';
-import { useFetch } from '../../requests/requestHook';
+import {useQuery} from 'react-query';
+import {useFetch} from '../../requests/requestHook';
 
 const CONTAINER_HEIGHT = 100;
 class LoadingComponent extends React.PureComponent {
@@ -48,7 +48,6 @@ class LoadingComponent extends React.PureComponent {
 
 const CategoryRef = (props, ref) => {
   const [showComponent, setComponent] = useState(true);
-
 
   useImperativeHandle(ref, () => ({
     setComponent,
@@ -166,10 +165,9 @@ const PickMartRef = (props, ref) => {
 };
 
 const DealofThedayRef = (props, ref) => {
+  const [dealsOfTheDay] = useFetch('dealsoftheday/deal-of-the-day');
 
-const [dealsOfTheDay]= useFetch('dealsoftheday/deal-of-the-day')
-
-console.log(dealsOfTheDay,'dealsOfTheDaydealsOfTheDaydealsOfTheDay====>')
+  console.log(dealsOfTheDay, 'dealsOfTheDaydealsOfTheDaydealsOfTheDay====>');
   const [showComponent, setComponent] = useState(true);
   useImperativeHandle(ref, () => ({
     setComponent,
@@ -179,7 +177,7 @@ console.log(dealsOfTheDay,'dealsOfTheDaydealsOfTheDaydealsOfTheDay====>')
     return <LoadingComponent />;
   }
   // data={dealsOfTheDay}
-  return <DealofTheday  />;
+  return <DealofTheday />;
 };
 
 const ExploreRef = (props, ref) => {
@@ -246,7 +244,7 @@ const NinethComponent = forwardRef(PickMartRef);
 const TenthComponent = forwardRef(DealofThedayRef);
 const EleventhComponent = forwardRef(ExploreRef);
 const TwelthComponent = forwardRef(RecentListRef);
-const ThirtenthComponent = forwardRef(HandyPickedRef);
+// const ThirtenthComponent = forwardRef(HandyPickedRef);
 const FourtenthComponent = forwardRef(BottomBannerRef);
 
 const Shop = () => {
@@ -259,14 +257,13 @@ const Shop = () => {
   const fifthRef = useRef();
   const sixthRef = useRef();
   const seventhRef = useRef();
-  const eightRef = useRef();
-  const ninthRef = useRef();
+  // const eightRef = useRef();
+  // const ninthRef = useRef();
   const tenthRef = useRef();
   const eleventhRef = useRef();
   const twelthRef = useRef();
   const thirteenthRef = useRef();
   const fourteenthRef = useRef();
- 
 
   var interval,
     i = 0;
@@ -280,13 +277,13 @@ const Shop = () => {
       4: () => fifthRef.current?.setComponent(false),
       5: () => sixthRef.current?.setComponent(false),
       6: () => seventhRef.current?.setComponent(false),
-      7: () => eightRef.current?.setComponent(false),
-      8: () => ninthRef.current?.setComponent(false),
-      9: () => tenthRef.current?.setComponent(false),
-      10: () => eleventhRef.current?.setComponent(false),
-      11: () => twelthRef.current?.setComponent(false),
-      12: () => thirteenthRef.current?.setComponent(false),
-      13: () => fourteenthRef.current?.setComponent(false),
+      // 7: () => eightRef.current?.setComponent(false),
+      // 8: () => ninthRef.current?.setComponent(false),
+      7: () => tenthRef.current?.setComponent(false),
+      8: () => eleventhRef.current?.setComponent(false),
+      9: () => twelthRef.current?.setComponent(false),
+      // 10: () => thirteenthRef.current?.setComponent(false),
+      10: () => fourteenthRef.current?.setComponent(false),
     };
 
     component[componentIndex]();
@@ -296,7 +293,7 @@ const Shop = () => {
     function dostuff() {
       console.log('this is the values', i);
       showComponents(i);
-      if (i < 13) {
+      if (i < 10) {
         i++;
       } else {
         clearInterval(interval);
@@ -316,12 +313,12 @@ const Shop = () => {
       <FifthComponent ref={fifthRef} />
       <SixthComponent ref={sixthRef} />
       <SeventhComponent ref={seventhRef} />
-      <EighthComponent ref={eightRef} />
-      <NinethComponent ref={ninthRef} />
+      {/* <EighthComponent ref={eightRef} /> */}
+      {/* <NinethComponent ref={ninthRef} /> */}
       <TenthComponent ref={tenthRef} />
       <EleventhComponent ref={eleventhRef} />
       <TwelthComponent ref={twelthRef} />
-      <ThirtenthComponent ref={thirteenthRef} />
+      {/* <ThirtenthComponent ref={thirteenthRef} /> */}
       <FourtenthComponent ref={fourteenthRef} />
     </ScrollContainer>
   );

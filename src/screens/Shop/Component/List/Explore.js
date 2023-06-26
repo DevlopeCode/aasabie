@@ -1,10 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import {ExploreData} from '../res/rawData';
 import TextC from '../../../../components/Text';
 import R from '../../../../res/R';
+import ProductListScreen from '../../../ProoductList';
+import {navigate} from '../../../../utils/navigationServices';
 const Explore = () => {
   return (
     <FlatList
@@ -25,7 +34,8 @@ const Explore = () => {
         </View>
       }
       renderItem={({index, item}) => (
-        <View
+        <TouchableOpacity
+          onPress={() => navigate('ProductListScreen', item.title)}
           style={{
             height: verticalScale(40),
             backgroundColor: index % 2 == 0 ? '#F3878D' : '#EC303A',
@@ -53,7 +63,7 @@ const Explore = () => {
               resizeMode: 'center',
             }}
           />
-        </View>
+        </TouchableOpacity>
       )}
       ItemSeparatorComponent={
         <View

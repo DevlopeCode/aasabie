@@ -1,6 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState, useEffect} from 'react';
-import {CategoryData} from '../res/rawData';
+import React from 'react';
 import {
   Dimensions,
   FlatList,
@@ -10,13 +9,11 @@ import {
 } from 'react-native';
 import {verticalScale, moderateScale, scale} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
-import {SvgXml} from 'react-native-svg';
 import R from '../../../../res/R';
 import {useBaseUrl} from '../../../../contexts/storeState';
 import {useFetch} from '../../../../requests/requestHook';
 import {ActivityIndicator} from 'react-native-paper';
-import { useCategories } from '../../../../contexts/storeState';
-
+import {useCategories} from '../../../../contexts/storeState';
 
 export const Category = () => {
   const setCategory = useCategories(state => state.setHomeCategories);

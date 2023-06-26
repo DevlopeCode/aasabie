@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Image, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {scale, vs} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
 import {BackArrowSvg, CartSVG, Serch} from '../../assets/SVG';
 import TextC from '../../components/Text';
 import R from '../../res/R';
+import {navigationRef} from '../../../App';
 export const ProductHeader = ({title}) => {
   return (
     <View
@@ -17,7 +18,9 @@ export const ProductHeader = ({title}) => {
         paddingVertical: vs(10),
         justifyContent: 'space-between',
       }}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <TouchableOpacity
+        onPress={() => navigationRef.current.goBack()}
+        style={{flexDirection: 'row', alignItems: 'center'}}>
         <SvgXml xml={BackArrowSvg('white', 20, 15)} />
         <TextC
           font="bold"
@@ -25,7 +28,7 @@ export const ProductHeader = ({title}) => {
           style={{paddingLeft: scale(10)}}>
           {title}
         </TextC>
-      </View>
+      </TouchableOpacity>
       <View
         style={{
           flexDirection: 'row',

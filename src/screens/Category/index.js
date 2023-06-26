@@ -105,27 +105,27 @@ const CartegorItemList = ({datalist}) => {
           onPress={() => {
             if (index == 1) {
               const dataPayload = {
-                data: [1, 2, 3, 4, 5, 6],
+                data: item.childes,
               };
               navigate('FootwearDetail', dataPayload);
             }
             if (index == 0) {
               const dataPayload = {
-                data: [1, 2, 3, 4, 5, 3, 2, 2],
+                data: item.childes,
               };
               navigate('CategoryDetail', dataPayload);
             }
 
             if (index == 2) {
               const dataPayload = {
-                data: [1, 2, 3, 4, 5, 6],
+                data: item.childes,
               };
               navigate('KidsCategoryDetail', dataPayload);
             }
 
             if (index == 3) {
               const dataPayload = {
-                data: [1, 2, 3, 4, 5, 6],
+                data: item.childes,
               };
               navigate('JewelleryDetail', dataPayload);
             }
@@ -256,7 +256,6 @@ const CategoryScreen = () => {
     },
   ];
 
-  
   const getCategory = async () => {
     const data = await fetch('https://www.aasabie.com/api/v1/categories');
     const response = await data.json();
@@ -335,12 +334,14 @@ const CategoryStack = () => {
 
   return (
     <Stack.Navigator screenOptions={options} initialRouteName="CategoryScreen">
-      <Stack.Screen name="CategoryScreen"         component={CategoryScreen} />
-      <Stack.Screen name="CategoryDetail"         component={CategoryDetail} />
-      <Stack.Screen name="FootwearDetail"         component={FootwearDetail} />
-      <Stack.Screen name="KidsCategoryDetail"     component={KidsCategoryDetail} />
-      <Stack.Screen name="JewelleryDetail"        component={JewelleryDetail} />
-      <Stack.Screen name="ApparelScrren_bottom"   component={CategoryItemScreen}
+      <Stack.Screen name="CategoryScreen" component={CategoryScreen} />
+      <Stack.Screen name="CategoryDetail" component={CategoryDetail} />
+      <Stack.Screen name="FootwearDetail" component={FootwearDetail} />
+      <Stack.Screen name="KidsCategoryDetail" component={KidsCategoryDetail} />
+      <Stack.Screen name="JewelleryDetail" component={JewelleryDetail} />
+      <Stack.Screen
+        name="ApparelScrren_bottom"
+        component={CategoryItemScreen}
       />
     </Stack.Navigator>
   );

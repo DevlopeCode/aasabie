@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable react-native/no-inline-styles */
 import {FlatList, ImageBackground, TouchableOpacity, View} from 'react-native';
 import React from 'react';
@@ -5,17 +6,23 @@ import {moderateScale, scale, verticalScale} from 'react-native-size-matters';
 import R from '../../../../res/R';
 import TextC from '../../../../components/Text';
 import {ChoiceData} from '../res/rawData';
-import { useCategories } from '../../../../contexts/storeState';
-import { useBaseUrl } from '../../../../contexts/storeState';
+import {useCategories} from '../../../../contexts/storeState';
+import {useBaseUrl} from '../../../../contexts/storeState';
+import {navigate} from '../../../../utils/navigationServices';
+import {navigationRef} from '../../../../../App';
+import ProductListScreen from '../../../ProoductList';
+import CategoryDetail from '../../../Category/CategoryDetail';
+// import CategoryItemScreen from '../../../Category/CategoryItemScreen';
 
 const ChoiceItem = ({item, index}) => {
-  const bannerBashUrl = useBaseUrl(state=>state.url)
-  const IMG_BACKGROUND = bannerBashUrl?.base_urls?.category_image_url+'/'+item?.icon
-
-  return(
-    <TouchableOpacity>
+  const bannerBashUrl = useBaseUrl(state => state.url);
+  const IMG_BACKGROUND =
+    bannerBashUrl?.base_urls?.category_image_url + '/' + item?.icon;
+  return (
+    <TouchableOpacity
+      onPress={() => navigationRef.navigate('ProductListScreen',item?.name)}>
       <ImageBackground
-        source={{uri:IMG_BACKGROUND}}
+        source={{uri: IMG_BACKGROUND}}
         style={{
           height: verticalScale(80),
           width: moderateScale(150),
@@ -32,21 +39,27 @@ const ChoiceItem = ({item, index}) => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <TextC numberOfLines={1} font="bold" variant="h5" color={R.color.dark.white}>
+          <TextC
+            numberOfLines={1}
+            font="bold"
+            variant="h5"
+            color={R.color.dark.white}>
             {item?.name}
           </TextC>
         </View>
       </ImageBackground>
     </TouchableOpacity>
-  )
+  );
 };
 
 export const ChoiceList = () => {
+  const chooseCategory = useCategories(state =>
+    state.home_categories.filter(
+      i => i.id == 466 || i.id == 467 || i.id == 470 || i.id == 468,
+    ),
+  );
 
-const chooseCategory = useCategories(state=>state.home_categories)
-console.log(chooseCategory,'=======>')
-
-  return(
+  return (
     <View style={{marginVertical: verticalScale(10), alignItems: 'center'}}>
       <View
         style={{
@@ -63,7 +76,7 @@ console.log(chooseCategory,'=======>')
       </View>
       <FlatList
         data={chooseCategory}
-        renderItem={(_details)=><ChoiceItem {..._details} />}
+        renderItem={_details => <ChoiceItem {..._details} />}
         showsHorizontalScrollIndicator={false}
         numColumns={2}
         ItemSeparatorComponent={
@@ -75,5 +88,5 @@ console.log(chooseCategory,'=======>')
         }
       />
     </View>
-  )
+  );
 };
