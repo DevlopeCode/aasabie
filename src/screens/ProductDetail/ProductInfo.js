@@ -5,13 +5,15 @@ import {color} from '../../config/color';
 import StarIcon from './StarIcon';
 import LikeBtn from './LikeBtn';
 import TextC from '../../components/Text';
+import { SvgXml } from 'react-native-svg';
+import { HeartOulineSvg, HeartOutline } from '../../assets/SVG';
 // import UserIcon from '../../assets/UserIcon';
 
 const ProductInfo = props => {
   return (
     <SafeAreaView>
       <View style={styles.productInfoContainer}>
-        <TextC font="medium" variant="h5">
+        <TextC font="semibold" variant="title4">
           {props.title}
         </TextC>
 
@@ -30,7 +32,7 @@ const ProductInfo = props => {
           </View>
 
           <View style={{flexDirection: 'row', gap: 3, alignItems: 'center'}}>
-            <LikeBtn size={28} />
+           <SvgXml xml={HeartOutline}/>
             <TextC font="medium" variant="h6" color="red">
               294 Likes
             </TextC>

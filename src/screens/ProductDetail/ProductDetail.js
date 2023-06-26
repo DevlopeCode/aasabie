@@ -1,24 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
   ImageBackground,
   TouchableWithoutFeedback,
-  Image,
   Dimensions,
-  TouchableOpacity,
 } from 'react-native';
 import React, {useRef} from 'react';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 
-import ShopTopBar from '../../components/ShopTopBar/ShopTopBar';
 import {height, width} from '../../config/dimension';
-import LikeBtn from './LikeBtn';
-import ShareBtn from './ShareBtn';
-import TryOnBtn from './TryOnBtn';
-import NegotiationIcon from './NegotiationIcon';
 import {color} from '../../config/color';
 import Varients from './Varients';
 import ProductInfo from './ProductInfo';
@@ -26,18 +18,10 @@ import PriceSection from './PriceSection';
 import {ScrollView} from 'react-native';
 import {ProductHeader} from '../ProoductList/ProductHeader';
 // import Carousel from 'react-native-reanimated-carousel';
-import {
-  moderateScale,
-  s,
-  scale,
-  verticalScale,
-  vs,
-} from 'react-native-size-matters';
-import {navigate} from '../../utils/navigationServices';
+import {s, scale, vs} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
 import {
   HeartOulineSvg,
-  HeartOutline,
   NegociationSVG,
   ShareSvg,
   VRSVG,
@@ -142,11 +126,10 @@ const ProductDetail = () => {
   };
   const sliderRef = useRef(null);
   return (
-    <ScrollView>
+    <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
       <ProductHeader title={'Negotiation'} />
       {/* <ImageaCarousel data={testData.images}/> */}
       <Carousel
-        // loop
         ref={sliderRef}
         sliderWidth={Dimensions.get('window').width}
         itemWidth={Dimensions.get('window').width}
@@ -269,12 +252,13 @@ const ProductDetail = () => {
           borderRadius: 10,
         }}
         inactiveDotColor={'red'}
-        // inactiveDotOpacity={0.4}
-        // inactiveDotScale={0.6}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
         carouselRef={sliderRef}
         tappableDots={!!sliderRef}
       />
       <Varients
+        ref={sliderRef}
         data={testData.variants[0].options}
         currentSelected={currentVarient}
         handelChangeVarient={data => setCurrentVarient(data)}
@@ -286,105 +270,35 @@ const ProductDetail = () => {
         seen={testData.seens}
         likes={testData.likes}
       />
-      <Varients
-        data={testData.variants[0].options}
-        currentSelected={currentVarient}
-        handelChangeVarient={data => setCurrentVarient(data)}
-      />
-      {/* <ScrollView>
-        <ImageBackground
-          source={{
-            uri: testData.variants[0].options[currentVarient].images[0],
-          }}
-          style={styles.image}>
-          <View style={styles.container}>
-            <TouchableWithoutFeedback>
-              <View style={styles.tryonbtn}>
-                <TryOnBtn size={30} />
-                <Text
-                  style={{
-                    fontFamily: 'PoppinsSemiBold',
-                    color: '#9931C0',
-                    fontSize: 10,
-                  }}>
-                  Try on
-                </Text>
-              </View>
-            </TouchableWithoutFeedback>
+      <PriceSection price={testData.price} discount={testData.discount} />
 
-            <View style={styles.options}>
-              <TouchableWithoutFeedback onPress={handelLike}>
-                <View>
-                  <LikeBtn active={like} size={30} />
-                </View>
-              </TouchableWithoutFeedback>
-
-              <TouchableWithoutFeedback>
-                <View>
-                  <ShareBtn size={30} />
-                </View>
-              </TouchableWithoutFeedback>
+      <TextC font="medium" gutterLeft={20}>
+        Size
+      </TextC>
+      <View style={styles.sizes}>
+        {testData.variants[1].options.map((item, index) => (
+          <TouchableWithoutFeedback key={index}>
+            <View style={styles.size}>
+              <TextC font="semibold" style={{paddingHorizontal: 5}}>
+                {item}
+              </TextC>
             </View>
+          </TouchableWithoutFeedback>
+        ))}
+      </View>
+      <View style={styles.description}>
+        <Text style={styles.descriptionTitle}>Description</Text>
+        <Text style={styles.descriptionText}>{testData.description}</Text>
+      </View>
 
-            <View>
-              <TouchableWithoutFeedback>
-                <View style={styles.NegoBTN}>
-                  <NegotiationIcon size={30} />
-                  <Text
-                    style={{
-                      fontFamily: 'PoppinsSemiBold',
-                      color: 'white',
-                      fontSize: 10,
-                    }}>
-                    Negotiation Availble
-                  </Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          </View>
-        </ImageBackground>
+      <View style={styles.ProductDetails}>
+        <Text style={styles.ProductDetailsTitle}>Product Details</Text>
 
-        <Varients
-          data={testData.variants[0].options}
-          currentSelected={currentVarient}
-          changeVarient={data => setCurrentVarient(data)}
-        />
-
-        <ProductInfo
-          title={testData.title}
-          ratingCount={testData.reviews}
-          rating={testData.rating}
-          seen={testData.seens}
-          likes={testData.likes}
-        />
-
-        <PriceSection price={testData.price} discount={testData.discount} />
-
-        <Text style={styles.sizeTitle}>Size</Text>
-        <View style={styles.sizes}>
-          {testData.variants[1].options.map((item, index) => (
-            <TouchableWithoutFeedback key={index}>
-              <View style={styles.size}>
-                <Text style={styles.sizeText}>{item}</Text>
-              </View>
-            </TouchableWithoutFeedback>
-          ))}
+        <View style={styles.ProductDetailsItem}>
+          <Text style={styles.ProductDetailsItemTitle}>Category</Text>
+          <Text style={styles.ProductDetailsItemText}>Test</Text>
         </View>
-
-        <View style={styles.description}>
-          <Text style={styles.descriptionTitle}>Description</Text>
-          <Text style={styles.descriptionText}>{testData.description}</Text>
-        </View>
-
-        <View style={styles.ProductDetails}>
-          <Text style={styles.ProductDetailsTitle}>Product Details</Text>
-
-          <View style={styles.ProductDetailsItem}>
-            <Text style={styles.ProductDetailsItemTitle}>Category</Text>
-            <Text style={styles.ProductDetailsItemText}>Test</Text>
-          </View>
-        </View>
-      </ScrollView> */}
+      </View>
     </ScrollView>
   );
 };
@@ -508,6 +422,8 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     borderWidth: 1,
     minWidth: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   sizeText: {
     fontFamily: 'PoppinsSemiBold',

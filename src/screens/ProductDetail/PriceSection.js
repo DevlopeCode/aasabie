@@ -1,17 +1,22 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {color} from '../../config/color';
+import TextC from '../../components/Text';
 
 const PriceSection = ({discount, price}) => {
   return (
     <View style={styles.priceContainer}>
-      <Text style={styles.discount}>{discount} % Off</Text>
+      <TextC font="semibold" variant="h2" color="#1F7401">
+        {discount} % Off
+      </TextC>
 
       <View style={styles.discountedPriceContainer}>
-        <Text style={styles.discountedPrice}>₹ {price}</Text>
-        <Text style={styles.originalPrice}>
+        <TextC font="bold" variant="h0">
+          ₹ {price}
+        </TextC>
+        <TextC font="medium" style={{textDecorationLine: 'line-through'}}>
           ₹ {price * (1 + discount / 100)}
-        </Text>
+        </TextC>
       </View>
     </View>
   );
@@ -37,6 +42,7 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: -5},
     shadowOpacity: 0.25,
     shadowRadius: 5,
+    marginBottom:18
   },
   discountedPriceContainer: {
     flexDirection: 'row',
