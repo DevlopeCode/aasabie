@@ -55,12 +55,10 @@ const Profile = ({navigation}) => {
         <View
           style={{
             alignSelf: 'center',
-            backgroundColor: 'red',
             marginTop: '5%',
             height: moderateScale(100),
             width: moderateScale(100),
             borderRadius: moderateScale(55),
-            // overflow:'hidden'
           }}>
           <View
             style={{

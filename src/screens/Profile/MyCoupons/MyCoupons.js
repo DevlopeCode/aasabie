@@ -2,10 +2,21 @@ import {FlatList, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {wp} from '../../../components/Responsive';
 import {vs} from 'react-native-size-matters';
+import { SvgXml } from 'react-native-svg';
+import { ArrowLeft_red } from '../../../assets/SVG';
+// ArrowLeft_red
 
+const Header =()=>{
+  return(
+    <View style={{height:vs(70), paddingHorizontal:20, justifyContent:'center'}} >
+<SvgXml xml={ArrowLeft_red}/>
+    </View>
+  )
+}
 export default function MyCoupons() {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
+      <Header/>
       <FlatList
         data={[1, 2, 3, , 4, 5, 5, 343, 4, 34, 34, 34]}
         renderItem={({item, index}) => (
