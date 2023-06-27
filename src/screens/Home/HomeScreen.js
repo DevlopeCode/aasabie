@@ -1,58 +1,88 @@
-import { FlatList, StyleSheet, Text, View , Image} from 'react-native'
-import React from 'react'
-import { wp } from '../../components/Responsive'
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+import React, {useState} from 'react';
+import {wp, hp} from '../../components/Responsive';
+import StepIndicator from 'react-native-step-indicator';
+import ScrollContainer from '../../components/ScrollComponent';
+import {Header} from '../Profile/MyCoupons/MyCoupons';
+import Accordion from 'react-native-collapsible/Accordion';
+import {vs} from 'react-native-size-matters';
+import {SvgXml} from 'react-native-svg';
+import {CartArrowUp, CartArrowDown, DeleteIcon} from '../../assets/SVG';
+import {StepCounter} from '../CartScreens/Cart';
 
-
-const LayoutCard =()=>{
-  return(
-    <View style={{
-      height:120,
-       backgroundColor:'white',
-        borderRadius:10,
-         marginVertical:10,
-          marginHorizontal:wp(5),
-          shadowColor: "#8c8c8c",
-          shadowOffset: {
-            width: 0,
-            height: 8,
-          },
-          shadowOpacity: 0.46,
-          shadowRadius: 11.14,
-          elevation: 7,
-          overflow:'hidden',
-          flexDirection:'row',
-          padding:10
-        }} >
-          <Image 
-          source={{uri:'https://dfstudio-d420.kxcdn.com/wordpress/wp-content/uploads/2019/06/digital_camera_photo-1080x675.jpg'}}
-          style={{
-            height:'100%',
-            width:108,
-            borderRadius:12
-              }} 
-              />
-              <View style={{paddingLeft:15}} >
-                <Text style={{width:wp(52)}} >Women Jumpsuit Pattern Design Cover Up</Text>
-                <Text style={{marginTop:10}} >Rs 499 <Text>Rs. 799</Text><Text> ( 30% off )</Text> </Text>
-              </View>
-            
-        </View>
-  )
-}
+const AccordionComponent = ({title}) => {
+  return (
+    <View
+      style={{height: vs(42), borderBottomWidth: 1, justifyContent: 'center'}}>
+      <Text>{title}</Text>
+    </View>
+  );
+};
 
 export default function HomeScreen() {
   return (
-    <View style={{flex:1, backgroundColor:'white'}}>
-      <FlatList
-      data={[1,2,3]}
-      ListFooterComponent={<View style={{height:20}} />}
-      renderItem={LayoutCard}
-      />
-    </View>
-  )
+    <ScrollContainer header={<Header title="Payment Method" />}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
+        <StepCounter />
+        <View style={{paddingHorizontal: wp(6)}}>
+          <Text style={{marginTop: hp(3), color: 'black', fontSize: vs(12)}}>
+            Select Payment Method
+          </Text>
+          <AccordionComponent title="UPI (Google Pay/PhonePe)" />
+          <AccordionComponent title="Wallet" />
+          <AccordionComponent title="Debit/Credit Card" />
+          <AccordionComponent title="Net Banking" />
+          <AccordionComponent title="Cash on Delivery" />
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              marginTop: 12,
+              
+            }}>
+            <View>
+              <Text style={{marginBottom:vs(7), fontSize:vs(12), fontWeight:'600'}} >Reselling the order?</Text>
+              <Text style={{fontSize:vs(8)}} >Click on 'Yes' to add Final Price</Text>
+            </View>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  borderRadius: 20,
+                  borderWidth: 1,
+                }}>
+                <Text style={{paddingHorizontal: 10, paddingVertical: 4}}>
+                  No
+                </Text>
+              </View>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  borderRadius: 20,
+                  borderWidth: 1,
+                  marginLeft:8
+                }}>
+                <Text style={{paddingHorizontal: 10, paddingVertical: 4}}>
+                  Yes
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </ScrollContainer>
+  );
 }
 
-
+const styles = StyleSheet.create({});
 
 // import {
 //   View,
@@ -454,10 +484,9 @@ export default function HomeScreen() {
 //         clearInterval(interval);
 //       }
 //     }
-   
+
 //     interval = setInterval(dostuff, 2400);
 //   }, []);
-
 
 //   console.log(navigation, 'navigationnavigationnavigation');
 

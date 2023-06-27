@@ -230,6 +230,6 @@ export const CartArrowUp =`<svg xmlns="http://www.w3.org/2000/svg" width="16" he
 <path d="M3.53125 9.6875L8.04991 5.3125L12.5686 9.6875" stroke="#8F959E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`
 
-export const CartArrowUP =`<svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
+export const CartArrowDown =`<svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
 <path d="M10.5295 1.3125L6.01084 5.6875L1.49219 1.3125" stroke="#8F959E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`
