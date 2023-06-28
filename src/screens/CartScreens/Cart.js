@@ -115,9 +115,6 @@ const LayoutCard = () => {
           <SvgXml xml={DeleteIcon} />
         </View>
       </View>
-
-      {/*
-       */}
     </View>
   );
 };
@@ -293,7 +290,7 @@ export default function Cart() {
                   marginTop: 3,
                   alignItems: 'center',
                   paddingVertical: 5,
-                  backgroundColor: 'red',
+                  backgroundColor: '#EC303A',
                 }}>
                 <Text
                   style={{fontSize: vs(9), fontWeight: '900', color: 'white'}}>
@@ -305,7 +302,7 @@ export default function Cart() {
         />
         <AccordionLayout style={{marginTop: hp(4)}} title="Apply Coupon" />
 
-        <View style={{marginHorizontal: wp(5), marginTop: hp(5)}}>
+        <View style={{marginHorizontal: wp(5), marginTop: 30}}>
           <Text style={{fontSize: vs(14), fontWeight: '900', color: 'black'}}>
             Price Details
           </Text>
@@ -329,7 +326,7 @@ export default function Cart() {
           </View>
         </View>
       </View>
-      <Text style={{backgroundColor:'#FFE4E6', paddingVertical:13, fontSize:vs(10), textAlign:'center', marginTop:50}} >Pay Online & Get Extra 20% Off</Text>
+      <Text style={{backgroundColor:'#FFE4E6', paddingVertical:10, fontSize:vs(10), fontWeight:'400', textAlign:'center', marginTop:50}} >Pay Online & Get Extra 20% Off</Text>
       <View style={{height: 120}} />
     </ScrollContainer>
   );
