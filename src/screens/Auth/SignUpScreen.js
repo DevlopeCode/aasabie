@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import {
   View,
@@ -8,8 +7,9 @@ import {
   Dimensions,
   StyleSheet,
   ScrollView,
+  Alert,
 } from 'react-native';
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useRef, useState, useEffect} from 'react';
 import BackArrowCircle from '../../components/buttons/BackButtons';
 import SquareButton from '../../components/buttons/Btn1';
 import SignInWithGoogleButton from '../../components/buttons/SignInWithGoogleBtn';
@@ -18,13 +18,32 @@ import TopImg2 from '../../assets/images/signinTop.jpg';
 const {width, height} = Dimensions.get('window');
 
 // import ButtonGroup from '../../components/buttons/ButtonGroup';
-import {register} from '../../utils/apis/api';
+import {
+  FIRST_NAME_KEY,
+  registe,
+  LAST_NAME_KEY,
+  EMAIL_KEY,
+  PASSWORD_KEY,
+  PHONE_KEY,
+} from '../../utils/apis/api';
 import {NAME_ERROR, EMAIL_ERROR, VALID_EMAIL_ERROR} from '../../utils/contants';
 import {UserContext} from '../../contexts/UserContext';
 import Input from '../../components/Input';
+import {useFetchPostFormData} from '../../requests/requestHook';
+import {navigate} from '../../utils/navigationServices';
 const SignUpScreen = () => {
   const navigation = useNavigation();
-
+  const {fetchData, response, error, isLoading} =
+    useFetchPostFormData('auth/register');
+  useEffect(() => {
+    if (response) {
+      if (response.temporary_token) {
+        navigate('SignIn');
+      } else if (response.errors) {
+        Alert.alert(response?.errors[0].message);
+      }
+    }
+  }, [response]);
   // Fonts
 
   // states
@@ -86,22 +105,17 @@ const SignUpScreen = () => {
 
   const handleSignUp = async () => {
     //setIsUserLoggedIn(true)
-    const str = inputs.fullName.split(' ');
-    console.log(str[0], str[1], email, '9045016115', password);
-    try {
-      const response = await register(str[0], str[1], email, '', password);
-      // Handle successful login response
-      console.log(response);
-      setUserInfo(response);
-      //setLoading(false);
-      setIsUserLoggedIn(true);
-    } catch (error) {
-      // Handle error
-      //setLoading(false);
+    let formData = new FormData();
 
-      console.log(error);
-      setError(error);
-    }
+    const str = inputs.fullname.split(' ');
+    formData.append(FIRST_NAME_KEY, str[0]);
+    formData.append(LAST_NAME_KEY, str[1]);
+    formData.append(EMAIL_KEY, inputs.email);
+    formData.append(PHONE_KEY, inputs.phone);
+    formData.append(PASSWORD_KEY, inputs.password);
+    console.log(formData, 'input');
+
+    fetchData(formData);
   };
 
   const handleOnchange = (text, input) => {
@@ -153,7 +167,15 @@ const SignUpScreen = () => {
           autoCorrect={false}
           error={errors.email}
         />
-
+        <Input
+          onChangeText={text => handleOnchange(text, 'phone')}
+          onFocus={() => handleError(null, 'phone')}
+          label="Phone No."
+          placeholder="Enter Phone No."
+          placeholderTextColor="#A8A6A6"
+          autoCorrect={false}
+          error={errors.phone}
+        />
         {/*Input Container for PassWord */}
         <Input
           label="Password"
@@ -164,6 +186,7 @@ const SignUpScreen = () => {
           autoCorrect={false}
           error={errors.password}
           true
+          onChangeText={text => handleOnchange(text, 'password')}
         />
         {/*Input Container for Confirm passWord */}
         <Input
@@ -175,6 +198,7 @@ const SignUpScreen = () => {
           autoCorrect={false}
           error={errors.confirmPassword}
           true
+          onChangeText={text => handleOnchange(text, 'confirmPassword')}
         />
 
         {/* SignUp and SignInWithGoogle button */}

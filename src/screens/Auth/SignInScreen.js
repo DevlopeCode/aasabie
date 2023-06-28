@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 import {
   View,
@@ -8,8 +9,9 @@ import {
   StyleSheet,
   Keyboard,
   ScrollView,
+  Alert,
 } from 'react-native';
-import React, {useContext, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import BackArrowCircle from '../../components/buttons/BackButtons';
 import SquareButton from '../../components/buttons/Btn1';
 import SignInWithGoogleButton from '../../components/buttons/SignInWithGoogleBtn';
@@ -18,7 +20,9 @@ import TopImg2 from '../../assets/images/signinTop.jpg';
 import {UserContext} from '../../contexts/UserContext';
 import Input from '../../components/Input';
 import {EMAIL_ERROR, VALID_EMAIL_ERROR} from '../../utils/contants';
-import {login} from '../../utils/apis/api';
+import {EMAIL_KEY, login, PASSWORD_KEY} from '../../utils/apis/api';
+import {useFetchPostFormData} from '../../requests/requestHook';
+import {navigate} from '../../utils/navigationServices';
 const {width, height} = Dimensions.get('window');
 
 // import ButtonGroup from '../../components/buttons/ButtonGroup';
@@ -96,6 +100,19 @@ const SignInScreen = () => {
     email: '',
     password: '',
   });
+  const {fetchData, response, error, isLoading} =
+    useFetchPostFormData('auth/login');
+  console.log(response, error, isLoading);
+
+  useEffect(() => {
+    if (response) {
+      if (response?.token) {
+        setIsUserLoggedIn(true);
+      } else {
+        Alert.alert(response?.errors[0].message);
+      }
+    }
+  }, [isLoading]);
 
   const validate = () => {
     Keyboard.dismiss();
@@ -124,22 +141,27 @@ const SignInScreen = () => {
 
   const handleLogin = async () => {
     //setIsUserLoggedIn(true)
-    try {
-      const response = await login(email, password);
-      // Handle successful login response
-      console.log(response);
-      setUserInfo(response);
-      //setLoading(false);
-      setIsUserLoggedIn(true);
-    } catch (error) {
-      // Handle error
-      //setLoading(false);
+    console.log(inputs);
+    let formData = new FormData();
+    formData.append(EMAIL_KEY, inputs.email);
+    formData.append(PASSWORD_KEY, inputs.password);
+    fetchData(formData);
+    // return fetchAPI('/login', formData);
+    // try {
+    //   const response = await login(email, password);
+    //   // Handle successful login response
+    //   console.log(response);
+    //   setUserInfo(response);
+    //   //setLoading(false);
+    //   setIsUserLoggedIn(true);
+    // } catch (error) {
+    //   // Handle error
+    //   //setLoading(false);
 
-      console.log(error);
-      setError(error);
-    }
+    //   console.log(error);
+    //   setError(error);
+    // }
   };
-
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
   };
@@ -221,7 +243,11 @@ const SignInScreen = () => {
             bgclr={'black'}
             ref={childComponentRef}
             onPresss={e => {
-              setIsUserLoggedIn(true);
+              if (e.user) {
+                setIsUserLoggedIn(true);
+              } else {
+                Alert.alert('Login Failed');
+              }
             }}
           />
         </View>

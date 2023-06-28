@@ -19,12 +19,13 @@ export async function login(email, password) {
   return fetchAPI('/login', formData);
 }
 
-export async function register(fname, lname, email, phn, password) {
+export async function register(fname, lname, email, password) {
+  console.log(fname, lname, email, password, 'api');
   let formData = new FormData();
   formData.append(FIRST_NAME_KEY, fname);
   formData.append(LAST_NAME_KEY, lname);
   formData.append(EMAIL_KEY, email);
-  formData.append(PHONE_KEY, phn);
+  // formData.append(PHONE_KEY, phn);
   formData.append(PASSWORD_KEY, password);
 
   return fetchAPI('/register', formData);
