@@ -44,9 +44,6 @@ const SignUpScreen = () => {
       }
     }
   }, [response]);
-  // Fonts
-
-  // states
   const [inputs, setInputs] = React.useState({
     email: '',
     fullname: '',

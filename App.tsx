@@ -14,6 +14,7 @@ import {
   createNavigationContainerRef,
 } from '@react-navigation/native';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {clearStore, getStringStore, setStringStore} from './src/utils/storage';
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,13 @@ export const navigationRef = createNavigationContainerRef();
 export default function App() {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [isUserLoggedInAsGuest, setIsUserLoggedInAsGuest] = useState(false);
-
+  const CheckAuth = () => {
+    if (isUserLoggedIn) {
+      setStringStore('loginkey', 'true');
+    } else {
+      clearStore();
+    }
+  };
   console.warn = () => {};
   console.error = () => {};
   // console.log =()=>{}
