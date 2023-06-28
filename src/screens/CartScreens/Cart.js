@@ -27,6 +27,7 @@ const CountIncreaseComponent = () => {
           alignItems: 'center',
           borderRadius: 20,
           borderWidth: 0.7,
+          borderColor:'#DEDEDE'
         }}>
         <SvgXml xml={CartArrowUp} />
       </TouchableOpacity>
@@ -44,6 +45,7 @@ const CountIncreaseComponent = () => {
           alignItems: 'center',
           borderRadius: 20,
           borderWidth: 0.7,
+          borderColor:'#DEDEDE'
         }}>
         <SvgXml xml={CartArrowDown} />
       </TouchableOpacity>
@@ -108,6 +110,7 @@ const LayoutCard = () => {
             borderRadius: 20,
             borderWidth: 0.7,
             bottom: 0,
+            borderColor:'#DEDEDE'
           }}>
           <SvgXml xml={DeleteIcon} />
         </View>
