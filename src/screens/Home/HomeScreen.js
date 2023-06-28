@@ -1,131 +1,20 @@
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
-import React, {useState} from 'react';
-import {wp, hp} from '../../components/Responsive';
-import StepIndicator from 'react-native-step-indicator';
-import ScrollContainer from '../../components/ScrollComponent';
-import {Header} from '../Profile/MyCoupons/MyCoupons';
-import Accordion from 'react-native-collapsible/Accordion';
-import {vs} from 'react-native-size-matters';
-import {SvgXml} from 'react-native-svg';
-import {CartArrowUp, CartArrowDown, DeleteIcon} from '../../assets/SVG';
-import {StepCounter} from '../CartScreens/Cart';
 
-const AccordionComponent = ({title}) => {
-  return (
-    <View
-      style={{height: vs(42), borderBottomWidth: 1, justifyContent: 'center'}}>
-      <Text>{title}</Text>
-    </View>
-  );
-};
+
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import PaymentMethod from '../CartScreens/PaymentMethod'
+import AddDeliveryAddress from '../CartScreens/AddDeliveryAddress'
+import Address from '../CartScreens/Address'
+import Cart from '../CartScreens/Cart'
 
 export default function HomeScreen() {
   return (
-    <ScrollContainer header={<Header title="Payment Method" />}>
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        <StepCounter />
-        <View style={{paddingHorizontal: wp(6)}}>
-          <Text style={{marginTop: hp(3), color: 'black', fontSize: vs(12)}}>
-            Select Payment Method
-          </Text>
-          <AccordionComponent title="UPI (Google Pay/PhonePe)" />
-          <AccordionComponent title="Wallet" />
-          <AccordionComponent title="Debit/Credit Card" />
-          <AccordionComponent title="Net Banking" />
-          <AccordionComponent title="Cash on Delivery" />
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              marginTop: 12,
-            }}>
-            <View>
-              <Text
-                style={{
-                  marginBottom: vs(7),
-                  fontSize: vs(12),
-                  fontWeight: '600',
-                }}>
-                Reselling the order?
-              </Text>
-              <Text style={{fontSize: vs(8)}}>
-                Click on 'Yes' to add Final Price
-              </Text>
-            </View>
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                  borderWidth: 1,
-                }}>
-                <Text style={{paddingHorizontal: 10, paddingVertical: 4}}>
-                  No
-                </Text>
-              </View>
-              <View
-                style={{
-                  justifyContent: 'center',
-                  borderRadius: 20,
-                  borderWidth: 1,
-                  marginLeft: 8,
-                }}>
-                <Text style={{paddingHorizontal: 10, paddingVertical: 4}}>
-                  Yes
-                </Text>
-              </View>
-            </View>
-          </View>
-          <Text style={{marginTop: 10}}>Price Detail (3 Items)</Text>
-          <View
-            style={{
-              height: vs(37),
-              borderBottomWidth: 1,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text>Total Product Price</Text>
-            <Text style={{textAlign: 'right'}}>+ 791</Text>
-          </View>
-
-          <View
-            style={{
-              height: vs(37),
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}>
-            <Text style={{fontSize: vs(13), color: 'black'}}>Order Total</Text>
-            <Text style={{textAlign: 'right'}}>+ 791</Text>
-          </View>
-          <View style={{backgroundColor: 'pink', borderRadius: 4}}>
-            <Text
-              style={{
-                paddingVertical: 8,
-                fontSize: vs(9),
-                textAlign: 'center',
-              }}>
-              Clicking on Continue will not deduct any money
-            </Text>
-          </View>
-         
-        </View>
-        <View style={{height:80, backgroundColor:'red', borderTopLeftRadius:16, borderTopRightRadius:16}}  ></View>
-      </View>
-    </ScrollContainer>
-  );
+   <Cart/>
+  )
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})
+
 
 // import {
 //   View,

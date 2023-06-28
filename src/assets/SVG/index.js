@@ -233,3 +233,31 @@ export const CartArrowUp =`<svg xmlns="http://www.w3.org/2000/svg" width="16" he
 export const CartArrowDown =`<svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
 <path d="M10.5295 1.3125L6.01084 5.6875L1.49219 1.3125" stroke="#8F959E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`
+
+
+export const BottomLayoutCard =`<svg xmlns="http://www.w3.org/2000/svg" width="390" height="105" viewBox="0 0 390 105" fill="none">
+<g filter="url(#filter0_d_967_38652)">
+<path d="M0 19C0 13.4772 4.47715 9 10 9H380C385.523 9 390 13.4772 390 19V105H0V19Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_d_967_38652" x="-4" y="0" width="398" height="105" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="-5"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_967_38652"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_967_38652" result="shape"/>
+</filter>
+</defs>
+</svg>`
+
+
+export const AddIcon =`<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+<path d="M6.75 1C6.75 0.585786 6.41421 0.25 6 0.25C5.58579 0.25 5.25 0.585786 5.25 1V5.25H1C0.585787 5.25 0.25 5.58579 0.25 6C0.25 6.41421 0.585787 6.75 1 6.75H5.25V11C5.25 11.4142 5.58579 11.75 6 11.75C6.41421 11.75 6.75 11.4142 6.75 11V6.75H11C11.4142 6.75 11.75 6.41421 11.75 6C11.75 5.58579 11.4142 5.25 11 5.25H6.75V1Z" fill="#EC303A"/>
+</svg>`
+
+export const ArrowUp = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="7" viewBox="0 0 11 7" fill="none">
+<path d="M10.0373 5.375L5.51866 1L1 5.375" stroke="#8F959E" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`

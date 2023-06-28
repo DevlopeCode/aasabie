@@ -7,7 +7,8 @@ import {Header} from '../Profile/MyCoupons/MyCoupons';
 import Accordion from 'react-native-collapsible/Accordion';
 import {vs} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
-import {CartArrowUp, CartArrowDown, DeleteIcon} from '../../assets/SVG';
+import { CartArrowUp, CartArrowDown, DeleteIcon, ArrowUp } from '../../assets/SVG';
+
 
 const CountIncreaseComponent = () => {
   const [count, stCount ]= useState(0)
@@ -16,9 +17,7 @@ const CountIncreaseComponent = () => {
       <TouchableOpacity
       activeOpacity={0.8}
       onPress={()=>{
-
         if(count!==0)  stCount(state=>state-1)
-       
       }}
         style={{
           padding: 5,
@@ -84,18 +83,18 @@ const LayoutCard = () => {
         }}
       />
       <View style={{paddingLeft: 15}}>
-        <Text style={{width: wp(52), fontSize: vs(10)}}>
+        <Text style={{width: wp(52), fontSize: vs(10), fontWeight:'500'}}>
           Women Jumpsuit Pattern Design Cover Up
         </Text>
-        <Text style={{marginTop: 10, fontSize: vs(10), fontWeight: 'bold'}}>
-          Rs 499 <Text>Rs. 799</Text>
-          <Text> ( 30% off )</Text>{' '}
+        <Text style={{marginTop: 10, fontSize: vs(11), fontWeight: '900'}}>
+          Rs 499 <Text style={{color:'#666666', fontSize:vs(10), textDecorationLine:'line-through'}}> Rs. 799</Text>
+          <Text style={{color:'#EC303A', fontSize:vs(11), textDecorationLine:'line-through'}}> ( 30% off )</Text>{' '}
         </Text>
         <View
           style={{
             flexDirection: 'row',
             width: '80%',
-            marginTop: '4%',
+            marginTop: '6%',
             alignItems: 'center',
           }}>
           <CountIncreaseComponent />
@@ -131,8 +130,11 @@ const AccordionLayout = ({title, style}) => {
           borderTopLeftRadius: 5,
           borderTopRightRadius: 5,
           paddingHorizontal: 20,
+          alignItems:'center',
+          justifyContent:'space-between'
         }}>
-        <Text style={{paddingVertical: 12}}>{title}</Text>
+        <Text style={{paddingVertical: 12, fontWeight:'500'}}>{title}</Text>
+        <SvgXml xml={ArrowUp} />
       </View>
     );
   };
@@ -158,8 +160,8 @@ const AccordionLayout = ({title, style}) => {
         <Text numberOfLines={1} style={{fontSize: vs(8)}}>
           Women Jumpsuit
         </Text>
-        <Text style={{fontSize: vs(9), fontWeight: 'bold', marginVertical: 1}}>
-          Rs. 299 <Text>( 30% off )</Text>
+        <Text style={{fontSize: vs(9), fontWeight: '900', marginVertical: 1}}>
+          Rs. 299 <Text style={{color:'#EC303A'}} >( 30% off )</Text>
         </Text>
         <Text style={{fontWeight: 'bold', fontSize: vs(8)}}>Add to Cart</Text>
       </View>
@@ -249,7 +251,8 @@ export default function Cart() {
             fontWeight: 'bold',
             fontSize: vs(13),
             marginLeft: wp(6),
-            marginTop: 15,
+            marginTop: 28,
+            marginBottom:9
           }}>
           You May Also Like
         </Text>
@@ -261,14 +264,14 @@ export default function Cart() {
           renderItem={({item, index}) => (
             <View
               style={{
-                height: vs(180),
+                height: vs(190),
                 width: wp(32),
                 borderRadius: 10,
                 marginLeft: 10,
                 overflow: 'hidden',
               }}>
               <View
-                style={{height: '66%', borderRadius: 10, overflow: 'hidden'}}>
+                style={{height: '63%', borderRadius: 10, overflow: 'hidden'}}>
                 <Image
                   source={{
                     uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn5WtCG7fO-PItTDuPjyugbOSDqwfEr65URAABd1hDbg&s',
@@ -276,9 +279,9 @@ export default function Cart() {
                   style={{height: '100%', width: '100%'}}
                 />
               </View>
-              <Text style={{fontSize: vs(8)}}>Women jumpsuit</Text>
-              <Text style={{fontSize: vs(7)}}>Pattern Design Cover Up</Text>
-              <Text style={{fontSize: vs(8)}}>Rs. ( 30% )</Text>
+              <Text style={{marginTop:3, fontSize: vs(8), marginLeft:2, fontWeight:'500'}}>Women jumpsuit</Text>
+              <Text style={{fontSize: vs(8), marginLeft:2, fontWeight:'500'}}>Pattern Design Cover Up</Text>
+              <Text style={{fontSize: vs(8), marginLeft:2, fontWeight:'900'}}>Rs. <Text style={{color:'#EC303A'}} >( 30% off )</Text></Text>
               <View
                 style={{
                   justifyContent: 'center',
@@ -329,24 +332,24 @@ export default function Cart() {
 const labels = ['Cart', 'Address', 'Payment', 'Summary'];
 const customStyles = {
   stepIndicatorSize: 25,
-  currentStepIndicatorSize: 30,
+  currentStepIndicatorSize: 25,
   separatorStrokeWidth: 2,
-  currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: '#fe7013',
-  stepStrokeWidth: 3,
-  stepStrokeFinishedColor: '#fe7013',
-  stepStrokeUnFinishedColor: '#aaaaaa',
-  separatorFinishedColor: '#fe7013',
-  separatorUnFinishedColor: '#aaaaaa',
-  stepIndicatorFinishedColor: '#fe7013',
-  stepIndicatorUnFinishedColor: '#ffffff',
-  stepIndicatorCurrentColor: '#ffffff',
+  currentStepStrokeWidth: 2,
+  stepStrokeCurrentColor: '#7FAA39',
+  stepStrokeWidth: 2,
+  stepStrokeFinishedColor: '#D9D9D9',
+  stepStrokeUnFinishedColor: '#D9D9D9',
+  separatorFinishedColor: '#D9D9D9',
+  separatorUnFinishedColor: '#D9D9D9',
+  stepIndicatorFinishedColor: '#D9D9D9',
+  stepIndicatorUnFinishedColor: '#D9D9D9',
+  stepIndicatorCurrentColor: '#7FAA39',
   stepIndicatorLabelFontSize: 13,
   currentStepIndicatorLabelFontSize: 13,
-  stepIndicatorLabelCurrentColor: '#fe7013',
-  stepIndicatorLabelFinishedColor: '#ffffff',
-  stepIndicatorLabelUnFinishedColor: '#aaaaaa',
-  labelColor: '#999999',
+  stepIndicatorLabelCurrentColor: 'white',
+  stepIndicatorLabelFinishedColor: 'black',
+  stepIndicatorLabelUnFinishedColor: 'black',
+  labelColor: 'black',
   labelSize: 13,
-  currentStepLabelColor: '#fe7013',
+  currentStepLabelColor: 'black',
 };
