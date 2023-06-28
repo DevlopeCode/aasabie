@@ -9,7 +9,7 @@ import Cart from '../CartScreens/Cart'
 
 export default function HomeScreen() {
   return (
-   <Cart/>
+   <PaymentMethod/>
   )
 }
 

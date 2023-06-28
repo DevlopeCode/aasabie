@@ -30,11 +30,15 @@ const AccordionComponent = ({title, style}) => {
       style={{
         height: vs(42),
         borderBottomWidth: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        paddingRight:13,
         borderBottomColor:'#e6e6e6',
+        flexDirection:'row',
+        alignItems:'center',
         ...style,
       }}>
       <Text style={{fontWeight: '500'}}> {title}</Text>
+      <SvgXml xml={CartArrowDown} />
     </View>
   );
 };
@@ -147,13 +151,14 @@ export default function PaymentMethod() {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <Text style={{fontSize: vs(13), color: 'black'}}>Order Total</Text>
+          <Text style={{fontSize: vs(12), fontWeight:'500', color: 'black'}}>Order Total</Text>
           <Text style={{textAlign: 'right'}}>+ 791</Text>
         </View>
-        <View style={{backgroundColor: 'pink', borderRadius: 4}}>
+        <View style={{backgroundColor: '#e6e6e6',  marginTop:10, borderRadius: 4}}>
           <Text
             style={{
-              paddingVertical: 8,
+            
+              paddingVertical: 10,
               fontSize: vs(9),
               textAlign: 'center',
             }}>
