@@ -29,8 +29,9 @@ const AccordionComponent = ({title}) => {
 
 export default function HomeScreen() {
   return (
-    <ScrollContainer header={<Header title="Payment Method" />}>
+    // <ScrollContainer header={}>
       <View style={{flex: 1, backgroundColor: 'white'}}>
+        <Header title="Payment Method" />
         <StepCounter />
         <View style={{paddingHorizontal: wp(6)}}>
           <Text style={{marginTop: hp(3), color: 'black', fontSize: vs(12)}}>
@@ -119,9 +120,9 @@ export default function HomeScreen() {
           </View>
          
         </View>
-        <View style={{height:80, backgroundColor:'red', borderTopLeftRadius:16, borderTopRightRadius:16}}  ></View>
+        <View style={{height:80, backgroundColor:'red', position:'absolute', left:0, right:0, bottom:0, borderTopLeftRadius:16, borderTopRightRadius:16}}  ></View>
       </View>
-    </ScrollContainer>
+  
   );
 }
 
