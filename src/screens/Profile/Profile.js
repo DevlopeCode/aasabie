@@ -29,6 +29,8 @@ import {
 } from '@react-navigation/stack';
 import MyCoupons from './MyCoupons/MyCoupons';
 import AccountInfo from './AccountInformation/AccountInformation';
+import {Logout} from '../../assets/SVG';
+import {Header} from './MyCoupons/MyCoupons';
 
 const RowLable = ({title, Icon, onPress}) => (
   <TouchableRipple
@@ -50,7 +52,7 @@ const RowLable = ({title, Icon, onPress}) => (
 
 const Profile = ({navigation}) => {
   return (
-    <ScrollContainer>
+    <ScrollContainer header={<Header title="Profile" />}>
       <View style={styles.container}>
         <View
           style={{
@@ -112,7 +114,9 @@ const Profile = ({navigation}) => {
               flexDirection: 'row',
               justifyContent: 'center',
               marginTop: '10%',
+              marginLeft: '-8%',
             }}>
+            <SvgXml xml={Logout} />
             <Text>Logout</Text>
           </View>
         </View>
@@ -132,11 +136,7 @@ const ProfileStack = () => {
   return (
     <Stack.Navigator screenOptions={options} initialRouteName="Profile">
       <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen
-        name="MyCoupons"
-        component={MyCoupons}
-    
-      />
+      <Stack.Screen name="MyCoupons" component={MyCoupons} />
       <Stack.Screen
         name="AccountInformation"
         options={{

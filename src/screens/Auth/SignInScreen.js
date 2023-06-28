@@ -27,7 +27,7 @@ const {width, height} = Dimensions.get('window');
 
 // import ButtonGroup from '../../components/buttons/ButtonGroup';
 
-const ButtonGroup = ({buttons, activeBtn, selectedButton, onPress}) => {
+const ButtonGroup = ({buttons, selectedButton}) => {
   const navigation = useNavigation();
   return (
     <View style={styles.buttonGroup}>
@@ -106,7 +106,7 @@ const SignInScreen = () => {
 
   useEffect(() => {
     if (response) {
-      if (response?.token) {
+      if (response.temporary_token) {
         setIsUserLoggedIn(true);
       } else {
         Alert.alert(response?.errors[0].message);

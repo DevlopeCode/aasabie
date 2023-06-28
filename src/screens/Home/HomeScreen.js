@@ -1,3 +1,6 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react-native/no-inline-styles */
+
 import {
   View,
   StyleSheet,
@@ -398,13 +401,12 @@ const HomeScreen = ({navigation}) => {
         clearInterval(interval);
       }
     }
-   
+
     interval = setInterval(dostuff, 2400);
   }, []);
 
-
   console.log(navigation, 'navigationnavigationnavigation');
-  // https://www.aasabie.com/api/v1/config
+
   return (
     <ScrollContainer>
       <FirstComponent />

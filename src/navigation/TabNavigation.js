@@ -24,12 +24,13 @@ import HomeScreen from '../screens/Home/HomeScreen';
 import {navigationRef} from '../../App';
 import ExploreScreen from '../screens/Explore';
 import CategoryScreen from '../screens/Category';
-import CartScreen from '../screens/Cart';
+// import CartScreen from '../screens/Cart';
 import NewPostScreen from '../screens/NewPost';
 import ShopStack from './ShopStack';
 import WishListScreen from '../screens/WishList';
 import {useBaseUrl} from '../contexts/storeState';
 import {useFetch} from '../requests/requestHook';
+import Cart from '../screens/CartScreens/Cart';
 
 const Tab = createBottomTabNavigator();
 
@@ -131,15 +132,19 @@ const TabNavigation = () => {
         <Tab.Screen
           name="plus"
           // NewPostScreen
-          component={NewPostScreen}
+          component={Cart}
           options={{
             tabBarIcon: ({focused}) => (
               <Pressable
                 style={styles.centericon}
                 onPress={() => {
+                  console.log(
+                    navigationRef.current.getCurrentRoute().name != 'Shop',
+                    navigationRef.current.getCurrentRoute().name,
+                  );
                   navigationRef.current.getCurrentRoute().name != 'Shop'
                     ? navigationRef.current.navigate('plus')
-                    : navigationRef.current.navigate('cart');
+                    : navigationRef.current.navigate('cartscreen');
                 }}>
                 <View style={[styles.icon, styles.centerIconContainer]}>
                   {navigationRef.current.getCurrentRoute().name != 'Shop' ? (
@@ -156,9 +161,9 @@ const TabNavigation = () => {
         />
 
         <Tab.Screen
-          name={'cart'}
+          name={'cartscreen'}
           // CartScreen
-          component={CartScreen}
+          component={Cart}
           options={{
             tabBarItemStyle: {display: 'none'},
             tabBarIcon: ({focused}) => (

@@ -262,7 +262,7 @@ const BottomTab = () => {
   );
 };
 
-const ScrollContainer = ({children}) => {
+const ScrollContainer = ({children, header}) => {
   const scrollY = useRef(new Animated.Value(0)).current;
   const offsetAnim = useRef(new Animated.Value(0)).current;
 
@@ -456,7 +456,8 @@ const ScrollContainer = ({children}) => {
         ]}>
         <Animated.View
           style={{height: CONTAINER_HEIGHT, backgroundColor: 'white', opacity}}>
-          <TopBar style={{opacity}} />
+         {header?header: <TopBar style={{opacity}} />}
+         
         </Animated.View>
       </Animated.View>
       <Animated.View
