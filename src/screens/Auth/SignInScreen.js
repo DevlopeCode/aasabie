@@ -100,19 +100,47 @@ const SignInScreen = () => {
     email: '',
     password: '',
   });
-  const {fetchData, response, error, isLoading} =
-    useFetchPostFormData('auth/login');
-  console.log(response, error, isLoading);
+
+  const {fetchData, response, error, isLoading} =useFetchPostFormData('auth/login');
+
 
   useEffect(() => {
     if (response) {
-      if (response.temporary_token) {
+      if (response?.temporary_token) {
         setIsUserLoggedIn(true);
       } else {
-        Alert.alert(response?.errors[0].message);
+        setIsUserLoggedIn(true);
+        // [0].message
+        console.log(response,'responseresponseresponse')
+        // Alert.alert(response?.errors);
       }
     }
   }, [isLoading]);
+
+
+  const handleLogin = async () => {
+    //setIsUserLoggedIn(true)
+    console.log(inputs);
+    let formData = new FormData();
+    formData.append(EMAIL_KEY, inputs?.email);
+    formData.append(PASSWORD_KEY, inputs?.password);
+    fetchData(formData);
+    // return fetchAPI('/login', formData);
+    // try {
+    //   const response = await login(email, password);
+    //   // Handle successful login response
+    //   console.log(response);
+    //   setUserInfo(response);
+    //   //setLoading(false);
+    //   setIsUserLoggedIn(true);
+    // } catch (error) {
+    //   // Handle error
+    //   //setLoading(false);
+
+    //   console.log(error);
+    //   setError(error);
+    // }
+  };
 
   const validate = () => {
     Keyboard.dismiss();
@@ -139,29 +167,7 @@ const SignInScreen = () => {
     }
   };
 
-  const handleLogin = async () => {
-    //setIsUserLoggedIn(true)
-    console.log(inputs);
-    let formData = new FormData();
-    formData.append(EMAIL_KEY, inputs.email);
-    formData.append(PASSWORD_KEY, inputs.password);
-    fetchData(formData);
-    // return fetchAPI('/login', formData);
-    // try {
-    //   const response = await login(email, password);
-    //   // Handle successful login response
-    //   console.log(response);
-    //   setUserInfo(response);
-    //   //setLoading(false);
-    //   setIsUserLoggedIn(true);
-    // } catch (error) {
-    //   // Handle error
-    //   //setLoading(false);
 
-    //   console.log(error);
-    //   setError(error);
-    // }
-  };
   const handleOnchange = (text, input) => {
     setInputs(prevState => ({...prevState, [input]: text}));
   };

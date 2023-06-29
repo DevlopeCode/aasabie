@@ -76,7 +76,7 @@ const useFetchPostFormData = url => {
         requestOptions,
       );
       const json = await res.json();
-
+console.log(json,'jsonjsonjsonjsonjson')
       setResponse(json);
       setIsLoading(false);
     } catch (error) {
