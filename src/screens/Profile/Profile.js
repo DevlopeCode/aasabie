@@ -137,15 +137,7 @@ const ProfileStack = () => {
     <Stack.Navigator screenOptions={options} initialRouteName="Profile">
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="MyCoupons" component={MyCoupons} />
-      <Stack.Screen
-        name="AccountInformation"
-        options={{
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerTitleStyle: {color: 'red'},
-        }}
-        component={AccountInfo}
-      />
+      <Stack.Screen name="AccountInformation" component={AccountInfo} />
     </Stack.Navigator>
   );
 };
