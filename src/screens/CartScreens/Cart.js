@@ -1,3 +1,4 @@
+/* eslint-disable no-sparse-arrays */
 /* eslint-disable react/no-unstable-nested-components */
 /* eslint-disable react-native/no-inline-styles */
 import {FlatList, Text, View, Image, TouchableOpacity} from 'react-native';
@@ -15,6 +16,7 @@ import {
   DeleteIcon,
   ArrowUp,
 } from '../../assets/SVG';
+import {navigate} from '../../utils/navigationServices';
 
 const CountIncreaseComponent = () => {
   const [count, stCount] = useState(0);
@@ -63,7 +65,8 @@ const CountIncreaseComponent = () => {
 
 const LayoutCard = () => {
   return (
-    <View
+    <TouchableOpacity
+      onPress={() => navigate('AddDeliveryAddress', 1)}
       style={{
         height: 120,
         backgroundColor: 'white',
@@ -140,7 +143,7 @@ const LayoutCard = () => {
           <SvgXml xml={DeleteIcon} />
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -245,12 +248,12 @@ const AccordionLayout = ({title, style}) => {
   );
 };
 
-export const StepCounter = () => {
+export const StepCounter = ({count = 0}) => {
   return (
     <StepIndicator
       customStyles={customStyles}
       stepCount={4}
-      currentPosition={0}
+      currentPosition={count}
       labels={labels}
     />
   );
@@ -318,7 +321,7 @@ export default function Cart() {
               <Text style={{fontSize: vs(8), marginLeft: 2, fontWeight: '900'}}>
                 Rs. <Text style={{color: '#EC303A'}}>( 30% off )</Text>
               </Text>
-              <View
+              <TouchableOpacity
                 style={{
                   justifyContent: 'center',
                   borderRadius: 2,
@@ -331,7 +334,7 @@ export default function Cart() {
                   style={{fontSize: vs(9), fontWeight: '900', color: 'white'}}>
                   ADD TO CART
                 </Text>
-              </View>
+              </TouchableOpacity>
             </View>
           )}
         />
@@ -374,6 +377,45 @@ export default function Cart() {
         Pay Online & Get Extra 20% Off
       </Text>
       <View style={{height: 120}} />
+      <TouchableOpacity
+        onPress={() => navigate('AddDeliveryAddress', 1)}
+        style={{
+          height: 90,
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          backgroundColor: 'white',
+          elevation: 10,
+          borderColor: '#d9d9d9',
+          borderTopWidth: 0.8,
+          borderLeftWidth: 0.5,
+          borderRightWidth: 0.5,
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          paddingHorizontal: wp(5),
+        }}>
+        <View>
+          <Text style={{fontSize: vs(16), fontWeight: '900'}}>Rs. 1287</Text>
+          <Text style={{color: '#EC303A', fontWeight: '500', marginTop: 4}}>
+            View Price Details
+          </Text>
+        </View>
+        <View style={{backgroundColor: '#EC303A', borderRadius: 9}}>
+          <Text
+            style={{
+              paddingVertical: 17,
+              fontWeight: '400',
+              paddingHorizontal: 45,
+              color: 'white',
+            }}>
+            Continue
+          </Text>
+        </View>
+      </TouchableOpacity>
     </ScrollContainer>
   );
 }

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {verticalScale, moderateScale, scale} from 'react-native-size-matters';
+import {verticalScale, moderateScale, scale, vs} from 'react-native-size-matters';
 import TextC from '../../../../components/Text';
 import R from '../../../../res/R';
 import {useBaseUrl} from '../../../../contexts/storeState';
@@ -44,7 +44,11 @@ export const Category = () => {
           style={{
             backgroundColor: '#FFACB1',
           }}
-          renderItem={detail => <CartegoryItem {...detail} />}
+          renderItem={detail => {
+            if(detail.index>4) return <></>
+// console.log(detail.index)
+            return <CartegoryItem {...detail} />
+          }}
         />
       )}
     </View>
@@ -61,7 +65,9 @@ const CartegoryItem = ({item}) => {
         borderRadius: scale(10),
         overflow: 'hidden',
         height: verticalScale(50),
-        width: verticalScale(41),
+        // width: verticalScale(41),
+        width: verticalScale(63),
+        marginTop:vs(4),
         alignItems: 'center',
         justifyContent: 'center',
       }}>

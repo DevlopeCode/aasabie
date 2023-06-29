@@ -31,6 +31,7 @@ import WishListScreen from '../screens/WishList';
 import {useBaseUrl} from '../contexts/storeState';
 import {useFetch} from '../requests/requestHook';
 import Cart from '../screens/CartScreens/Cart';
+import CartScreens from '../screens/CartScreens';
 
 const Tab = createBottomTabNavigator();
 
@@ -132,7 +133,7 @@ const TabNavigation = () => {
         <Tab.Screen
           name="plus"
           // NewPostScreen
-          component={Cart}
+          component={CartScreens}
           options={{
             tabBarIcon: ({focused}) => (
               <Pressable
@@ -163,7 +164,7 @@ const TabNavigation = () => {
         <Tab.Screen
           name={'cartscreen'}
           // CartScreen
-          component={Cart}
+          component={CartScreens}
           options={{
             tabBarItemStyle: {display: 'none'},
             tabBarIcon: ({focused}) => (

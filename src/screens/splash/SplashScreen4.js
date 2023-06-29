@@ -13,7 +13,7 @@ import {UserContext} from '../../contexts/UserContext';
 const {width, height} = Dimensions.get('window');
 const btnHeight = height * 0.1;
 const txtContainerHeight = height * 0.35;
-const ImageContainerHeight = height * 0.55;
+const ImageContainerHeight = height * 0.53;
 const BottomBtn = ({text, onPress}) => {
   return (
     <>

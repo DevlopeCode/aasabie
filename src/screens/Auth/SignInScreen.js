@@ -106,17 +106,17 @@ const SignInScreen = () => {
 
   useEffect(() => {
     if (response) {
-      if (response?.temporary_token) {
+      if (response.temporary_token || response.token) {
         setIsUserLoggedIn(true);
+        navigate('Dashbord');
       } else {
+
         setIsUserLoggedIn(true);
         // [0].message
         console.log(response,'responseresponseresponse')
-        // Alert.alert(response?.errors);
       }
     }
-  }, [isLoading]);
-
+  }, [response]);
 
   const handleLogin = async () => {
     //setIsUserLoggedIn(true)
