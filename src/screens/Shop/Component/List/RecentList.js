@@ -1,5 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
-import {Dimensions, FlatList, Image, View} from 'react-native';
+import {
+  Dimensions,
+  FlatList,
+  Image,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
 import {TopData} from '../res/rawData';
 import TextC from '../../../../components/Text';
@@ -10,9 +16,11 @@ import {
   verticalScale,
 } from 'react-native-size-matters';
 import R from '../../../../res/R';
+import {navigate} from '../../../../utils/navigationServices';
 
 const RecentListItem = ({item}) => (
-  <View
+  <TouchableOpacity
+    onPress={() => navigate('ProductDetail', item)}
     style={{
       padding: 10,
       backgroundColor: '#FFF',
@@ -59,7 +67,7 @@ const RecentListItem = ({item}) => (
         </View>
       </View>
     </View>
-  </View>
+  </TouchableOpacity>
 );
 
 export const RecentList = () => (

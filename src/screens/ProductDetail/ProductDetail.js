@@ -21,14 +21,81 @@ import {ProductHeader} from '../ProoductList/ProductHeader';
 import {s, scale, vs} from 'react-native-size-matters';
 import {SvgXml} from 'react-native-svg';
 import {
+  Avtar,
   HeartOulineSvg,
   NegociationSVG,
   ShareSvg,
+  ShopIcon,
   VRSVG,
 } from '../../assets/SVG';
 import R from '../../res/R';
 import TextC from '../../components/Text';
 import {ProductCardList} from '../ProoductList';
+import {wp} from '../../components/Responsive';
+import StarIcon from './StarIcon';
+import LinearGradient from 'react-native-linear-gradient';
+
+const ProductProgress = () => {
+  return (
+    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <TextC
+        font="medium"
+        variant="h5"
+        color={R.color.dark.black}
+        gutterRight={5}>
+        Product
+      </TextC>
+      <LinearGradient
+        colors={['#7FAA39', '#D9D9D9']}
+        style={{width: wp(32), height: vs(13), borderRadius: vs(20)}}
+      />
+      <TextC
+        font="medium"
+        variant="h5"
+        color={R.color.dark.gray2}
+        gutterLeft={5}>
+        86%
+      </TextC>
+    </View>
+  );
+};
+
+const AvatarRview = () => {
+  return (
+    <View style={{paddingHorizontal: 18, marginTop: 10}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <SvgXml xml={Avtar} />
+          <View style={{paddingLeft: s(10)}}>
+            <TextC variant="h5" font="medium">
+              Angelina Anderson
+            </TextC>
+            <View style={{flexDirection: 'row'}}>
+              <StarIcon active={true} size={18} />
+              <StarIcon active={true} size={18} />
+              <StarIcon active={true} size={18} />
+              <StarIcon active={true} size={18} />
+              <StarIcon active={false} size={18} />
+            </View>
+          </View>
+        </View>
+
+        <TextC variant="h5" font="medium" color={R.color.dark.gray2}>
+          1 month ago
+        </TextC>
+      </View>
+      <TextC variant="title4" color={R.color.dark.gray2} gutterTop={10}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
+        molestie, dictum est a.....
+      </TextC>
+    </View>
+  );
+};
 
 const ProductDetail = ({route}) => {
   console.log(route?.params);
@@ -123,9 +190,6 @@ const ProductDetail = ({route}) => {
   const [like, setLike] = React.useState(false);
   const [currentVarient, setCurrentVarient] = React.useState(0);
   console.log(currentVarient);
-  const handelLike = () => {
-    setLike(!like);
-  };
   const sliderRef = useRef(null);
   return (
     <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
@@ -147,7 +211,7 @@ const ProductDetail = ({route}) => {
         // mode="parallax"
 
         defaultIndex={currentVarient}
-        renderItem={({item, index}) => {
+        renderItem={({item}) => {
           return (
             <ImageBackground
               source={{uri: item.images[0]}}
@@ -289,18 +353,149 @@ const ProductDetail = ({route}) => {
         ))}
       </View>
       <View style={styles.description}>
-        <Text style={styles.descriptionTitle}>Description</Text>
-        <Text style={styles.descriptionText}>{testData.description}</Text>
+        <TextC variant="h4" font="medium">
+          Description
+        </TextC>
+        <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+          {testData.description}
+        </TextC>
       </View>
 
-      <View style={styles.ProductDetails}>
-        <Text style={styles.ProductDetailsTitle}>Product Details</Text>
+      <View style={styles.ProductDetailsItem}>
+        <TextC variant="h4" font="medium">
+          Product Details
+        </TextC>
+        <View style={styles.productdetils}>
+          <View style={{width: '40%'}}>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Name
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Fabric
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Sleeve Length
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Pattern
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Combo of
+            </TextC>
+          </View>
 
-        <View style={styles.ProductDetailsItem}>
-          <Text style={styles.ProductDetailsItemTitle}>Category</Text>
-          <Text style={styles.ProductDetailsItemText}>Test</Text>
+          <View style={{width: '50%'}}>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Chitrarekha Attractive Kurtis
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Georgette
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Long Sleeves
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Solid
+            </TextC>
+            <TextC variant="h6" font="regular" color={R.color.dark.gray2}>
+              Single
+            </TextC>
+          </View>
         </View>
       </View>
+      <View style={styles.ProductDetailsItem}>
+        <TextC variant="h4" font="medium">
+          Product Sold By
+        </TextC>
+        <View style={styles.productdetils}>
+          <View>
+            <TextC variant="h6" font="medium" color={R.color.dark.gray2}>
+              Suchitra Garments
+            </TextC>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingRight: 20,
+                }}>
+                <TextC variant="h5" font="bold" color={R.color.dark.gray2}>
+                  2091
+                </TextC>
+                <TextC variant="h5" font="regular" color={R.color.dark.gray2}>
+                  Products
+                </TextC>
+              </View>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingRight: 20,
+                }}>
+                <TextC variant="h5" font="bold" color={R.color.dark.gray2}>
+                  6.5 K
+                </TextC>
+                <TextC variant="h5" font="regular" color={R.color.dark.gray2}>
+                  Followers
+                </TextC>
+              </View>
+              <View
+                style={{
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  paddingRight: 5,
+                }}>
+                <TextC variant="h5" font="bold" color={R.color.dark.gray2}>
+                  4.1
+                </TextC>
+                <TextC variant="h5" font="regular" color={R.color.dark.gray2}>
+                  (32,101 Ratings)
+                </TextC>
+              </View>
+              <SvgXml xml={ShopIcon} />
+            </View>
+          </View>
+        </View>
+      </View>
+      <View style={{paddingHorizontal: 18}}>
+        <TextC variant="h4" font="medium">
+          Reviews
+        </TextC>
+        <View style={{flexDirection: 'row'}}>
+          <View
+            style={{
+              gap: 3,
+              alignItems: 'center',
+              height: vs(150),
+              width: '35%',
+              justifyContent: 'center',
+            }}>
+            <TextC variant="h4" font="medium">
+              4.0
+            </TextC>
+            <View style={{flexDirection: 'row'}}>
+              <StarIcon active={true} size={18} />
+              <StarIcon active={true} size={18} />
+              <StarIcon active={true} size={18} />
+              <StarIcon active={true} size={18} />
+              <StarIcon active={false} size={18} />
+            </View>
+            <TextC font="medium" variant="h6" color="red">
+              171 Rating
+            </TextC>
+          </View>
+          <View
+            style={{gap: 3, alignItems: 'center', justifyContent: 'center'}}>
+            <ProductProgress />
+            <ProductProgress />
+            <ProductProgress />
+            <ProductProgress />
+            <ProductProgress />
+          </View>
+        </View>
+      </View>
+      <AvatarRview />
+      <AvatarRview />
       <ProductCardList />
     </ScrollView>
   );
@@ -448,5 +643,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins',
     color: color.misc,
     fontSize: 14,
+  },
+  ProductDetailsItem: {
+    paddingHorizontal: wp(5),
+  },
+  productdetils: {
+    flexDirection: 'row',
   },
 });
