@@ -106,13 +106,16 @@ const SignInScreen = () => {
 
   useEffect(() => {
     if (response) {
-      if (response.temporary_token) {
+      if (response.temporary_token || response.token) {
         setIsUserLoggedIn(true);
+        navigate('Dashbord');
       } else {
-        Alert.alert(response?.errors[0].message);
+        if (response.errors) {
+          Alert.alert(response?.errors[0].message || JSON.stringify(response));
+        }
       }
     }
-  }, [isLoading]);
+  }, [response]);
 
   const validate = () => {
     Keyboard.dismiss();

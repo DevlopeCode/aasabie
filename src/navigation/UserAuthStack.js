@@ -9,6 +9,7 @@ import SplashScreen4 from '../screens/splash/SplashScreen4';
 import SignUpScreen from '../screens/Auth/SignUpScreen';
 import SignInWithNumber from '../screens/Auth/SignInWithNumber';
 import SplashScreen2 from '../screens/splash/SplashScreen2';
+import TabNavigation from './TabNavigation';
 
 const UserAuthStack = () => {
   const Stack = createStackNavigator();
@@ -26,6 +27,7 @@ const UserAuthStack = () => {
       <Stack.Screen name="SignIn" component={SignInScreen} />
       <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="SignInWithNumber" component={SignInWithNumber} />
+      <Stack.Screen name="Dashbord" component={TabNavigation} />
     </Stack.Navigator>
   );
 };
