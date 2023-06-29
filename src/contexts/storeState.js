@@ -3,7 +3,7 @@ import {create} from 'zustand';
 export const useBaseUrl = create(set => ({
   url: {},
   increasePopulation: _urlResponse => {
-    console.log(_urlResponse, '<<<< GOT_URL_RESPONSE >>>>');
+    // console.log(_urlResponse, '<<<< GOT_URL_RESPONSE >>>>');
     return set(() => ({url: _urlResponse}));
   },
   removeAllBears: () => set({bears: 0}),
