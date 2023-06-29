@@ -293,14 +293,14 @@ const ProductDetail = ({route}) => {
         <Text style={styles.descriptionText}>{testData.description}</Text>
       </View>
 
-      {/* <View style={styles.ProductDetails}>
+      <View style={styles.ProductDetails}>
         <Text style={styles.ProductDetailsTitle}>Product Details</Text>
 
         <View style={styles.ProductDetailsItem}>
           <Text style={styles.ProductDetailsItemTitle}>Category</Text>
           <Text style={styles.ProductDetailsItemText}>Test</Text>
         </View>
-      </View> */}
+      </View>
       <ProductCardList />
     </ScrollView>
   );

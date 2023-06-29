@@ -7,7 +7,9 @@ import PaymentMethod from './PaymentMethod';
 const CartStack = createStackNavigator();
 const CartScreens = () => {
   return (
-    <CartStack.Navigator initialRouteName="AddDeliveryAddress">
+    <CartStack.Navigator
+      initialRouteName="CartListScreen"
+      screenOptions={{headerShown: false}}>
       <CartStack.Screen component={Cart} name="CartListScreen" />
       <CartStack.Screen
         component={AddDeliveryAddress}

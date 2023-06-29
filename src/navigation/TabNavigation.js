@@ -133,7 +133,7 @@ const TabNavigation = () => {
         <Tab.Screen
           name="plus"
           // NewPostScreen
-          component={Cart}
+          component={CartScreens}
           options={{
             tabBarIcon: ({focused}) => (
               <Pressable

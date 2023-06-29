@@ -42,12 +42,12 @@ const RowLable = ({title, style}) => (
   </View>
 );
 
-export default function PaymentMethod() {
+export default function PaymentMethod({route}) {
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <Header title="Payment Method" />
       <ScrollView>
-        <StepCounter />
+        <StepCounter count={route.params} />
         <View style={{paddingHorizontal: wp(6)}}>
           <Text
             style={{

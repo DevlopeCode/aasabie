@@ -1,10 +1,18 @@
 /* eslint-disable react-native/no-inline-styles */
-import {StyleSheet, Text, View, TextInput, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {wp, hp} from '../../components/Responsive';
 import {Header} from '../Profile/MyCoupons/MyCoupons';
 import {vs} from 'react-native-size-matters';
 import {StepCounter} from '../CartScreens/Cart';
+import {navigate} from '../../utils/navigationServices';
 
 const InputComponent = props => {
   return (
@@ -27,12 +35,12 @@ const InputComponent = props => {
   );
 };
 
-export default function AddDeliveryAddress() {
+export default function AddDeliveryAddress({route}) {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={{flex: 1, backgroundColor: 'white', paddingBottom: 100}}>
         <Header title="Add Delivery Address" />
-        <StepCounter />
+        <StepCounter count={route.params} />
         <View style={{paddingHorizontal: wp(6)}}>
           <InputComponent
             title="Name"
@@ -70,18 +78,20 @@ export default function AddDeliveryAddress() {
             }}>
             Save as primary address
           </Text>
-          <Text
-            style={{
-              backgroundColor: '#EC303A',
-              borderRadius: 7,
-              color: 'white',
-              textAlign: 'center',
-              paddingVertical: 15,
-              marginTop: 140,
-              fontSize: vs(12.5),
-            }}>
-            Save Address and Continue
-          </Text>
+          <TouchableOpacity onPress={() => navigate('PaymentMethod', 2)}>
+            <Text
+              style={{
+                backgroundColor: '#EC303A',
+                borderRadius: 7,
+                color: 'white',
+                textAlign: 'center',
+                paddingVertical: 15,
+                marginTop: 140,
+                fontSize: vs(12.5),
+              }}>
+              Save Address and Continue
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollView>
