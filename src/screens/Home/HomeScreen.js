@@ -381,14 +381,19 @@ const HomeScreen = ({navigation}) => {
     i = 0;
 
   const showComponents = componentIndex => {
-    const component = {
-      0: () => secondRef.current.setShowComponent(false),
-      1: () => thirdRef.current.setShowComponent(false),
-      2: () => fourthRef.current.setShowComponent(false),
-      3: () => sixthRef.current.setShowComponent(false),
-      4: () => seventhRef.current.setShowComponent(false),
-    };
-    component[componentIndex]();
+    try {
+      const component = {
+        0: () => secondRef?.current?.setShowComponent(false),
+        1: () => thirdRef?.current?.setShowComponent(false),
+        2: () => fourthRef?.current?.setShowComponent(false),
+        3: () => sixthRef?.current?.setShowComponent(false),
+        4: () => seventhRef?.current?.setShowComponent(false),
+      };
+      component[componentIndex]();
+    } catch (error) {
+      console.log(error,'errorerrorerror')
+    }
+   
   };
 
   useEffect(() => {

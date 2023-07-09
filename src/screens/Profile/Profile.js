@@ -1,8 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 // ! THESE FILES ARE TEMPORY AND If YOU WANT CAN DELETE THEM NUT MAKE SURE TO REPLACE IT WITH YOUR OWN FILES
 
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  Image,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useContext} from 'react';
 import {height, width} from '../../config/dimension';
 import ScrollContainer from '../../components/ScrollComponent';
 import {
@@ -31,7 +38,9 @@ import MyCoupons from './MyCoupons/MyCoupons';
 import AccountInfo from './AccountInformation/AccountInformation';
 import {Logout} from '../../assets/SVG';
 import {Header} from './MyCoupons/MyCoupons';
-
+import {UserContext} from '../../contexts/UserContext';
+import { clearStore } from '../../utils/storage';
+//   clearStore();
 const RowLable = ({title, Icon, onPress}) => (
   <TouchableRipple
     onPress={onPress}
@@ -51,6 +60,7 @@ const RowLable = ({title, Icon, onPress}) => (
 );
 
 const Profile = ({navigation}) => {
+  const {setIsUserLoggedIn} = useContext(UserContext);
   return (
     <ScrollContainer header={<Header title="Profile" />}>
       <View style={styles.container}>
@@ -109,16 +119,23 @@ const Profile = ({navigation}) => {
           <RowLable Icon={CardsAndWallet} title={'Cards & Wallet'} />
           <RowLable Icon={HelpCenter} title={'Help Center'} />
 
-          <View
+          <TouchableOpacity
+            onPress={() => {
+              setIsUserLoggedIn(false)
+              clearStore()
+            }}
             style={{
               flexDirection: 'row',
               justifyContent: 'center',
               marginTop: '10%',
               marginLeft: '-8%',
+              // backgroundColor:'blue',
+              paddingVertical:10,
+              marginBottom:10
             }}>
             <SvgXml xml={Logout} />
             <Text>Logout</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </ScrollContainer>
